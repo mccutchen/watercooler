@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 
 class Chat(models.Model):
     name = models.CharField(max_length=256)
-    slug = models.SlugField(prepopulate_from='name', unique=True)
+    slug = models.SlugField(unique=True)
     public = models.BooleanField(default=False)
     created = models.DateTimeField(auto_now_add=True)
 

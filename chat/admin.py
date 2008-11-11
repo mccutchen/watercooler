@@ -1,5 +1,5 @@
 from django.contrib import admin
-from watercooloer.chat.models import Chat, Post
+from watercooler.chat.models import Chat, Post
 
-admin.site.register(Author)
+admin.site.register(Chat)
 admin.site.register(Post)
