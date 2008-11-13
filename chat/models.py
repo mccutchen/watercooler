@@ -8,6 +8,9 @@ class Chat(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     created_by = models.ForeignKey(User)
     
+    class Meta:
+        ordering = ('created',)
+    
     def __unicode__(self):
         return u'%s' % self.name
 
@@ -18,6 +21,11 @@ class Post(models.Model):
     timestamp = models.DateTimeField(auto_now_add=True)
     content = models.TextField()
     content_rendered = models.TextField()
+    
+    class Meta:
+        ordering = ('timestamp',)
+        get_latest_by = 'timestamp'
+        order_with_respect_to = 'parent'
     
     def save():
         self.content_rendered = self.content
