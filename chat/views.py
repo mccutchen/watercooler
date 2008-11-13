@@ -1,9 +1,7 @@
-# Create your views here.
-
 def index(request):
     pass
 
-def chat(request, slug, start=None, date=None, user=None):
+def chat(request, slug):
     pass
 
 def post(request, slug):
