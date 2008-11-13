@@ -17,7 +17,7 @@ class Chat(models.Model):
 
 class Post(models.Model):
     user = models.ForeignKey(User, related_name='posts')
-    parent = models.ForeignKey(Chat, related_name='posts'))
+    parent = models.ForeignKey(Chat, related_name='posts')
     timestamp = models.DateTimeField(auto_now_add=True)
     content = models.TextField()
     content_rendered = models.TextField()
