@@ -27,6 +27,9 @@ class Post(models.Model):
         get_latest_by = 'timestamp'
         order_with_respect_to = 'parent'
     
-    def save():
+    def save(self):
         self.content_rendered = self.content
         super(Post, self).save()
+    
+    def __unicode__(self):
+        return 'Post by %s on %s' % (self.user, self.parent)
