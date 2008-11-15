@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div id="intro" class="page-header section">
+        <div class="left column">
+            <h2>Quick and easy group chat.</h2>
+            <p><strong class="logo">Watercooler</strong>
+            makes it easy to create and share
+            conversations with your friends, your
+            coworkers, or even complete strangers!  To get
+            started, just give your conversation a name in
+            the box to the right.  <strong
+            class="logo">Watercooler</strong> will save
+            your conversations, so you can resume or
+            search them later on.</p>
+        </div>
+
+        <div id="start" class="right column">
+            <h2>Start a conversation now.</h2>
+            <form action="chat.php" method="post">
+                <div>
+                    <input id="name" type="text" value="Conversation name" />
+                    <input type="submit" value="Start chatting" />
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <div id="more-info" class="section">
+        <div id="sidebar">
+            <h3>Public Conversations</h3>
+            <p>The following public conversations are
+            currently taking place.  Join one of them and
+            add your $0.02.</p>
+            <ul>
+                <li><a href="chat.php">Vice Presidential Debate</a></li>
+                <li><a href="chat.php">Great Taste vs. Less Filling</a></li>
+                <li><a href="chat.php">Boxers or Briefs</a></li>
+            </ul>
+            <p>Or, <a href="chat.php">browse all public conversations</a>.</p>
+        </div>
+    
+        <h3>More information</h3>
+
+        <p><strong class="logo">Watercooler</strong> is a
+        great tool for chatting with your friends or
+        collaborating with your coworkers.  It's available
+        anywhere you have an Internet connection and
+        requires no software installation.</p>
+
+        <h3>Features</h3>
+        <ul>
+            <li><strong>Easy setup.</strong> Just name your
+            conversation, give it a password, and share it
+            with your friends.</li>
+        
+            <li><strong>Saved transcripts.</strong> Transcripts of your
+            conversations are always available.</li>
+        
+            <li><strong>Persistent conversations.</strong> Resume a conversation at
+            any time, even after weeks or months.</li>
+        
+            <li><strong>Searchable.</strong> Easily search
+            your conversations.</li>
+        
+            <li><strong>Public conversations.</strong> Create public
+            conversations that anyone can join.</li>
+        
+            <li><strong>Multimedia support.</strong> Links
+            to images, videos, or audio files are viewable
+            or playable right from the conversation
+            itself.</li>
+        </ul>
+    
+        <p>To get started, just enter a name for your
+        conversation in the box at the top of the page or
+        <a href="chat.php">join an existing conversation</a>.</p>
+    
+        <h3>Inspiration</h3>
+        <p><strong class="logo">Watercooler</strong> was
+        inspired by the infinitely superior <a
+        href="http://www.campfirenow.com">Campfire</a>
+        from the talented folks at <a
+        href="http://www.37signals.com">37signals</a>.</p>
+    </div>
+{% endblock %}

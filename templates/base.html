@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+    <head>
+        <title>Watercooler</title>
+        <link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}watercooler.css" />
+        {% block extrahead %}{% endblock %}
+    </head>
+    <body>
+        <div id="container">
+            <div id="header">
+                <h1><a href="./">Watercooler</a></h1>
+            </div>
+
+            <div id="content">
+                {% block content %}{% endblock %}
+            </div>
+            
+            <div id="footer">
+                <p><strong
+                class="logo">Watercooler</strong>&mdash;Quick and easy
+                group chat.</p>
+                <p>Copyright &copy; 2008 <a
+                href="mailto:mccutchen@gmail.com">Will McCutchen</a>.
+                Questions?  Problems?  <a
+                href="contact.php">Contact us</a>.</p>
+            </div>
+        </div>
+    </body>
+</html>

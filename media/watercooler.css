@@ -1,0 +1,293 @@
+@import "http://localhost/~mccutchen/media/watercooler/reset.css";
+
+
+/*---------------------------------------------------------------------------
+    Basic styles
+---------------------------------------------------------------------------*/
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #fff;
+    color: #333;
+    font-family: georgia, serif;
+    font-size: 14px;
+}
+
+h1 {
+    font-size: 32px;
+}
+h2 {
+    font-size: 24px;
+    font-weight: normal;
+}
+h3 {
+    font-size: 20px;
+    font-weight: normal;
+}
+
+p {
+    margin: 1em 0;
+}
+p:first-child {
+    margin-top: 0;
+}
+
+a {
+    color: #369;
+    text-decoration: none;
+    border-bottom: 1px dotted;
+}
+
+ul {
+    list-style-type: square;
+    margin: 1em;
+}
+li {
+    padding: 3px 0;
+}
+
+
+/*---------------------------------------------------------------------------
+    Sitewide styles
+---------------------------------------------------------------------------*/
+div#container {
+    width: 800px;
+    margin: 0 auto;
+}
+
+div#header {
+    background-color: #369;
+    margin-bottom: 1px;
+    padding: 10px;
+    border: 3px solid #245586; /*036*/
+    border-top-width: 0; border-left-width: 0;
+}
+div#header h1 {
+    margin: 0;
+    padding: 0;
+}
+div#header h1 a {
+    display: block;
+    text-indent: -5000px;
+    background: transparent url(http://localhost/~mccutchen/media/watercooler/img/logo.png) no-repeat;
+    height: 33px;
+    border: none;
+}
+
+
+div#content {
+    width: 800px;
+    margin: 0 auto;
+}
+div#content div.standalone.section {
+    padding: 20px;
+}
+
+div.page-header {
+    background-color: #e9e9bf;
+    padding: 10px;
+    border: 3px solid #d9d9a5;
+    border-top-width: 0;
+    border-left-width: 0;
+    margin-bottom: 1px;
+}
+div.page-header h2 {
+    color: #369;
+    margin: 0;
+    padding: 0;
+}
+
+div.column {
+    width: 50%;
+}
+div.left.column {
+    float: left;
+}
+div.right.column {
+    margin-left: 50%;
+}
+
+
+div#footer {
+    background-color: #369;
+    color: #fff;
+    padding: 10px;
+    border: 3px solid #245586;
+    border-bottom-width: 0; border-left-width: 0;
+    font-size: 11px;
+}
+div#footer p {
+    margin: 0;
+}
+div#footer a {
+    color: #ccc;
+}
+
+strong.logo {
+    font-variant: small-caps;
+}
+
+
+/*---------------------------------------------------------------------------
+    Front page
+---------------------------------------------------------------------------*/
+div#intro {
+    padding: 20px;
+}
+div#intro div.left.column h2 {
+    color: #369;
+    margin-bottom: -8px;
+    
+    text-indent: -5000px;
+    background: transparent url(http://localhost/~mccutchen/media/watercooler/img/tagline.png) no-repeat;
+    height: 22px;
+}
+div#intro div.left.column p {
+    margin-right: 20px;
+}
+
+div#start {
+    background-color: #900;
+    color: #fff;
+    border: 3px solid #740000;
+    border-top-width: 0;
+    border-left-width: 0;
+    -moz-border-radius: 12px;
+}
+div#start h2 {
+    padding-top: 15px;
+    padding-bottom: 0;
+    text-align: center;
+    
+    text-indent: -5000px;
+    background: transparent url(http://localhost/~mccutchen/media/watercooler/img/start.png) center no-repeat;
+    height: 17px;
+}
+div#start form {
+    display: block;
+    padding: 10px;
+}
+div#start input {
+    width: 100%;
+    font-size: 18px;
+    text-align: center;
+    font-family: inherit;
+}
+div#start input[type="text"] {
+    font-size: 18px;
+    margin-bottom: 10px;
+    padding: 0;
+    width: 353px;
+}
+
+
+div#more-info {
+    padding: 20px;
+}
+div#more-info div#sidebar + h3 + p {
+    margin-right: 53%;
+}
+div#more-info li strong {
+    display: block;
+}
+
+div#sidebar {
+    float: right;
+    width: 50%;
+    background-color: #eee;
+    border: 3px solid #ccc;
+    border-top-width: 0;
+    border-left-width: 0;
+    padding: 10px 0;
+}
+div#sidebar h3, div#sidebar p {
+    padding: 0 10px;
+}
+div#sidebar ul {
+    padding: 0 20px;
+}
+
+
+/*---------------------------------------------------------------------------
+    Chat page
+---------------------------------------------------------------------------*/
+div#chat-container {
+    background: transparent url(http://localhost/~mccutchen/media/watercooler/img/sidebar-bg.gif) top right repeat-y;
+}
+
+ol#chat {
+    float: left;
+    width: 540px;
+    list-style-type: none;
+    margin: 0;
+    margin-bottom: 20px;
+    padding: 0;
+}
+ol#chat li {
+    padding: 10px;
+    border-top: 1px dotted #ccc;
+    line-height: 125%;
+}
+ol#chat li:first-child {
+    border-top: none;
+}
+ol#chat .username, ol#chat .timestamp {
+    font-size: 12px;
+    font-family: "Lucida Sans", Verdana, sans-serif;
+}
+ol#chat .username {
+    color: #900;
+    font-weight: bold;
+    padding-right: 10px;
+}
+ol#chat .timestamp {
+    color: #999;
+}
+ol#chat li.you {
+    background-color: #eee;
+}
+ol#chat li.you .username {
+    color: #369;
+}
+
+
+div#users {
+    width: 250px;
+    margin-left: 550px;
+}
+div#users h3 {
+    margin: 0;
+    padding: 5px 10px;
+}
+div#users ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    margin-bottom: 10px;
+}
+div#users li {
+    padding: 5px 10px;
+    border-top: 1px dotted #ccc;
+    font-size: 12px;
+    font-family: "Lucida Sans", Verdana, sans-serif;
+}
+
+div#post {
+    clear: both;
+    width: 526px;
+}
+div#post form {
+    display: block;
+    margin: 10px 0;
+}
+div#post textarea {
+    font: inherit;
+    width: 100%;
+    width: 516px;
+    padding: 5px;
+    display: block;
+}
+div#post p {
+    font-size: 12px;
+    color: #666;
+}
