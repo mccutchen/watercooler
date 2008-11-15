@@ -4,7 +4,8 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    (r'^$', direct_to_template, {'template': 'index.html'}),
+    url(r'^$', direct_to_template, {'template': 'index.html'}, name='index'),
+    url(r'^contact/$', direct_to_template, {'template': 'contact.html'}, name='contact'),
     (r'^chat/', include('chat.urls')),
     (r'^admin/(.*)', admin.site.root),
 )
