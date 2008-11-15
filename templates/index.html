@@ -32,12 +32,16 @@
             <p>The following public conversations are
             currently taking place.  Join one of them and
             add your $0.02.</p>
-            <ul>
-                <li><a href="chat.php">Vice Presidential Debate</a></li>
-                <li><a href="chat.php">Great Taste vs. Less Filling</a></li>
-                <li><a href="chat.php">Boxers or Briefs</a></li>
-            </ul>
-            <p>Or, <a href="chat.php">browse all public conversations</a>.</p>
+            {% if public_chats %}
+                <ul>
+                    {% for chat in public_chats %}
+                        <li><a href="#">{{ chat.name }}</a></li>
+                    {% endfor %}
+                </ul>
+                <p>Or, <a href="chat.php">browse all public conversations</a>.</p>
+            {% else %}
+                <p>Sorry, no public chats available.</p>
+            {% endif %}
         </div>
     
         <h3>More information</h3>
