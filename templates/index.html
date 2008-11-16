@@ -35,7 +35,7 @@
             {% if public_chats %}
                 <ul>
                     {% for chat in public_chats %}
-                        <li><a href="#">{{ chat.name }}</a></li>
+                        <li><a href="{{ chat.get_absolute_url }}">{{ chat.name }}</a></li>
                     {% endfor %}
                 </ul>
                 <p>Or, <a href="chat.php">browse all public conversations</a>.</p>

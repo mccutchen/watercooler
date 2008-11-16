@@ -11,6 +11,10 @@ class Chat(models.Model):
     class Meta:
         ordering = ('created',)
     
+    @models.permalink
+    def get_absolute_url(self):
+        return ('chat_detail', [self.slug])
+    
     def __unicode__(self):
         return u'%s' % self.name
 
