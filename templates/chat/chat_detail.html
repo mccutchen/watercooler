@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="page-header section">
+        <h2>{{ chat.name }}</h2>
+    </div>
+
+    <div id="chat-container">
+        {% if chat.posts %}
+            <ol id="chat">
+                {% for post in chat.posts.all %}
+                    <li>
+                        <span class="username">{{ post.user }}</span>
+                        {{ post.content_rendered }}
+                        <span class="timestamp">@ {{ post.timestamp }}</span>
+                    </li>
+                {% endfor %}
+            </ol>
+        {% endif %}
+    
+        <div id="users">
+            <h3>Users</h3>
+            <ul id="active">
+                {% for user in object.posts.users %}
+                    <li>{{ user.email }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    
+        <div id="post" class="page-header">
+            <h3>Say Something</h3>
+            <form action="#" method="post">
+                <textarea rows="5" cols="60"></textarea><br />
+                <input type="submit" value="Submit" />
+            </form>
+            <p><strong>Note:</strong> URLs will be hyperlinked automatically.
+            Images, audio and video links will be displayed inline.</p>
+        </div>
+    </div>
+{% endblock %}
