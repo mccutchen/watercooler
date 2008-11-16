@@ -11,6 +11,9 @@ class Chat(models.Model):
     class Meta:
         ordering = ('created',)
     
+    def users(self):
+        return set([post.user for post in self.posts.all()])
+    
     @models.permalink
     def get_absolute_url(self):
         return ('chat_detail', [self.slug])
