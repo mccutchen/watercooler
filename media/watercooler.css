@@ -90,7 +90,7 @@ div#content div.standalone.section {
     padding: 20px;
 }
 
-div.page-header {
+div#page-header {
     background-color: #e9e9bf;
     padding: 10px;
     border: 3px solid #d9d9a5;
@@ -98,7 +98,7 @@ div.page-header {
     border-left-width: 0;
     margin-bottom: 1px;
 }
-div.page-header h2 {
+div#page-header h2 {
     color: #369;
     margin: 0;
     padding: 0;
@@ -138,10 +138,10 @@ strong.logo {
 /*---------------------------------------------------------------------------
     Front page
 ---------------------------------------------------------------------------*/
-div#intro {
+div#page-header.intro {
     padding: 20px;
 }
-div#intro div.left.column h2 {
+div#page-header.intro div.left.column h2 {
     color: #369;
     margin-bottom: -8px;
     
@@ -149,7 +149,7 @@ div#intro div.left.column h2 {
     background: transparent url(http://localhost/~mccutchen/media/watercooler/img/tagline.png) no-repeat;
     height: 22px;
 }
-div#intro div.left.column p {
+div#page-header.intro div.left.column p {
     margin-right: 20px;
 }
 

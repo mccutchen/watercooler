@@ -1,31 +1,33 @@
 {% extends "base.html" %}
 
-{% block content %}
-    <div id="intro" class="page-header section">
-        <div class="left column">
-            <h2>Quick and easy group chat.</h2>
-            <p><strong class="logo">Watercooler</strong>
-            makes it easy to create and share
-            conversations with your friends, your
-            coworkers, or even complete strangers!  To get
-            started, just give your conversation a name in
-            the box to the right.  <strong
-            class="logo">Watercooler</strong> will save
-            your conversations, so you can resume or
-            search them later on.</p>
-        </div>
+{% block page_header_class %}intro{% endblock %}
 
-        <div id="start" class="right column">
-            <h2>Start a conversation now.</h2>
-            <form action="{% url chat_create %}" method="post">
-                <div>
-                    <input name="name" type="text" value="Conversation name" />
-                    <input type="submit" value="Start chatting" />
-                </div>
-            </form>
-        </div>
+{% block page_header %}
+    <div class="left column">
+        <h2>Quick and easy group chat.</h2>
+        <p><strong class="logo">Watercooler</strong>
+        makes it easy to create and share
+        conversations with your friends, your
+        coworkers, or even complete strangers!  To get
+        started, just give your conversation a name in
+        the box to the right.  <strong
+        class="logo">Watercooler</strong> will save
+        your conversations, so you can resume or
+        search them later on.</p>
     </div>
-    
+
+    <div id="start" class="right column">
+        <h2>Start a conversation now.</h2>
+        <form action="{% url chat_create %}" method="post">
+            <div>
+                <input name="name" type="text" value="Conversation name" />
+                <input type="submit" value="Start chatting" />
+            </div>
+        </form>
+    </div>
+{% endblock %}
+
+{% block content %}
     <div id="more-info" class="section">
         <div id="sidebar">
             <h3>Public Conversations</h3>

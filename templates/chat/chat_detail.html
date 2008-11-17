@@ -1,10 +1,10 @@
 {% extends "base.html" %}
 
-{% block content %}
-    <div class="page-header section">
-        <h2>{{ chat.name }}</h2>
-    </div>
+{% block page_header %}
+    <h2>{{ chat.name }}</h2>
+{% endblock %}
 
+{% block content %}
     <div id="chat-container">
         {% if chat.posts %}
             <ol id="chat">
