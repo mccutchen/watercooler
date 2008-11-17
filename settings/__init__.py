@@ -6,10 +6,21 @@ ADMINS = (
 )
 MANAGERS = ADMINS
 
-TIME_ZONE = 'America/Chicago'
-LANGUAGE_CODE = 'en-us'
-SITE_ID = 1
-USE_I18N = True
+ROOT_URLCONF = 'watercooler.urls'
+
+INSTALLED_APPS = (
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.sites',
+    'django.contrib.admin',
+    'chat',
+    'registration',
+)
+
+TEMPLATE_DIRS = (
+    os.path.join(PROJECT_PATH, 'templates'),
+)
 
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.load_template_source',
@@ -27,23 +38,15 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
 )
 
-ROOT_URLCONF = 'watercooler.urls'
-
-TEMPLATE_DIRS = (
-    os.path.join(PROJECT_PATH, 'templates'),
-)
-
-INSTALLED_APPS = (
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.sites',
-    'django.contrib.admin',
-    'chat',
-    'registration',
-)
-
+# Where to redirect the user on successful login if a "next" page
+# isn't given.
 LOGIN_REDIRECT_URL = '/'
+
+TIME_ZONE = 'America/Chicago'
+LANGUAGE_CODE = 'en-us'
+SITE_ID = 1
+USE_I18N = True
+
 
 # Import specific settings based on hostname
 try:
