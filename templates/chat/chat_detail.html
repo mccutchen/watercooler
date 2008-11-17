@@ -8,7 +8,7 @@
     <div id="chat-container">
         <ol id="chat">
             {% for post in chat.posts.all %}
-                <li>
+                <li{% ifequal post.user user %} class="me"{% endifequal %}>
                     <span class="username">{{ post.user }}</span>
                     {{ post.content_rendered }}
                     <span class="timestamp">@ {{ post.timestamp|date:"H:i" }}</span>
@@ -19,8 +19,10 @@
         <div id="users">
             <h3>Users</h3>
             <ul id="active">
-                {% for user in chat.users %}
-                    <li>{{ user }}</li>
+                {% for chatuser in chat.users %}
+                    <li{% ifequal chatuser user %} class="me"{% endifequal %}>
+                        {{ chatuser }}
+                    </li>
                 {% endfor %}
             </ul>
         </div>

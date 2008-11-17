@@ -253,7 +253,7 @@ ol#chat .timestamp {
 ol#chat li.you {
     background-color: #eee;
 }
-ol#chat li.you .username {
+ol#chat li.me .username {
     color: #369;
 }
 
@@ -277,6 +277,9 @@ div#users li {
     border-top: 1px dotted #ccc;
     font-size: 12px;
     font-family: "Lucida Sans", Verdana, sans-serif;
+}
+div#users li.me {
+    font-weight: bold;
 }
 
 div#post {
