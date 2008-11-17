@@ -12,7 +12,7 @@
                     <li>
                         <span class="username">{{ post.user }}</span>
                         {{ post.content_rendered }}
-                        <span class="timestamp">@ {{ post.timestamp }}</span>
+                        <span class="timestamp">@ {{ post.timestamp|date:"H:i" }}</span>
                     </li>
                 {% endfor %}
             </ol>
