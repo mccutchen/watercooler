@@ -1,9 +1,9 @@
 from django.conf.urls.defaults import *
 from django.views.generic.simple import direct_to_template
+from django.contrib.auth.views import login, logout
 from django.contrib import admin
-from chat.models import Chat
 
-admin.autodiscover()
+from chat.models import Chat
 
 index_options = {
     'template': 'index.html',
@@ -17,4 +17,8 @@ urlpatterns = patterns('',
     url(r'^contact/$', direct_to_template, {'template': 'contact.html'}, name='contact'),
     (r'^chat/', include('chat.urls')),
     (r'^admin/(.*)', admin.site.root),
+    (r'^accounts/login/$',  login),
+    (r'^accounts/logout/$', logout),
 )
+
+admin.autodiscover()
