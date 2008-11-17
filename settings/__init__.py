@@ -40,6 +40,7 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.admin',
     'chat',
+    'registration',
 )
 
 # Import specific settings based on hostname
