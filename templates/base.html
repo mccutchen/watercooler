@@ -11,12 +11,12 @@
     <body>
         <div id="container">
             <div id="user">
-                {% if request.user.is_authenticated %}
-                    Logged in as <strong>{{ request.user }}</strong>
+                {% if user.is_authenticated %}
+                    Logged in as <strong>{{ user }}</strong>.
+                    <a href="/accounts/logout/">Log out</a>?
                 {% else %}
                     Not logged in.  <a href="/accounts/login/">Log in</a> or <a href="/accounts/register/">Sign up</a>?
                 {% endif %}
-                (Note:  This is broken.  You might be logged in.)
             </div>
             
             <div id="header">
