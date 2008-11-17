@@ -90,7 +90,7 @@ div#content div.standalone.section {
     padding: 20px;
 }
 
-div#page-header {
+div#page-header, div#post {
     background-color: #e9e9bf;
     padding: 10px;
     border: 3px solid #d9d9a5;
