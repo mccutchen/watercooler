@@ -9,7 +9,7 @@ from chat.models import Chat
 index_options = {
     'template': 'index.html',
     'extra_context': {
-        'public_chats': lambda: Chat.objects.filter(is_public=True),
+        'public_chats': Chat.objects.public,
     },
 }
 
