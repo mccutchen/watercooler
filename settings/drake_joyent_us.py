@@ -13,3 +13,5 @@ MEDIA_URL = 'http://static.overloaded.org/watercooler/'
 ADMIN_MEDIA_PREFIX = 'http://static.overloaded.org/admin/'
 
 FORCE_SCRIPT_NAME = ''
+
+ROOT_URLCONF = 'urls'
