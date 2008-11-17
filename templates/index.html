@@ -17,9 +17,9 @@
 
         <div id="start" class="right column">
             <h2>Start a conversation now.</h2>
-            <form action="chat.php" method="post">
+            <form action="{% url chat_create %}" method="post">
                 <div>
-                    <input id="name" type="text" value="Conversation name" />
+                    <input name="name" type="text" value="Conversation name" />
                     <input type="submit" value="Start chatting" />
                 </div>
             </form>
