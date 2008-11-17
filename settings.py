@@ -82,3 +82,6 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'chat',
 )
+
+if DEBUG:
+    TEMPLATE_STRING_IF_INVALID = 'XXX'
