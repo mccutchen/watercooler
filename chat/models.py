@@ -16,7 +16,7 @@ class Chat(models.Model):
     
     @models.permalink
     def get_absolute_url(self):
-        return ('chat_detail', [self.slug])
+        return ('chat', [self.slug])
     
     def __unicode__(self):
         return u'%s' % self.name

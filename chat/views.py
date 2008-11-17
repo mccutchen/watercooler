@@ -6,7 +6,7 @@ from django.http import HttpResponseRedirect
 from chat.models import Chat, Post
 
 @login_required
-def chat_detail(request, slug):
+def chat(request, slug):
     return object_detail(
         request,
         queryset=Chat.objects.all(),
@@ -21,4 +21,4 @@ def post(request, slug):
         chat = Chat.objects.get(slug=slug)
         post = Post(user=request.user, parent=chat, content=content)
         post.save()
-    return HttpResponseRedirect(reverse('chat_detail', args=[slug]))
+    return HttpResponseRedirect(reverse('chat', args=[slug]))
