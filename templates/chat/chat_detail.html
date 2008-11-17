@@ -6,17 +6,15 @@
 
 {% block content %}
     <div id="chat-container">
-        {% if chat.posts %}
-            <ol id="chat">
-                {% for post in chat.posts.all %}
-                    <li>
-                        <span class="username">{{ post.user }}</span>
-                        {{ post.content_rendered }}
-                        <span class="timestamp">@ {{ post.timestamp|date:"H:i" }}</span>
-                    </li>
-                {% endfor %}
-            </ol>
-        {% endif %}
+        <ol id="chat">
+            {% for post in chat.posts.all %}
+                <li>
+                    <span class="username">{{ post.user }}</span>
+                    {{ post.content_rendered }}
+                    <span class="timestamp">@ {{ post.timestamp|date:"H:i" }}</span>
+                </li>
+            {% endfor %}
+        </ol>
     
         <div id="users">
             <h3>Users</h3>
@@ -27,7 +25,7 @@
             </ul>
         </div>
     
-        <div id="post" class="page-header">
+        <div id="post">
             <h3>Say Something</h3>
             <form action="{% url chat_post chat.slug %}" method="post">
                 <textarea name="content" rows="5" cols="60"></textarea><br />
