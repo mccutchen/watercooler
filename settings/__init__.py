@@ -43,6 +43,8 @@ INSTALLED_APPS = (
     'registration',
 )
 
+LOGIN_REDIRECT_URL = '/'
+
 # Import specific settings based on hostname
 try:
     import socket
