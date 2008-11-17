@@ -1,19 +1,16 @@
-from django.views.generic.list_detail import object_list, object_detail
+from django.views.generic.list_detail import object_list
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect, HttpResponseServerError
 from django.template.defaultfilters import slugify
 
+from watercooler.utils import render_to_response
 from chat.models import Chat, Post
 
 @login_required
 def chat(request, slug):
-    return object_detail(
-        request,
-        queryset=Chat.objects.all(),
-        slug=slug,
-        template_object_name='chat'
-    )
+    chat = Chat.objects.get(slug=slug)    
+    return render_to_response(request, 'chat/chat.html', {'chat': chat})
 
 @login_required
 def post(request, slug):
