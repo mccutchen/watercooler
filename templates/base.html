@@ -27,7 +27,7 @@
                 {% block page_header %}Page Title{% endblock %}
             </div>
 
-            <div id="content">
+            <div id="content" class="{% block content_class %}{% endblock %}">
                 {% block content %}Content{% endblock %}
             </div>
             
