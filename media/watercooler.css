@@ -83,11 +83,9 @@ div#user {
 
 
 div#content {
-    width: 800px;
-    margin: 0 auto;
-}
-div#content div.standalone.section {
+    width: 760px;
     padding: 20px;
+    margin: 0 auto;
 }
 
 div#page-header, div#post {
@@ -188,9 +186,6 @@ div#start input[type="text"] {
 }
 
 
-div#more-info {
-    padding: 20px;
-}
 div#more-info div#sidebar + h3 + p {
     margin-right: 53%;
 }
@@ -219,6 +214,7 @@ div#sidebar ul {
     Chat page
 ---------------------------------------------------------------------------*/
 div#chat-container {
+    margin: -20px;
     background: transparent url(img/sidebar-bg.gif) top right repeat-y;
 }
 
