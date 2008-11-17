@@ -12,7 +12,7 @@ class Chat(models.Model):
         ordering = ('created',)
     
     def users(self):
-        return set([post.user for post in self.posts.select_related('users').all()])
+        return User.objects.filter(posts__parent__pk=self.id).distinct()
     
     @models.permalink
     def get_absolute_url(self):
