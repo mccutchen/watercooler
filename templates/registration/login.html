@@ -12,13 +12,8 @@
         <p class="error">Sorry, that's not a valid username or password</p>
     {% endif %}
 
-    <form action="." method="post">
-        <label for="username">User name:</label>
-        <input type="text" name="username" value="" id="username"><br />
-        
-        <label for="password">Password:</label>
-        <input type="password" name="password" value="" id="password"><br />
-
+    <form action="." method="post" class="auth">
+        {{ form.as_p }}
         <input type="submit" value="login" />
         <input type="hidden" name="next" value="{{ next|escape }}" />
     </form>

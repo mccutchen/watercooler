@@ -297,3 +297,42 @@ div#post p {
     font-size: 12px;
     color: #666;
 }
+
+
+/*---------------------------------------------------------------------------
+    Auth/Signup forms
+---------------------------------------------------------------------------*/
+form.auth {
+    width: 50%;
+}
+
+form.auth label {
+    display: block;
+    font-weight: bold;
+    padding: 5px 0;
+    font-size: 14px;
+    color: #333;
+}
+form.auth input {
+    display: block;
+}
+form.auth p {
+    font-size: 12px;
+    color: #999;
+}
+
+p.error, div.error, ul.errorlist li {
+    padding: 5px 10px;
+    background-color: #ffdfdf;
+    border: 3px solid #df7d7d;
+    border-top-width: 1px;
+    border-left-width: 1px;
+    margin: 1em 0;
+}
+ul.errorlist {
+    margin: 0;
+    list-style-type: none;
+}
+ul.errorlist li {
+    margin: 2px 0;
+}
