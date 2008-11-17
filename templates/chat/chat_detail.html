@@ -29,8 +29,8 @@
     
         <div id="post" class="page-header">
             <h3>Say Something</h3>
-            <form action="#" method="post">
-                <textarea rows="5" cols="60"></textarea><br />
+            <form action="{% url chat_post chat.slug %}" method="post">
+                <textarea name="content" rows="5" cols="60"></textarea><br />
                 <input type="submit" value="Submit" />
             </form>
             <p><strong>Note:</strong> URLs will be hyperlinked automatically.
