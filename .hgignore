@@ -1,3 +1,5 @@
 watercooler\.db
 ideas\.txt
 settings/local\.py
+watercooler\.pid
+watercooler\.socket
