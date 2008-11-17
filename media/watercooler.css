@@ -218,38 +218,40 @@ div#chat-container {
     background: transparent url(img/sidebar-bg.gif) top right repeat-y;
 }
 
-ol#chat {
+div#chat {
     float: left;
     width: 540px;
+    margin-bottom: 20px;
+}
+div#chat ol {
     list-style-type: none;
     margin: 0;
-    margin-bottom: 20px;
     padding: 0;
 }
-ol#chat li {
+div#chat ol li {
     padding: 10px;
     border-top: 1px dotted #ccc;
     line-height: 125%;
 }
-ol#chat li:first-child {
+div#chat ol li:first-child {
     border-top: none;
 }
-ol#chat .username, ol#chat .timestamp {
+div#chat ol .username, div#chat ol .timestamp {
     font-size: 12px;
     font-family: "Lucida Sans", Verdana, sans-serif;
 }
-ol#chat .username {
+div#chat ol .username {
     color: #369;
     font-weight: bold;
     padding-right: 10px;
 }
-ol#chat .timestamp {
+div#chat ol .timestamp {
     color: #999;
 }
-ol#chat li.me {
+div#chat ol li.me {
     background-color: #eee;
 }
-ol#chat li.me .username {
+div#chat ol li.me .username {
     color: #900;
 }
 

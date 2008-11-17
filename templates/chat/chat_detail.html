@@ -6,15 +6,17 @@
 
 {% block content %}
     <div id="chat-container">
-        <ol id="chat">
-            {% for post in chat.posts.all %}
-                <li{% ifequal post.user user %} class="me"{% endifequal %}>
-                    <span class="username">{{ post.user }}</span>
-                    {{ post.content_rendered }}
-                    <span class="timestamp">@ {{ post.timestamp|date:"H:i" }}</span>
-                </li>
-            {% endfor %}
-        </ol>
+        <div id="chat">
+            <ol>
+                {% for post in chat.posts.all %}
+                    <li{% ifequal post.user user %} class="me"{% endifequal %}>
+                        <span class="username">{{ post.user }}</span>
+                        {{ post.content_rendered }}
+                        <span class="timestamp">@ {{ post.timestamp|date:"H:i" }}</span>
+                    </li>
+                {% endfor %}
+            </ol>
+        </div>
     
         <div id="users">
             <h3>Users</h3>
