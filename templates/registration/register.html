@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="page-header section">
+        <h2>Sign Up</h2>
+    </div>
+    
+    <p>Fill out the form below to sign up for a Watercooler account.</p>
+    
+    <form action="." method="post">
+        {% if form.errors %}
+            <p>Errors:</p>
+            {{ form.errors }}
+        {% endif %}
+        
+        {{ form.as_p }}
+        
+        <input type="submit" value="Sign Up!" />
+    </form>
+{% endblock %}

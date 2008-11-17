@@ -3,6 +3,7 @@ from django.views.generic.simple import direct_to_template
 from django.contrib.auth.views import login, logout
 from django.contrib import admin
 
+from reg.views import register
 from chat.models import Chat
 
 index_options = {
@@ -19,6 +20,7 @@ urlpatterns = patterns('',
     (r'^admin/(.*)', admin.site.root),
     (r'^accounts/login/$',  login),
     (r'^accounts/logout/$', logout),
+    (r'^accounts/register/$', register),
 )
 
 admin.autodiscover()
