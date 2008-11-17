@@ -1,4 +1,4 @@
-@import "http://localhost/~mccutchen/media/watercooler/reset.css";
+@import "reset.css";
 
 
 /*---------------------------------------------------------------------------
@@ -69,7 +69,7 @@ div#header h1 {
 div#header h1 a {
     display: block;
     text-indent: -5000px;
-    background: transparent url(http://localhost/~mccutchen/media/watercooler/img/logo.png) no-repeat;
+    background: transparent url(img/logo.png) no-repeat;
     height: 33px;
     border: none;
 }
@@ -146,7 +146,7 @@ div#page-header.intro div.left.column h2 {
     margin-bottom: -8px;
     
     text-indent: -5000px;
-    background: transparent url(http://localhost/~mccutchen/media/watercooler/img/tagline.png) no-repeat;
+    background: transparent url(img/tagline.png) no-repeat;
     height: 22px;
 }
 div#page-header.intro div.left.column p {
@@ -167,7 +167,7 @@ div#start h2 {
     text-align: center;
     
     text-indent: -5000px;
-    background: transparent url(http://localhost/~mccutchen/media/watercooler/img/start.png) center no-repeat;
+    background: transparent url(img/start.png) center no-repeat;
     height: 17px;
 }
 div#start form {
@@ -219,7 +219,7 @@ div#sidebar ul {
     Chat page
 ---------------------------------------------------------------------------*/
 div#chat-container {
-    background: transparent url(http://localhost/~mccutchen/media/watercooler/img/sidebar-bg.gif) top right repeat-y;
+    background: transparent url(img/sidebar-bg.gif) top right repeat-y;
 }
 
 ol#chat {
