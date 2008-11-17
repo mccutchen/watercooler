@@ -10,6 +10,15 @@
     </head>
     <body>
         <div id="container">
+            <div id="user">
+                {% if request.user.is_authenticated %}
+                    Logged in as <strong>{{ request.user }}</strong>
+                {% else %}
+                    Not logged in.  <a href="/accounts/login/">Log in</a> or <a href="/accounts/register/">Sign up</a>?
+                {% endif %}
+                (<code>request.user: {{ request.user }}</code>)
+            </div>
+            
             <div id="header">
                 <h1><a href="{% url index %}">Watercooler</a></h1>
             </div>
