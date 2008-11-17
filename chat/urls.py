@@ -1,6 +1,6 @@
 from django.conf.urls.defaults import *
 from django.views.generic.list_detail import object_list, object_detail
-from watercooler.chat.models import Chat
+from chat.models import Chat
 
 info_dict = {
     'queryset': Chat.objects.all(),

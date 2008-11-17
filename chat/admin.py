@@ -1,5 +1,5 @@
 from django.contrib import admin
-from watercooler.chat.models import Chat, Post
+from chat.models import Chat, Post
 
 class PostAdmin(admin.ModelAdmin):
     exclude = ('content_rendered',)
