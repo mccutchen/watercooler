@@ -83,7 +83,7 @@ def render_urls(content):
         url = match.group(1)
         
         # Ensure that the URL starts with http://
-        url = url if re.match(r'^https?://', url) else 'http://%s' % url
+        url = re.match(r'^https?://', url) and url or 'http://%s' % url
         
         # Are we looking at the URL of an image file?
         if re.search(img_pattern, url, re.IGNORECASE):
