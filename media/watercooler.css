@@ -270,9 +270,14 @@ div#chat ol li.me {
 div#chat ol li.me .username {
     color: #900;
 }
+
 div#chat ol li img {
-    display: block;
     max-width: 529px;
+    vertical-align: top;
+    margin: 10px 0;
+}
+div#chat ol li object {
+    vertical-align: top;
 }
 
 div#chat p.filter {
