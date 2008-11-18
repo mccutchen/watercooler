@@ -213,6 +213,15 @@ div#sidebar ul {
 /*---------------------------------------------------------------------------
     Chat page
 ---------------------------------------------------------------------------*/
+div#page-header span#created-by {
+    font-style: italic;
+    color: #AFAF8E;
+    font-size: 18px;
+}
+div#page-header span#created-by span {
+    font-weight: bold;
+}
+
 div#chat-container {
     margin: -20px;
     background: transparent url(img/sidebar-bg.gif) top right repeat-y;
