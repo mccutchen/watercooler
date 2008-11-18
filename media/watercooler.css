@@ -270,6 +270,10 @@ div#chat ol li.me {
 div#chat ol li.me .username {
     color: #900;
 }
+div#chat ol li img {
+    display: block;
+    max-width: 529px;
+}
 
 div#chat p.filter {
     background-color: #369;
