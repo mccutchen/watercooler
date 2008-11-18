@@ -6,7 +6,18 @@
 
 {% block content %}
     <div id="chat-container">
+        
         <div id="chat">
+                        
+            {% if filters %}
+                <div id="filters">
+                    {% if filters.user %}
+                        Showing posts made by <span class="criteria">{{ filters.user }}</span>.
+                        <a href=".">Clear filter?</a>
+                    {% endif %}
+                </div>
+            {% endif %}
+            
             <ol>
                 {% for post in posts %}
                     <li{% ifequal post.user user %} class="me"{% endifequal %}>
@@ -23,10 +34,12 @@
             <ul id="active">
                 {% for chatuser in chat.users %}
                     <li{% ifequal chatuser user %} class="me"{% endifequal %}>
-                        {{ chatuser }}
+                        <a href="./?user={{ chatuser }}">{{ chatuser }}</a>
                     </li>
                 {% endfor %}
             </ul>
+            <p class="note"><strong>Note:</strong> Click on a username to
+            show only that users's posts.</p>
         </div>
     
         <div id="post">

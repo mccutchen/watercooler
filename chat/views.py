@@ -11,9 +11,18 @@ from chat.models import Chat, Post
 def chat(request, slug):
     chat = Chat.objects.get(slug=slug)
     posts = chat.posts.all()
+    filters = {}
+
+    # Optionally filter posts by user name
+    userfilter = request.GET.get('user')
+    if userfilter:
+        posts = posts.filter(user__username=userfilter)
+        filters['user'] = userfilter
+
     context = {
         'chat': chat,
         'posts': posts,
+        'filters': filters,
     }
     return render_to_response(request, 'chat/chat.html', context)
 

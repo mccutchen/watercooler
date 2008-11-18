@@ -220,7 +220,7 @@ div#chat-container {
 
 div#chat {
     float: left;
-    width: 540px;
+    width: 549px;
     margin-bottom: 20px;
 }
 div#chat ol {
@@ -255,6 +255,28 @@ div#chat ol li.me .username {
     color: #900;
 }
 
+div#chat div#filters {
+    background-color: #369;
+    border: 3px solid #245586;
+    border-top: none; border-left: none;
+    padding: 5px 10px;
+    margin-bottom: 1px;
+    color: #fff;
+    font-size: 12px;
+    position: relative;
+}
+div#chat div#filters .criteria {
+    font-weight: bold;
+    color: #E9E9BF;
+    font-family: "Lucida Sans", Calibri, Verdana, sans-serif;
+}
+div#chat div#filters a {
+    color: #fff;
+    position: absolute;
+    top: 5px;
+    right: 10px;
+}
+
 
 div#users {
     width: 250px;
@@ -279,6 +301,15 @@ div#users li {
 div#users li.me {
     font-weight: bold;
     color: #900;
+}
+div#users li a {
+    color: inherit;
+    border: none;
+}
+div#users p {
+    font-size: 12px;
+    margin: 1em;
+    color: #666;
 }
 
 div#post {
