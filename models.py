@@ -23,6 +23,7 @@ class Chat(models.Model):
     
     class Meta:
         ordering = ('created',)
+        app_label = 'watercooler'
     
     def users(self):
         return User.objects.filter(posts__parent__pk=self.id).distinct()
@@ -46,6 +47,7 @@ class Post(models.Model):
         ordering = ('timestamp',)
         get_latest_by = 'timestamp'
         order_with_respect_to = 'parent'
+        app_label = 'watercooler'
     
     def save(self):
         """Before saving this post object, run its user-supplied content
