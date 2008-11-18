@@ -71,7 +71,7 @@ def render_urls(content):
     
     # Based on:
     # http://snipplr.com/view/2371/regex-regular-expression-to-match-a-url/
-    url_pattern = r'((https?://)?([-\w\.]+)+(:\d+)?(/([\w/_\.]*(\?\S+)?)?)?)'
+    url_pattern = r'((https?://|www\.)+([-\w\.]+)+(:\d+)?(/([\w/_\.]*(\?\S+)?)?)?)'
     
     # Pattern to match URLs which point to images
     img_pattern = r'(jpg|jpeg|gif|png)$'
