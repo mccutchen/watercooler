@@ -255,22 +255,23 @@ div#chat ol li.me .username {
     color: #900;
 }
 
-div#chat div#filters {
+div#chat p.filter {
     background-color: #369;
     border: 3px solid #245586;
     border-top: none; border-left: none;
     padding: 5px 10px;
+    margin-top: 0;
     margin-bottom: 1px;
     color: #fff;
     font-size: 12px;
     position: relative;
 }
-div#chat div#filters .criteria {
+div#chat p.filter .criteria {
     font-weight: bold;
     color: #E9E9BF;
     font-family: "Lucida Sans", Calibri, Verdana, sans-serif;
 }
-div#chat div#filters a {
+div#chat p.filter a {
     color: #fff;
     position: absolute;
     top: 5px;
