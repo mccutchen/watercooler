@@ -312,6 +312,13 @@ div#users p {
     margin: 1em;
     color: #666;
 }
+div#users form {
+    margin: 0 10px;
+}
+div#users form input {
+    display: block;
+    margin: 5px 0;
+}
 
 div#post {
     clear: both;
