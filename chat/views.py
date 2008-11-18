@@ -1,8 +1,11 @@
+import operator
+
 from django.views.generic.list_detail import object_list
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect, HttpResponseServerError
 from django.template.defaultfilters import slugify
+from django.db.models import Q
 
 from watercooler.utils import render_to_response
 from chat.models import Chat, Post
@@ -12,13 +15,25 @@ def chat(request, slug):
     chat = Chat.objects.get(slug=slug)
     posts = chat.posts.all()
     filters = {}
-
+    
+    # Optionally filter posts by keyword (simplistic search)
+    # From: http://toastdriven.com/fresh/quick-dirty-search-django/
+    q = request.GET.get('q')
+    if q:
+        terms = [term.strip() for term in q.split()]
+        q_objects = []
+        for term in terms:
+            q_objects.append(Q(content__icontains=term))
+        # Use operator's or_ to string together all of your Q objects.
+        posts = posts.filter(reduce(operator.or_, q_objects))
+        filters['search'] = q
+    
     # Optionally filter posts by user name
     userfilter = request.GET.get('user')
     if userfilter:
         posts = posts.filter(user__username=userfilter)
         filters['user'] = userfilter
-
+    
     context = {
         'chat': chat,
         'posts': posts,

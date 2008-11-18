@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 
 class ChatManager(models.Manager):
     def public(self):
+        """Returns only public chats."""
         return self.get_query_set().filter(is_public=True)
 
 class Chat(models.Model):

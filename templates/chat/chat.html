@@ -15,6 +15,9 @@
                         Showing posts made by <span class="criteria">{{ filters.user }}</span>.
                         <a href=".">Clear filter?</a>
                     {% endif %}
+                    {% if filters.search %}
+                        Keyword search: {{ filters.search }}
+                    {% endif %}
                 </div>
             {% endif %}
             
