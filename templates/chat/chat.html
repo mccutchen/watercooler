@@ -49,6 +49,9 @@
         <div id="users">
             <h3>Users</h3>
             <ul id="active">
+                {% if not chat.users %}
+                    <li>No users yet</li>
+                {% endif %}
                 {% for chatuser in chat.users %}
                     <li{% ifequal chatuser user %} class="me"{% endifequal %}>
                         <a href="./?user={{ chatuser }}">{{ chatuser }}</a>
