@@ -72,8 +72,9 @@ def render_urls(content):
     # Pattern to match any URL
     url_pattern = r'((http://|www\.){1,2}(www\.)?[A-z0-9\-.]+\.([A-z]{2,4}\.?)+[^\s]*)'
     
-    # Pattern to match URLs which point to images
+    # Patterns to match particular kinds of URLs
     img_pattern = r'(jpg|jpeg|gif|png)$'
+    youtube_pattern = r'^http://www\.youtube\.com/watch\?v=([A-z0-9]{11})'
     
     def replace(match):
         """Called for any string that matches the URL regex.  If the URL
@@ -87,6 +88,12 @@ def render_urls(content):
         # Are we looking at the URL of an image file?
         if re.search(img_pattern, url, re.IGNORECASE):
             return '<a href="%s"><img src="%s" alt="" /></a>' % (url, url)
+        
+        # Are we looking at the URL of a YouTube video?
+        if re.search(youtube_pattern, url, re.IGNORECASE):
+            vid = re.search(youtube_pattern, url).group(1)
+            template = '<object width="425" height="344"><param name="movie" value="http://www.youtube.com/v/%s"></param><embed src="http://www.youtube.com/v/%s" type="application/x-shockwave-flash" width="425" height="344"></embed></object>'
+            return template % (vid, vid)
         
         # No? Just create a normal link.
         return '<a href="%s">%s</a>' % (url, url)
