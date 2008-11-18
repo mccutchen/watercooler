@@ -257,6 +257,7 @@ body#chat-page div#content {
     text-align: right;
 }
 
+/* Highlighting the user's own posts */
 #chat tr.me td {
     font-weight: bold;
 }
@@ -264,6 +265,7 @@ body#chat-page div#content {
     color: #900;
 }
 
+/* Inline multimedia */
 #chat td img {
     max-width: 449px;
     vertical-align: top;
@@ -273,6 +275,7 @@ body#chat-page div#content {
     vertical-align: top;
 }
 
+/* Chat filters */
 #chat-container p.filter {
     background-color: #369;
     border: 3px solid #245586;
