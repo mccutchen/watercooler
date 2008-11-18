@@ -86,7 +86,7 @@ def render_urls(content):
         
         # Are we looking at the URL of an image file?
         if re.search(img_pattern, url, re.IGNORECASE):
-            return '<img src="%s" alt="" />' % url
+            return '<a href="%s"><img src="%s" alt="" /></a>' % (url, url)
         
         # No? Just create a normal link.
         return '<a href="%s">%s</a>' % (url, url)
