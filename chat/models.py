@@ -69,9 +69,8 @@ def render_urls(content):
     into inline representations of themselves.  All other URLs should
     be turned into links."""
     
-    # Based on:
-    # http://snipplr.com/view/2371/regex-regular-expression-to-match-a-url/
-    url_pattern = r'((https?://|www\.)+([-\w\.]+)+(:\d+)?(/([\w/_\.]*(\?\S+)?)?)?)'
+    # Pattern to match any URL
+    url_pattern = r'((http://|www\.){1,2}(www\.)?[A-z0-9\-.]+\.([A-z]{2,4}\.?)+[^\s]*)'
     
     # Pattern to match URLs which point to images
     img_pattern = r'(jpg|jpeg|gif|png)$'
