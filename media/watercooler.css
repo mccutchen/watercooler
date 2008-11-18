@@ -258,7 +258,7 @@ body#chat-page div#content {
 }
 
 #chat tr.me td {
-    background-color: #eee;
+    font-weight: bold;
 }
 #chat tr.me th {
     color: #900;
