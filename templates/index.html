@@ -1,5 +1,10 @@
 {% extends "base.html" %}
 
+{% block extrahead %}
+    <script type="text/javascript" src="{{ MEDIA_URL }}js/jquery.labelify.js"></script>
+    <script type="text/javascript" src="{{ MEDIA_URL }}js/index.js"></script>
+{% endblock %}
+
 {% block page_header_class %}intro{% endblock %}
 
 {% block page_header %}
@@ -20,7 +25,8 @@
         <h2>Start a conversation now.</h2>
         <form action="{% url chat_create %}" method="post">
             <div>
-                <input name="name" type="text" value="Conversation name" />
+                <label for="name">Conversation name</label>
+                <input name="name" id="name" type="text" value="" />
                 <input type="submit" value="Start chatting" />
             </div>
         </form>

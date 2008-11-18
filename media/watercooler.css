@@ -172,6 +172,9 @@ div#start form {
     display: block;
     padding: 10px;
 }
+div#start form label {
+    display: none;
+}
 div#start input {
     width: 100%;
     font-size: 18px;
@@ -183,6 +186,9 @@ div#start input[type="text"] {
     margin-bottom: 10px;
     padding: 0;
     width: 353px;
+}
+div#start form input.blank {
+    color: #666;
 }
 
 
