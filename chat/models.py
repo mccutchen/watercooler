@@ -2,6 +2,9 @@ import re
 from django.db import models
 from django.contrib.auth.models import User
 from django.template.defaultfilters import escape
+from django.template.loader import render_to_string
+from django.conf import settings
+
 
 class ChatManager(models.Manager):
     def public(self):
@@ -73,8 +76,9 @@ def render_urls(content):
     url_pattern = r'((http://|www\.){1,2}(www\.)?[A-z0-9\-.]+\.([A-z]{2,4}\.?)+[^\s]*)'
     
     # Patterns to match particular kinds of URLs
-    img_pattern = r'(jpg|jpeg|gif|png)$'
+    img_pattern = r'\.(jpg|jpeg|gif|png)$'
     youtube_pattern = r'^http://www\.youtube\.com/watch\?v=([A-z0-9]{11})'
+    audio_pattern = r'\.(mp3|aac)$'
     
     def replace(match):
         """Called for any string that matches the URL regex.  If the URL
@@ -94,6 +98,13 @@ def render_urls(content):
             vid = re.search(youtube_pattern, url).group(1)
             template = '<object width="425" height="344"><param name="movie" value="http://www.youtube.com/v/%s"></param><embed src="http://www.youtube.com/v/%s" type="application/x-shockwave-flash" width="425" height="344"></embed></object>'
             return template % (vid, vid)
+        
+        # Are we looking at the URL of an mp3 file?
+        if re.search(audio_pattern, url, re.IGNORECASE):
+            return render_to_string(
+                'chat/snippets/audio.html',
+                { 'url': url, 'MEDIA_URL': settings.MEDIA_URL,}
+            )
         
         # No? Just create a normal link.
         return '<a href="%s">%s</a>' % (url, url)
