@@ -45,36 +45,52 @@ class Post(models.Model):
         order_with_respect_to = 'parent'
     
     def save(self):
-        # The special content renderers (which do things like turn URLs
-        # into actual links) to run each post's content through
-        renderers = [render_links]
+        """Before saving this post object, run its user-supplied content
+        through a function that will look for URLs and turn them into
+        links, images, embedded videos, etc."""
         
         # First, escape any HTML in the user's input
         safe_content = escape(self.content)
         
-        # Then, run the escaped content through each renderer
-        for renderer in renderers:
-            safe_content = renderer(safe_content)
+        # Next, run the escaped content through the renderer, which
+        # will turn URLs into links, display images inline, etc.
+        self.content_rendered = render_urls(safe_content)
         
-        self.content_rendered = safe_content
+        # Finally, save this post object.
         super(Post, self).save()
     
     def __unicode__(self):
         return 'Post by %s on %s' % (self.user, self.parent)
 
 
-# From http://snipplr.com/view/2371/regex-regular-expression-to-match-a-url/
-url_pattern = r'((https?://)?([-\w\.]+)+(:\d+)?(/([\w/_\.]*(\?\S+)?)?)?)'
-
-def render_links(content):
-    """Turn any URL-looking strings into actual HTML <a>
-    elements."""
+def render_urls(content):
+    """Look for URLs in the content and turn them into HTML elements.
+    URLs pointing to images or videos or sound file should be turned
+    into inline representations of themselves.  All other URLs should
+    be turned into links."""
     
-    def url_replace(match):
-        """Called for any string that matches the URL regex.  Tries
-        to ensure that the URL starts with 'http://'."""
+    # Based on:
+    # http://snipplr.com/view/2371/regex-regular-expression-to-match-a-url/
+    url_pattern = r'((https?://)?([-\w\.]+)+(:\d+)?(/([\w/_\.]*(\?\S+)?)?)?)'
+    
+    # Pattern to match URLs which point to images
+    img_pattern = r'(jpg|jpeg|gif|png)$'
+    
+    def replace(match):
+        """Called for any string that matches the URL regex.  If the URL
+        points to an image file, returns an HTML <img> element.  Otherwise
+        returns an HTML <a> element."""
         url = match.group(1)
-        url = url if re.match(r'^https?://', url) else 'http://%s' % url
-        return '<a href="%s">%s</a>' % (url, url)
         
-    return re.sub(url_pattern, url_replace, content)
+        # Ensure that the URL starts with http://
+        url = url if re.match(r'^https?://', url) else 'http://%s' % url
+        
+        # Are we looking at the URL of an image file?
+        if re.search(img_pattern, url, re.IGNORECASE):
+            return '<img src="%s" alt="" />' % url
+        
+        # No? Just create a normal link.
+        return '<a href="%s">%s</a>' % (url, url)
+    
+    # Make the substitution and return the result
+    return re.sub(url_pattern, replace, content)
