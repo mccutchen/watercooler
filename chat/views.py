@@ -52,7 +52,10 @@ def post(request, slug):
 
 @login_required
 def create(request):
-    name = request.POST['name']
+    name = request.POST.get('name')
+    if not name:
+        return HttpResponseRedirect(reverse('index'))
+    
     slug = slugify(name)
     print 'Creating chat named "%s" with slug "%s"' % (name, slug)
     chat = Chat(name=name, slug=slug, is_public=True, created_by=request.user)
