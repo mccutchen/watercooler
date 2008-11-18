@@ -1,5 +1,10 @@
 {% extends "base.html" %}
 
+{% block extrahead %}
+    <script type="text/javascript" src="{{ MEDIA_URL }}js/jquery.labelify.js"></script>
+    <script type="text/javascript" src="{{ MEDIA_URL }}js/labelify.js"></script>
+{% endblock %}
+
 {% block page_header %}
     <h2>
         {{ chat.name }}
@@ -69,8 +74,9 @@
             show only that users's posts.</p>
             
             <h3>Search this conversation</h3>
-            <form action="." method="get">
-                <input name="q" type="text" value="Keywords" />
+            <form id="search" action="." method="get">
+                <label for="q">Keywords</label>
+                <input id="q" name="q" type="text" value="" />
                 <input type="submit" value="Search" />
             </form>
         </div>

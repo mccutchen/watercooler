@@ -132,6 +132,11 @@ strong.logo {
     font-variant: small-caps;
 }
 
+input.blank {
+    /* For labelify plugin */
+    color: #666;
+}
+
 
 /*---------------------------------------------------------------------------
     Front page
@@ -187,10 +192,6 @@ div#start input[type="text"] {
     padding: 0;
     width: 353px;
 }
-div#start form input.blank {
-    color: #666;
-}
-
 
 div#more-info div#sidebar + h3 + p {
     margin-right: 53%;
@@ -333,6 +334,10 @@ div#users form {
 div#users form input {
     display: block;
     margin: 5px 0;
+}
+
+div#users form#search label {
+    display: none;
 }
 
 div#post {
