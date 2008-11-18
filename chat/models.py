@@ -89,25 +89,32 @@ def render_urls(content):
         # Ensure that the URL starts with http://
         url = re.match(r'^https?://', url) and url or 'http://%s' % url
         
+        # Context dict that will be used to render the snippet that
+        # is chosen
+        context = {
+            'url': url,
+            'MEDIA_URL': settings.MEDIA_URL,
+        }
+        
         # Are we looking at the URL of an image file?
         if re.search(img_pattern, url, re.IGNORECASE):
-            return '<a href="%s"><img src="%s" alt="" /></a>' % (url, url)
+            template = 'image'
         
         # Are we looking at the URL of a YouTube video?
-        if re.search(youtube_pattern, url, re.IGNORECASE):
+        elif re.search(youtube_pattern, url, re.IGNORECASE):
             vid = re.search(youtube_pattern, url).group(1)
-            template = '<object width="425" height="344"><param name="movie" value="http://www.youtube.com/v/%s"></param><embed src="http://www.youtube.com/v/%s" type="application/x-shockwave-flash" width="425" height="344"></embed></object>'
-            return template % (vid, vid)
+            context['vid'] = vid
+            template = 'youtube'
         
         # Are we looking at the URL of an mp3 file?
-        if re.search(audio_pattern, url, re.IGNORECASE):
-            return render_to_string(
-                'chat/snippets/audio.html',
-                { 'url': url, 'MEDIA_URL': settings.MEDIA_URL,}
-            )
+        elif re.search(audio_pattern, url, re.IGNORECASE):
+            template = 'audio'
+            
+        # None of the above? Just create a normal link.
+        else:
+            template = 'link'
         
-        # No? Just create a normal link.
-        return '<a href="%s">%s</a>' % (url, url)
+        return render_to_string('chat/snippets/%s.html' % template, context)
     
     # Make the substitution and return the result
     return re.sub(url_pattern, replace, content)
