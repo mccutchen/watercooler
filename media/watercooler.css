@@ -229,58 +229,51 @@ div#page-header span#created-by span {
     font-weight: bold;
 }
 
-div#chat-container {
-    margin: -20px;
+body#chat-page div#content {
+    padding: 0;
+    width: 800px;
     background: transparent url(img/sidebar-bg.gif) top right repeat-y;
 }
 
-div#chat {
+#chat-container {
     float: left;
     width: 549px;
-    margin-bottom: 20px;
+    margin-bottom: 1px;
 }
-div#chat ol {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-}
-div#chat ol li {
-    padding: 10px;
+
+#chat td, #chat th {
+    padding: 5px 10px;
     border-top: 1px dotted #ccc;
     line-height: 125%;
 }
-div#chat ol li:first-child {
+#chat tr:first-child td, #chat tr:first-child th {
     border-top: none;
 }
-div#chat ol .username, div#chat ol .timestamp {
-    font-size: 12px;
-    font-family: "Lucida Sans", Verdana, sans-serif;
-}
-div#chat ol .username {
+#chat th {
     color: #369;
+    font-size: 11px;
+    font-family: "Lucida Sans", Verdana, sans-serif;
     font-weight: bold;
-    padding-right: 10px;
+    text-align: right;
 }
-div#chat ol .timestamp {
-    color: #999;
-}
-div#chat ol li.me {
+
+#chat tr.me td {
     background-color: #eee;
 }
-div#chat ol li.me .username {
+#chat tr.me th {
     color: #900;
 }
 
-div#chat ol li img {
-    max-width: 529px;
+#chat td img {
+    max-width: 449px;
     vertical-align: top;
     margin: 10px 0;
 }
-div#chat ol li object {
+#chat td object {
     vertical-align: top;
 }
 
-div#chat p.filter {
+#chat-container p.filter {
     background-color: #369;
     border: 3px solid #245586;
     border-top: none; border-left: none;
@@ -291,12 +284,12 @@ div#chat p.filter {
     font-size: 12px;
     position: relative;
 }
-div#chat p.filter .criteria {
+#chat-container p.filter .criteria {
     font-weight: bold;
     color: #E9E9BF;
     font-family: "Lucida Sans", Calibri, Verdana, sans-serif;
 }
-div#chat p.filter a {
+#chat-container p.filter a {
     color: #fff;
     position: absolute;
     top: 5px;

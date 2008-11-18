@@ -15,82 +15,84 @@
     </h2>
 {% endblock %}
 
+{% block body_id %}chat-page{% endblock %}
+
 {% block content %}
     <div id="chat-container">
-        
-        <div id="chat">
-                        
-            {% if filters %}            
-                {% if filters.user %}
-                    <p class="filter">
-                        Showing posts made by <span class="criteria">{{ filters.user }}</span>.
-                        <a href=".">Clear filter?</a>
-                    </p>
-                {% endif %}
-                {% if filters.search %}
-                    <p class="filter">
-                        Keyword search: <span class="criteria">{{ filters.search }}</span>
-                        <a href=".">Clear filter?</a>
-                    </p>
-                {% endif %}
+        {% if filters %}            
+            {% if filters.user %}
+                <p class="filter">
+                    Showing posts made by <span class="criteria">{{ filters.user }}</span>.
+                    <a href=".">Clear filter?</a>
+                </p>
             {% endif %}
-            
-            <ol>
-                {% if posts %}
-                    {% for post in posts %}
-                        <li{% ifequal post.user user %} class="me"{% endifequal %}>
-                            <span class="username">{{ post.user }}</span>
+            {% if filters.search %}
+                <p class="filter">
+                    Keyword search: <span class="criteria">{{ filters.search }}</span>
+                    <a href=".">Clear filter?</a>
+                </p>
+            {% endif %}
+        {% endif %}
+        
+        {% if posts %}
+            <table id="chat" cellspacing="0">
+                {% for post in posts %}
+                    <tr{% ifequal post.user user %} class="me"{% endifequal %}>
+                        <th>
+                            {{ post.user }}
+                            {# <span class="timestamp">@&nbsp;{{ post.timestamp|date:"H:i" }}</span> #}
+                        </th>
+                        <td>
                             {% autoescape off %}
                                 {{ post.content_rendered }}
                             {% endautoescape %}
-                            <span class="timestamp">@&nbsp;{{ post.timestamp|date:"H:i" }}</span>
-                        </li>
-                    {% endfor %}
-                {% else %}
-                    <li>
-                        {% if filters %}
-                            No posts in this conversation matched the filter criteria.
-                        {% else %}
-                            Nobody has contributed to this conversation yet.  Start
-                            things off by typing in the text box below.
-                        {% endif %}
-                    </li>
-                {% endif %}
-            </ol>
-        </div>
-    
-        <div id="users">
-            <h3>Users</h3>
-            <ul id="active">
-                {% if not chat.users %}
-                    <li>No users yet</li>
-                {% endif %}
-                {% for chatuser in chat.users %}
-                    <li{% ifequal chatuser user %} class="me"{% endifequal %}>
-                        <a href="./?user={{ chatuser }}">{{ chatuser }}</a>
-                    </li>
+                        </td>
+                    </tr>
                 {% endfor %}
-            </ul>
-            <p class="note"><strong>Note:</strong> Click on a username to
-            show only that users's posts.</p>
-            
-            <h3>Search this conversation</h3>
-            <form id="search" action="." method="get">
-                <label for="q">Keywords</label>
-                <input id="q" name="q" type="text" value="" />
-                <input type="submit" value="Search" />
-            </form>
-        </div>
-    
-        <div id="post">
-            <h3>Say Something</h3>
-            <form id="post" action="{% url chat_post chat.slug %}" method="post">
-                <textarea id="post-content" name="content" rows="5" cols="60"></textarea>
-                <input id="post-submit" type="submit" value="Submit" />
-            </form>
-            <p>Just press return to submit your comment.</p>
-            <p><strong>Note:</strong> URLs will be hyperlinked automatically.
-            Images, audio and video links will be displayed inline.</p>
-        </div>
+            </table>
+        {% else %}
+            <p>
+                {% if filters %}
+                    No posts in this conversation matched the filter criteria.
+                {% else %}
+                    Nobody has contributed to this conversation yet.  Start
+                    things off by typing in the text box below.
+                {% endif %}
+            </p>
+        {% endif %}
+    </div>
+
+    <div id="users">
+        <h3>Users</h3>
+        <ul id="active">
+            {% if not chat.users %}
+                <li>No users yet</li>
+            {% endif %}
+            {% for chatuser in chat.users %}
+                <li{% ifequal chatuser user %} class="me"{% endifequal %}>
+                    <a href="./?user={{ chatuser }}">{{ chatuser }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+        <p class="note"><strong>Note:</strong> Click on a username to
+        show only that users's posts.</p>
+        
+        <h3>Search this conversation</h3>
+        <form id="search" action="." method="get">
+            <label for="q">Keywords</label>
+            <input id="q" name="q" type="text" value="" />
+            <input type="submit" value="Search" />
+        </form>
+    </div>
+
+    <div id="post">
+        <h3>Say Something</h3>
+        <form id="post" action="{% url chat_post chat.slug %}" method="post">
+            <textarea id="post-content" name="content" rows="5" cols="60"></textarea>
+            <input id="post-submit" type="submit" value="Submit" />
+        </form>
+        <p>Just press return to submit your comment.</p>
+        <p><strong>Note:</strong> URLs will be hyperlinked automatically.
+        Images, audio and video links will be displayed inline.</p>
     </div>
 {% endblock %}
