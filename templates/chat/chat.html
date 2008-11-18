@@ -8,7 +8,7 @@
     <div id="chat-container">
         <div id="chat">
             <ol>
-                {% for post in chat.posts.all %}
+                {% for post in posts %}
                     <li{% ifequal post.user user %} class="me"{% endifequal %}>
                         <span class="username">{{ post.user }}</span>
                         {{ post.content_rendered }}

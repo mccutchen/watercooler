@@ -9,8 +9,13 @@ from chat.models import Chat, Post
 
 @login_required
 def chat(request, slug):
-    chat = Chat.objects.get(slug=slug)    
-    return render_to_response(request, 'chat/chat.html', {'chat': chat})
+    chat = Chat.objects.get(slug=slug)
+    posts = chat.posts.all()
+    context = {
+        'chat': chat,
+        'posts': posts,
+    }
+    return render_to_response(request, 'chat/chat.html', context)
 
 @login_required
 def post(request, slug):
