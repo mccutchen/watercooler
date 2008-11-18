@@ -55,11 +55,14 @@ def create(request):
     name = request.POST.get('name')
     if not name:
         return HttpResponseRedirect(reverse('index'))
-    
     slug = slugify(name)
-    print 'Creating chat named "%s" with slug "%s"' % (name, slug)
-    chat = Chat(name=name, slug=slug, is_public=True, created_by=request.user)
-    chat.save()
+    try:
+        chat = Chat(name=name, slug=slug, is_public=True, created_by=request.user)
+        chat.save()
+    except:
+        # For now, if a chat with the same slug has already been created
+        # just silently redirect to that chat.
+        pass
     return HttpResponseRedirect(chat_url(slug))
 
 def chat_url(slug):
