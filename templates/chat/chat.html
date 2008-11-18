@@ -25,13 +25,24 @@
             {% endif %}
             
             <ol>
-                {% for post in posts %}
-                    <li{% ifequal post.user user %} class="me"{% endifequal %}>
-                        <span class="username">{{ post.user }}</span>
-                        {{ post.content_rendered }}
-                        <span class="timestamp">@ {{ post.timestamp|date:"H:i" }}</span>
+                {% if posts %}
+                    {% for post in posts %}
+                        <li{% ifequal post.user user %} class="me"{% endifequal %}>
+                            <span class="username">{{ post.user }}</span>
+                            {{ post.content_rendered }}
+                            <span class="timestamp">@ {{ post.timestamp|date:"H:i" }}</span>
+                        </li>
+                    {% endfor %}
+                {% else %}
+                    <li>
+                        {% if filters %}
+                            No posts in this chat matched the filter criteria.
+                        {% else %}
+                            Nobody has contributed to this chat yet.  Start
+                            things off by typing in the text box below.
+                        {% endif %}
                     </li>
-                {% endfor %}
+                {% endif %}
             </ol>
         </div>
     
