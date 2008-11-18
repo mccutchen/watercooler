@@ -6,9 +6,12 @@ from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect, HttpResponseServerError
 from django.template.defaultfilters import slugify
 from django.db.models import Q
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import authenticate, login
+from django.template import RequestContext
 
-from watercooler.utils import render_to_response
-from chat.models import Chat, Post
+from utils import render_to_response
+from models import Chat, Post
 
 @login_required
 def chat(request, slug):
@@ -69,3 +72,20 @@ def chat_url(slug):
     """Utility function that uses the reverse() function to generate the
     correct URL for the Chat object with the given slug."""
     return reverse('chat', args=[slug])
+
+
+def register(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            new_user = form.save()
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password1']
+            user = authenticate(username=username, password=password)
+            assert user is not None
+            login(request, user)
+            return HttpResponseRedirect("/")
+    else:
+        form = UserCreationForm()
+
+    return render_to_response(request, "registration/register.html", {'form':form})
