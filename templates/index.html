@@ -40,7 +40,7 @@
                         <li><a href="{{ chat.get_absolute_url }}">{{ chat.name }}</a></li>
                     {% endfor %}
                 </ul>
-                <p>Or, <a href="chat.php">browse all public conversations</a>.</p>
+                <p>Or, <a href="{% url chat_index %}">browse all public conversations</a>.</p>
             {% else %}
                 <p>Sorry, no public chats available.</p>
             {% endif %}
