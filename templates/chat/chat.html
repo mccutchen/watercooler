@@ -4,7 +4,7 @@
     <h2>
         {{ chat.name }}
         <span id="created-by">
-            a conversation created by <span>{{ chat.created_by }}</span>
+            &mdash; a conversation created by <span>{{ chat.created_by }}</span>
         </span>
     </h2>
 {% endblock %}
@@ -34,7 +34,9 @@
                     {% for post in posts %}
                         <li{% ifequal post.user user %} class="me"{% endifequal %}>
                             <span class="username">{{ post.user }}</span>
-                            {{ post.content_rendered }}
+                            {% autoescape off %}
+                                {{ post.content_rendered }}
+                            {% endautoescape %}
                             <span class="timestamp">@ {{ post.timestamp|date:"H:i" }}</span>
                         </li>
                     {% endfor %}

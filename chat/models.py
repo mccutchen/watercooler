@@ -1,5 +1,7 @@
+import re
 from django.db import models
 from django.contrib.auth.models import User
+from django.template.defaultfilters import escape
 
 class ChatManager(models.Manager):
     def public(self):
@@ -43,8 +45,36 @@ class Post(models.Model):
         order_with_respect_to = 'parent'
     
     def save(self):
-        self.content_rendered = self.content
+        # The special content renderers (which do things like turn URLs
+        # into actual links) to run each post's content through
+        renderers = [render_links]
+        
+        # First, escape any HTML in the user's input
+        safe_content = escape(self.content)
+        
+        # Then, run the escaped content through each renderer
+        for renderer in renderers:
+            safe_content = renderer(safe_content)
+        
+        self.content_rendered = safe_content
         super(Post, self).save()
     
     def __unicode__(self):
         return 'Post by %s on %s' % (self.user, self.parent)
+
+
+# From http://snipplr.com/view/2371/regex-regular-expression-to-match-a-url/
+url_pattern = r'((https?://)?([-\w\.]+)+(:\d+)?(/([\w/_\.]*(\?\S+)?)?)?)'
+
+def render_links(content):
+    """Turn any URL-looking strings into actual HTML <a>
+    elements."""
+    
+    def url_replace(match):
+        """Called for any string that matches the URL regex.  Tries
+        to ensure that the URL starts with 'http://'."""
+        url = match.group(1)
+        url = url if re.match(r'^https?://', url) else 'http://%s' % url
+        return '<a href="%s">%s</a>' % (url, url)
+        
+    return re.sub(url_pattern, url_replace, content)
