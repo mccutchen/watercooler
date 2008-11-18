@@ -9,7 +9,7 @@
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js"></script>
         {% block extrahead %}{% endblock %}
     </head>
-    <body>
+    <body id="{% block body_id %}{% endblock %}">
         <div id="container">
             <div id="user">
                 {% if user.is_authenticated %}
