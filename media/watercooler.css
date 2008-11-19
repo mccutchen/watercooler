@@ -350,18 +350,19 @@ div#post {
     clear: both;
     width: 526px;
 }
-div#post form {
+#post-form {
     display: block;
 }
-div#post textarea {
+#post-submit {
+    float: right;
+    width: 75px;
+}
+#post-form textarea {
     font: inherit;
-    width: 516px;
+    margin-right: 85px;
     padding: 5px;
+    width: 430px;
     display: block;
-}
-div#post p {
-    font-size: 12px;
-    color: #666;
 }
 
 

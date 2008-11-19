@@ -86,9 +86,9 @@
     </div>
 
     <div id="post">
-        <form id="post" action="{% url chat_post chat.slug %}" method="post">
-            <textarea id="post-content" name="content" rows="2" cols="60"></textarea>
-            <input id="post-submit" type="submit" value="Submit" />
+        <form id="post-form" action="{% url chat_post chat.slug %}" method="post">
+            <input id="post-submit" type="submit" value="Post!" />
+            <textarea id="post-content" name="content" rows="2"></textarea>
         </form>
     </div>
 {% endblock %}
