@@ -9,7 +9,7 @@ var MediaHandler = (function() {
         });
     }
     
-    var url_re = /((http:\/\/|www\.){1,2}(www\.)?[A-z0-9\-.]+\.([A-z]{2,4}\.?)+[^\s]*)/i;
+    var url_re = /((http:\/\/|www\.){1,2}(www\.)?[A-z0-9\-.]+\.([A-z]{2,4}\.?)+[^\s]*\w)/i;
     var img_re = /\.(jpg|jpeg|gif|png)$/i;
     var youtube_re = /^http:\/\/www\.youtube\.com\/watch\?v=([A-z0-9]{11})/i;
     var audio_re = /\.(mp3|aac)$/i;
@@ -34,7 +34,9 @@ var MediaHandler = (function() {
     function ensure_url(s) {
         if (!url_re.test(s))
             return null;
+        // Isolate the URL, which may be surrounded by other text
         var url = s.match(url_re)[1];
+        // Ensure that the URL begins with http://
         return /^https?:\/\//.test(url) ? url : 'http://' + url;
     }
     
