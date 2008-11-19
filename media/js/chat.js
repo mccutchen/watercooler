@@ -9,7 +9,7 @@ $(function() {
     // Submit the post automatically if the user presses
     // the enter key.
     $('#post-content').keypress(function(event) {
-        if (event.which == 13 && !event.shiftKey) {
+        if (event.which == 13) {
             event.preventDefault();
             return $('#post-form').submit();
         }
