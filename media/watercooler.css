@@ -222,6 +222,12 @@ div#sidebar ul {
 /*---------------------------------------------------------------------------
     Chat page
 ---------------------------------------------------------------------------*/
+body#chat-page div#header {
+    width: 800px;
+}
+body#chat-page div#footer {
+    width: 777px;
+}
 body#chat-page div#content {
     padding: 0;
     width: 800px;
@@ -278,12 +284,11 @@ table#chat {
 
 /* Inline multimedia */
 #chat td img {
-    max-width: 449px;
-    vertical-align: top;
-    margin: 10px 0;
+    max-width: 300px;
+    display: block;
 }
-#chat td object {
-    vertical-align: top;
+#chat td embed {
+    display: block;
 }
 
 /* Chat filters */
@@ -312,8 +317,13 @@ table#chat {
 
 
 div#users {
-    width: 250px;
+    width: 247px;
     margin-left: 550px;
+    background-color: #eee;
+    /* These rules should be enabled once the dynamic page layout
+    is fixed. */
+    /* border: 3px solid #ccc;
+    border-top: none; border-left: none;*/
 }
 div#users h3 {
     margin: 0;
