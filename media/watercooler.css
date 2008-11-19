@@ -242,6 +242,9 @@ div#page-header span#created-by span {
     width: 549px;
     margin-bottom: 1px;
 }
+#chat-container > p {
+    margin: 1em 20px;
+}
 
 table#chat {
     width: 100%;
@@ -289,7 +292,7 @@ table#chat {
     border: 3px solid #245586;
     border-top: none; border-left: none;
     padding: 5px 10px;
-    margin-top: 0;
+    margin: 0;
     margin-bottom: 1px;
     color: #fff;
     font-size: 12px;
