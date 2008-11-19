@@ -2,12 +2,10 @@ from django.contrib import admin
 from models import Chat, Post
 
 class PostAdmin(admin.ModelAdmin):
-    exclude = ('content_rendered',)
     list_display = ('user', 'timestamp', 'parent')
 
 class PostInline(admin.StackedInline):
     model = Post
-    exclude = ['content_rendered']
 
 class ChatAdmin(admin.ModelAdmin):
     list_display = ('name', 'created', 'created_by', 'is_public')

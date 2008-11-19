@@ -41,7 +41,6 @@ class Post(models.Model):
     parent = models.ForeignKey(Chat, related_name='posts')
     timestamp = models.DateTimeField(auto_now_add=True)
     content = models.TextField()
-    content_rendered = models.TextField()
     
     class Meta:
         ordering = ('timestamp',)
