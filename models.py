@@ -22,7 +22,7 @@ class Chat(models.Model):
     objects = ChatManager()
     
     class Meta:
-        ordering = ('created',)
+        ordering = ('name', 'created')
         app_label = 'watercooler'
     
     def users(self):
