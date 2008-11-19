@@ -46,9 +46,7 @@
                             {# <span class="timestamp">@&nbsp;{{ post.timestamp|date:"H:i" }}</span> #}
                         </th>
                         <td>
-                            {% autoescape off %}
-                                {{ post.content_rendered }}
-                            {% endautoescape %}
+                            {{ post.content }}
                         </td>
                     </tr>
                 {% endfor %}

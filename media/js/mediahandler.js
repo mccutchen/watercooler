@@ -56,5 +56,5 @@ var MediaHandler = (function() {
         return handlers.default(url);
     }
     
-    return handle;
+    return { handle: handle };
 })();

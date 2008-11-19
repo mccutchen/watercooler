@@ -15,6 +15,16 @@ $(function() {
         }
     });
     
+    // Run each post through the MediaHandler to transform
+    // any links into inline media objects
+    $('#chat td').each(function(i) {
+        var el = $(this);
+        var content = el.text();
+        var results = MediaHandler.handle(content);
+        if (results != content)
+            el.html(results);
+    });
+    
     // Dynamically lay out the chat page (NOT YET; STILL BUGGY)
     // fixlayout();
     // window.scroll(0, 100000);
