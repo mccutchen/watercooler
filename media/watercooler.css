@@ -241,6 +241,12 @@ div#page-header span#created-by span {
     margin-bottom: 1px;
 }
 
+table#chat {
+    width: 100%;
+}
+#chat td {
+    width: 100%;
+}
 #chat td, #chat th {
     padding: 5px 10px;
     border-top: 1px dotted #ccc;
