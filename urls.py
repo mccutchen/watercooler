@@ -15,7 +15,7 @@ index_options = {
 }
 
 chat_list_options = {
-    'queryset': Chat.objects.public(),
+    'queryset': Chat.objects.public().order_by('name'),
     'template_object_name': 'chat',
     'template_name': 'chat/chat_list.html',
 }
