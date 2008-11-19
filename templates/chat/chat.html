@@ -1,14 +1,5 @@
 {% extends "base.html" %}
 
-{% block extrahead %}
-    <script type="text/javascript" src="{{ MEDIA_URL }}js/jquery.labelify.js"></script>
-    <script type="text/javascript" src="{{ MEDIA_URL }}js/labelify.js"></script>
-    
-    <script type="text/javascript" src="{{ MEDIA_URL }}js/utils.js"></script>
-    <script type="text/javascript" src="{{ MEDIA_URL }}js/mediahandler.js"></script>
-    <script type="text/javascript" src="{{ MEDIA_URL }}js/chat.js"></script>
-{% endblock %}
-
 {% block page_title %}Conversation: {{ chat.name }}{% endblock %}
 
 {% block page_header %}

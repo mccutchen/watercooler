@@ -5,9 +5,26 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
     <head>
         <title>Watercooler &ndash; {% block page_title %}Page title.{% endblock %}</title>
+        
         <link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}watercooler.css" />
+        
+        {# Use Google's hosted version of jQuery #}
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js"></script>
-        {% block extrahead %}{% endblock %}
+        
+        {% comment %}
+            Include all of the JavaScript for the entire site on every
+            page so that it'll be loaded and ready to go once the user
+            gets to a chat page.
+        {% endcomment %}
+        <script type="text/javascript" src="{{ MEDIA_URL }}js/jquery.labelify.js"></script>
+        <script type="text/javascript" src="{{ MEDIA_URL }}js/labelify.js"></script>    
+        <script type="text/javascript" src="{{ MEDIA_URL }}js/utils.js"></script>
+        <script type="text/javascript" src="{{ MEDIA_URL }}js/mediahandler.js"></script>
+        <script type="text/javascript" src="{{ MEDIA_URL }}js/chat.js"></script>
+
+        {% block extrahead %}
+            {# Any extra header info (e.g., other CSS files) goes here #}
+        {% endblock %}
     </head>
     
     <body id="{% block body_id %}{% endblock %}">
@@ -35,13 +52,10 @@
         </div>
         
         <div id="footer">
-            <p><strong
-            class="logo">Watercooler</strong>&mdash;Quick and easy
+            <p><strong class="logo">Watercooler</strong>&mdash;Quick and easy
             group chat.</p>
-            <p>Copyright &copy; 2008 <a
-            href="mailto:mccutchen@gmail.com">Will McCutchen</a>.
-            Questions?  Problems?  <a
-            href="{% url contact %}">Contact us</a>.</p>
+            <p>Copyright &copy; 2008 <a href="mailto:mccutchen@gmail.com">Will McCutchen</a>.
+            Questions?  Problems?  <a href="{% url contact %}">Contact us</a>.</p>
         </div>
     </body>
 </html>
