@@ -220,6 +220,12 @@ div#sidebar ul {
 /*---------------------------------------------------------------------------
     Chat page
 ---------------------------------------------------------------------------*/
+body#chat-page div#content {
+    padding: 0;
+    width: 800px;
+    background: transparent url(img/sidebar-bg.gif) top right repeat-y;
+}
+
 div#page-header span#created-by {
     font-style: italic;
     color: #AFAF8E;
@@ -227,12 +233,6 @@ div#page-header span#created-by {
 }
 div#page-header span#created-by span {
     font-weight: bold;
-}
-
-body#chat-page div#content {
-    padding: 0;
-    width: 800px;
-    background: transparent url(img/sidebar-bg.gif) top right repeat-y;
 }
 
 #chat-container {
@@ -345,17 +345,16 @@ div#users form#search label {
     display: none;
 }
 
+
 div#post {
     clear: both;
     width: 526px;
 }
 div#post form {
     display: block;
-    margin: 10px 0;
 }
 div#post textarea {
     font: inherit;
-    width: 100%;
     width: 516px;
     padding: 5px;
     display: block;

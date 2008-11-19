@@ -86,13 +86,9 @@
     </div>
 
     <div id="post">
-        <h3>Say Something</h3>
         <form id="post" action="{% url chat_post chat.slug %}" method="post">
-            <textarea id="post-content" name="content" rows="5" cols="60"></textarea>
+            <textarea id="post-content" name="content" rows="2" cols="60"></textarea>
             <input id="post-submit" type="submit" value="Submit" />
         </form>
-        <p>Just press return to submit your comment.</p>
-        <p><strong>Note:</strong> URLs will be hyperlinked automatically.
-        Images, audio and video links will be displayed inline.</p>
     </div>
 {% endblock %}
