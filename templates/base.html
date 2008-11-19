@@ -9,8 +9,9 @@
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js"></script>
         {% block extrahead %}{% endblock %}
     </head>
+    
     <body id="{% block body_id %}{% endblock %}">
-        <div id="container">
+        <div id="header">
             <div id="user">
                 {% if user.is_authenticated %}
                     Logged in as <strong>{{ user }}</strong>.
@@ -19,28 +20,28 @@
                     Not logged in.  <a href="/accounts/login/">Log in</a> or <a href="/accounts/register/">Sign up</a>?
                 {% endif %}
             </div>
-            
-            <div id="header">
+        
+            <div id="logo">
                 <h1><a href="{% url index %}">Watercooler</a></h1>
             </div>
-            
+        
             <div id="page-header" class="{% block page_header_class %}{% endblock %}">
                 {% block page_header %}Page Title{% endblock %}
             </div>
+        </div>
 
-            <div id="content" class="{% block content_class %}{% endblock %}">
-                {% block content %}Content{% endblock %}
-            </div>
-            
-            <div id="footer">
-                <p><strong
-                class="logo">Watercooler</strong>&mdash;Quick and easy
-                group chat.</p>
-                <p>Copyright &copy; 2008 <a
-                href="mailto:mccutchen@gmail.com">Will McCutchen</a>.
-                Questions?  Problems?  <a
-                href="{% url contact %}">Contact us</a>.</p>
-            </div>
+        <div id="content" class="{% block content_class %}{% endblock %}">
+            {% block content %}Content{% endblock %}
+        </div>
+        
+        <div id="footer">
+            <p><strong
+            class="logo">Watercooler</strong>&mdash;Quick and easy
+            group chat.</p>
+            <p>Copyright &copy; 2008 <a
+            href="mailto:mccutchen@gmail.com">Will McCutchen</a>.
+            Questions?  Problems?  <a
+            href="{% url contact %}">Contact us</a>.</p>
         </div>
     </body>
 </html>

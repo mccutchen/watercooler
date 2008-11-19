@@ -11,6 +11,9 @@ body {
     color: #333;
     font-family: georgia, serif;
     font-size: 14px;
+    
+    width: 800px;
+    margin: 0 auto;
 }
 
 h1 {
@@ -50,23 +53,18 @@ li {
 /*---------------------------------------------------------------------------
     Sitewide styles
 ---------------------------------------------------------------------------*/
-div#container {
-    width: 800px;
-    margin: 0 auto;
-}
-
-div#header {
+div#logo {
     background-color: #369;
     margin-bottom: 1px;
     padding: 10px;
     border: 3px solid #245586; /*036*/
     border-top-width: 0; border-left-width: 0;
 }
-div#header h1 {
+div#logo h1 {
     margin: 0;
     padding: 0;
 }
-div#header h1 a {
+div#logo h1 a {
     display: block;
     text-indent: -5000px;
     background: transparent url(img/logo.png) no-repeat;
