@@ -33,7 +33,7 @@
         {% if posts %}
             <table id="chat" cellspacing="0">
                 {% for post in posts %}
-                    <tr{% ifequal post.user user %} class="me"{% endifequal %}>
+                    <tr class="ts{{ post.timestamp }}{% ifequal post.user user %} me"{% endifequal %}>
                         <th>
                             {{ post.user }}
                             {# <span class="timestamp">@&nbsp;{{ post.timestamp|date:"H:i" }}</span> #}

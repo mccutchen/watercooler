@@ -1,4 +1,4 @@
-import datetime
+import datetime, time
 
 from django.db import models
 from django.db.models.signals import post_save
@@ -50,6 +50,9 @@ class Post(models.Model):
         get_latest_by = 'created'
         order_with_respect_to = 'parent'
         app_label = 'watercooler'
+    
+    def timestamp(self):
+        return int(time.mktime(self.created.timetuple()))
     
     def __unicode__(self):
         return 'Post by %s on %s' % (self.user, self.parent)
