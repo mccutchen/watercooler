@@ -58,8 +58,8 @@ var PostHandler = (function() {
                     addPost(data.timestamp, me, data.content);
                 }, 'json');
                 
-                // Hide the "empty" row, if it exists
-                $('#chat tr.empty').css('display', 'none');
+                // Remove the "empty" row from the DOM, if it exists
+                $('#chat tr.empty').remove();
                 // Clear the user's input from the form
                 this['content'].value = '';
             }
