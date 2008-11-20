@@ -55,7 +55,7 @@ var PostHandler = (function() {
             if (!content.isEmpty()) {
                 $.post(posturl, { 'content': content, }, function(data) {
                     timestamps.push(data.timestamp);
-                    addPost(data.timestamp, me, content);
+                    addPost(data.timestamp, me, data.content);
                 }, 'json');
                 
                 // Hide the "empty" row, if it exists

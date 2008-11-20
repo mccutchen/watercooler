@@ -5,7 +5,7 @@ from django.views.generic.list_detail import object_list
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 from django.http import HttpResponse, HttpResponseRedirect, HttpResponseServerError
-from django.template.defaultfilters import slugify
+from django.template.defaultfilters import force_escape, slugify
 from django.db.models import Q
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login
@@ -55,7 +55,10 @@ def post(request, slug):
         post.save()
     
         if request.is_ajax():
-            response = json.dumps({ 'timestamp': post.timestamp(), })
+            response = json.dumps({
+                'timestamp': post.timestamp(),
+                'content': force_escape(post.content),
+            })
             return HttpResponse(response, mimetype='application/json')
     
     return HttpResponseRedirect(chat_url(slug))
