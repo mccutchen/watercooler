@@ -1,4 +1,4 @@
-import operator
+import datetime, operator
 import simplejson as json
 
 from django.views.generic.list_detail import object_list
@@ -83,24 +83,35 @@ def ping(request, slug):
     a list of active and inactive users."""
     chat = get_object_or_404(Chat, slug=slug)
     if request.POST:
-        latest_timestamp = request.POST['latest']
+        # Increasing the timestamp by one second eliminates duplicates
+        # on the client side.  This probably merits further thought.
+        latest_timestamp = float(request.POST['latest']) + 1
         latest = datetime.datetime.fromtimestamp(latest_timestamp)
         
+        # Get a list of posts that were made after the latest time
+        # given by the client
         posts_needed = chat.posts.select_related('user').filter(created__gt=latest)
-        active_users = chat.users
         
+        # For now, any user who has contributed a post is considered
+        # an active user
+        active_users = chat.users()
+        
+        # The structure of the response to be serialized as JSON
         response = dict(posts=[], active_users=[], inactive_users=[])
+        
+        # Fill in the response with posts and users
         for post in posts_needed:
             response['posts'].append({
-                'user': post.user,
+                'user': post.user.username,
                 'content': post.content,
-                'created': post.created,
                 'timestamp': post.timestamp(),
             })
         for user in active_users:
             response['active_users'].append(user.username)
         
+        # Serialize the response as JSON
         return HttpResponse(json.dumps(response), mimetype='application/json')
+
     return HttpResponseServerError()
 
 def chat_url(slug):
