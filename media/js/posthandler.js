@@ -37,6 +37,10 @@ var PostHandler = (function() {
                     This is what the AJAX implementation will do, once
                     it's finished.  But for now, this is disabled, so
                     the form submits as normal.
+                    
+                    $.post(posturl, { 'content': content, }, function(data) {
+                        console.log('Response to post: ', data);
+                    }, 'json');
                 
                     // Hide the "empty" row, if it exists
                     $('#chat tr.empty').css('display', 'none');
@@ -45,7 +49,7 @@ var PostHandler = (function() {
                     // Add the post to the page
                     addPost(content);
                 */
-                return true;
+                //return true;
             }
             return false;
         });
