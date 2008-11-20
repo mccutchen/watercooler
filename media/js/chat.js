@@ -1,21 +1,6 @@
 $(function() {
-    // Only submit the post if it is not blank.
-    $('#post-form').submit(function(event) {
-        var blank = /^\s*$/;
-        event.preventDefault();
-        return !blank.test(this['content'].value);
-    });
-    
-    // Submit the post automatically if the user presses
-    // the enter key.
-    $('#post-content').keypress(function(event) {
-        if (event.which == 13) {
-            event.preventDefault();
-            return $('#post-form').submit();
-        }
-    });
-    
     MediaHandler.init();
+    PostHandler.init();
     
     // Dynamically lay out the chat page (NOT YET; STILL BUGGY)
     // fixlayout();
