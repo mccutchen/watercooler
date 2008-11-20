@@ -1,0 +1,6 @@
+ * Determine active and inactive users on the server side
+
+ * Dynamically update active and inactive users on the client side
+
+ * Figure out a better layout for chats (ie, make the chat part scroll, not
+   the rest)
