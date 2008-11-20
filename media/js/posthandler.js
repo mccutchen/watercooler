@@ -17,7 +17,7 @@ var PostHandler = (function() {
     
     function init() {
         // Figure out what username we're posting under
-        username = document.getElementById('post-username').value;
+        username = $('#post-username').val();
         
         // Get a list of timestamps of the posts already on the page
         $('#chat tr').each(function(i) {
