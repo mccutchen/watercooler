@@ -10,9 +10,9 @@ var MediaHandler = (function() {
     }
     
     var url_re = /((http:\/\/|www\.){1,2}(www\.)?[A-z0-9\-.]+\.([A-z]{2,4}\.?)+[^\s]*\w)/i;
-    var img_re = /\.(jpg|jpeg|gif|png)$/i;
+    var img_re = /\.(jpg|jpeg|gif|png)(\?[^\s]+)?$/i;
     var youtube_re = /^http:\/\/www\.youtube\.com\/watch\?v=([A-z0-9]{11})/i;
-    var audio_re = /\.(mp3|aac)$/i;
+    var audio_re = /\.(mp3|aac)(\?[^\s]+)?$/i;
     
     makehandler('image', img_re, function(url, match) {
         return '<a href="' + url + '"><img src="' + url + '" alt="" /></a>';
