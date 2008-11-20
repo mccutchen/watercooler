@@ -10,13 +10,14 @@ from django.db.models import Q
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login
 from django.template import RequestContext
+from django.shortcuts import get_object_or_404
 
 from utils import render_to_response
 from models import Chat, Post
 
 @login_required
 def chat(request, slug):
-    chat = Chat.objects.get(slug=slug)
+    chat = get_object_or_404(Chat, slug=slug)
     posts = chat.posts.all()
     filters = {}
     
@@ -47,9 +48,9 @@ def chat(request, slug):
 
 @login_required
 def post(request, slug):
+    chat = get_object_or_404(Chat, slug=slug)
     if request.POST:
         content = request.POST.get('content', '')
-        chat = Chat.objects.get(slug=slug)
         post = Post(user=request.user, parent=chat, content=content)
         post.save()
     
