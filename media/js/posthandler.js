@@ -8,6 +8,13 @@ var PostHandler = (function() {
         return null;
     }
     
+    function addPost(content) {
+        content = MediaHandler.handle(content);
+        var timestamp = (new Date().getTime());
+        var src = '<tr class="me ts' + timestamp + '"><th>' + username + '</th><td>' + content + '</td></tr>'
+        $('#chat').append(src);
+    }
+    
     function init() {
         // Figure out what username we're posting under
         username = document.getElementById('post-username').value;
@@ -21,9 +28,24 @@ var PostHandler = (function() {
         // Wire up event listeners.
         $('#post-form').submit(function(event) {
             // Only submit the post if it is not blank.
-            var blank = /^\s*$/;
             event.preventDefault();
-            return !blank.test(this['content'].value);
+            var content = this['content'].value;
+            if (!content.isEmpty()) {
+                /*
+                    This is what the AJAX implementation will do, once
+                    it's finished.  But for now, this is disabled, so
+                    the form submits as normal.
+                
+                    // Hide the "empty" row, if it exists
+                    $('#chat tr.empty').css('display', 'none');
+                    // Clear the user's input from the form
+                    this['content'].value = '';
+                    // Add the post to the page
+                    addPost(content);
+                */
+                return true;
+            }
+            return false;
         });
     
         $('#post-content').keypress(function(event) {
