@@ -40,7 +40,7 @@ var MediaHandler = (function() {
         return /^https?:\/\//.test(url) ? url : 'http://' + url;
     }
     
-    var handle = function(content) {
+    function handle(content) {
         var url = ensure_url(content);
         
         // If we aren't looking at a URL, don't do anything to content
@@ -66,5 +66,20 @@ var MediaHandler = (function() {
         return content.replace(url_re, result);
     }
     
-    return { handle: handle };
+    function init() {
+        // Run each post through the MediaHandler to transform
+        // any links into inline media objects
+        $('#chat td').each(function(i) {
+            var el = $(this);
+            var content = el.text();
+            var results = MediaHandler.handle(content);
+            if (results != content)
+                el.html(results);
+        });
+    }
+    
+    return {
+        handle: handle,
+        init: init,
+    };
 })();
