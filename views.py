@@ -1,4 +1,4 @@
-import datetime, operator
+import datetime, operator, time
 import simplejson as json
 
 from django.views.generic.list_detail import object_list
@@ -85,7 +85,7 @@ def ping(request, slug):
     if request.POST:
         # Increasing the timestamp by one second eliminates duplicates
         # on the client side.  This probably merits further thought.
-        latest_timestamp = float(request.POST['latest']) + 1
+        latest_timestamp = float(request.POST.get('latest', time.time())) + 1
         latest = datetime.datetime.fromtimestamp(latest_timestamp)
         
         # Get a list of posts that were made after the latest time

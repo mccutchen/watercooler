@@ -41,7 +41,8 @@ var PostHandler = (function() {
         });
         
         window.setInterval(function() {
-            data = {'latest': timestamps[timestamps.length - 1]}
+            var latest = timestamps[timestamps.length - 1] || 0;
+            data = {'latest': latest}
             $.post(pingurl, data, pingCallback, 'json');
         }, PINGINTERVAL);
         
