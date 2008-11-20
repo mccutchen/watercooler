@@ -3,18 +3,28 @@ var PostHandler = (function() {
     var me;
     var posturl;
     var pingurl;
+    
+    var PINGINTERVAL = 3000;
 
     function gettimestamp(s) {
         if (m = /ts(\d+)/.exec(s))
-            return m[1];
+            return parseInt(m[1], 10);
         return null;
     }
     
-    function addPost(content) {
+    function addPost(timestamp, username, content) {
         content = MediaHandler.handle(content);
-        var timestamp = (new Date().getTime());
         var src = '<tr class="me ts' + timestamp + '"><th>' + username + '</th><td>' + content + '</td></tr>'
         $('#chat').append(src);
+    }
+    
+    function pingCallback(data) {
+        data.posts.each(function(post) {
+            if (!timestamps.contains(post.timestamp)) {
+                timestamps.push(post.timestamp);
+                addPost(post.timestamp, post.user, post.content);
+            }
+        });
     }
     
     function init() {
@@ -29,30 +39,27 @@ var PostHandler = (function() {
             timestamps.push(ts);
         });
         
+        window.setInterval(function() {
+            data = {'latest': timestamps[timestamps.length - 1]}
+            $.post(pingurl, data, pingCallback, 'json');
+        }, PINGINTERVAL);
+        
         // Wire up event listeners.
         $('#post-form').submit(function(event) {
             // Only submit the post if it is not blank.
-            event.preventDefault();
             var content = this['content'].value;
             if (!content.isEmpty()) {
-                /*
-                    This is what the AJAX implementation will do, once
-                    it's finished.  But for now, this is disabled, so
-                    the form submits as normal.
-                    
-                    $.post(posturl, { 'content': content, }, function(data) {
-                        console.log('Response to post: ', data);
-                    }, 'json');
+                $.post(posturl, { 'content': content, }, function(data) {
+                    timestamps.push(data.timestamp);
+                    addPost(data.timestamp, me, content);
+                }, 'json');
                 
-                    // Hide the "empty" row, if it exists
-                    $('#chat tr.empty').css('display', 'none');
-                    // Clear the user's input from the form
-                    this['content'].value = '';
-                    // Add the post to the page
-                    addPost(content);
-                */
-                return true;
+                // Hide the "empty" row, if it exists
+                $('#chat tr.empty').css('display', 'none');
+                // Clear the user's input from the form
+                this['content'].value = '';
             }
+            event.preventDefault();
             return false;
         });
     
