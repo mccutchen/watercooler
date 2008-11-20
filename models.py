@@ -42,15 +42,15 @@ class Chat(models.Model):
 class Post(models.Model):
     user = models.ForeignKey(User, related_name='posts')
     parent = models.ForeignKey(Chat, related_name='posts')
-    timestamp = models.DateTimeField(auto_now_add=True)
+    created = models.DateTimeField(auto_now_add=True)
     content = models.TextField()
     
     class Meta:
-        ordering = ('timestamp',)
-        get_latest_by = 'timestamp'
+        ordering = ('created',)
+        get_latest_by = 'created'
         order_with_respect_to = 'parent'
         app_label = 'watercooler'
-        
+    
     def __unicode__(self):
         return 'Post by %s on %s' % (self.user, self.parent)
 
