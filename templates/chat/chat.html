@@ -29,9 +29,9 @@
                 </p>
             {% endif %}
         {% endif %}
-        
-        {% if posts %}
-            <table id="chat" cellspacing="0">
+            
+        <table id="chat" cellspacing="0">
+            {% if posts %}
                 {% for post in posts %}
                     <tr class="ts{{ post.timestamp }}{% ifequal post.user user %} me"{% endifequal %}>
                         <th>
@@ -43,17 +43,19 @@
                         </td>
                     </tr>
                 {% endfor %}
-            </table>
-        {% else %}
-            <p>
-                {% if filters %}
-                    No posts in this conversation matched the filter criteria.
-                {% else %}
-                    Nobody has contributed to this conversation yet.  Start
-                    things off by typing in the text box below.
-                {% endif %}
-            </p>
-        {% endif %}
+            {% else %}
+                <tr class="empty">
+                    <td colspan="2">
+                        {% if filters %}
+                            No posts in this conversation matched the filter criteria.
+                        {% else %}
+                            Nobody has contributed to this conversation yet.  Start
+                            things off by typing in the text box below.
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endif %}
+        </table>
     </div>
 
     <div id="users">
