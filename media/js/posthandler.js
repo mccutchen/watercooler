@@ -1,6 +1,7 @@
 var PostHandler = (function() {
     var timestamps = [];
     var username;
+    var posturl;
 
     function gettimestamp(s) {
         if (m = /ts(\d+)/.exec(s))
@@ -18,6 +19,7 @@ var PostHandler = (function() {
     function init() {
         // Figure out what username we're posting under
         username = $('#post-username').val();
+        posturl = $('#post-form').attr('action');
         
         // Get a list of timestamps of the posts already on the page
         $('#chat tr').each(function(i) {
