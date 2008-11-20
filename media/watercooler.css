@@ -263,6 +263,7 @@ table#chat {
     border-top: 1px dotted #ccc;
     line-height: 125%;
     vertical-align: top;
+    font-size: 12px;
 }
 #chat tr:first-child td, #chat tr:first-child th {
     border-top: none;
