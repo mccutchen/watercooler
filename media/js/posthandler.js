@@ -14,7 +14,8 @@ var PostHandler = (function() {
     
     function addPost(timestamp, username, content) {
         content = MediaHandler.handle(content);
-        var src = '<tr class="me ts' + timestamp + '"><th>' + username + '</th><td>' + content + '</td></tr>'
+        var cls = 'ts' + timestamp + ((username == me) ? ' me': '');
+        var src = '<tr class="' + cls + '"><th>' + username + '</th><td>' + content + '</td></tr>'
         $('#chat').append(src);
     }
     
