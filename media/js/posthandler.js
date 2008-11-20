@@ -17,6 +17,8 @@ var PostHandler = (function() {
         var cls = 'ts' + timestamp + ((username == me) ? ' me': '');
         var src = '<tr class="' + cls + '"><th>' + username + '</th><td>' + content + '</td></tr>'
         $('#chat').append(src);
+        // Always scroll to the bottom (ugly hack, necessary right now)
+        window.scroll(0, 100000);
     }
     
     function pingCallback(data) {
@@ -73,6 +75,9 @@ var PostHandler = (function() {
                 return $('#post-form').submit();
             }
         });
+        
+        // This is a bad solution, but it'll have to do for now
+        window.scroll(0, 100000);
     }
     
     return {

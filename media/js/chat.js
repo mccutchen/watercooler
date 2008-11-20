@@ -4,7 +4,6 @@ $(function() {
     
     // Dynamically lay out the chat page (NOT YET; STILL BUGGY)
     // fixlayout();
-    // window.scroll(0, 100000);
 });
 
 function fixlayout() {
