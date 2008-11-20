@@ -1,13 +1,17 @@
 var PostHandler = (function() {
     var timestamps = [];
+    var username;
 
     function gettimestamp(s) {
         if (m = /ts(\d+)/.exec(s))
             return m[1];
         return null;
     }
-
+    
     function init() {
+        // Figure out what username we're posting under
+        username = document.getElementById('post-username').value;
+        
         // Get a list of timestamps of the posts already on the page
         $('#chat tr').each(function(i) {
             var ts = gettimestamp($(this).attr('class'));

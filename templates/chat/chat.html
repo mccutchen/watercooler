@@ -83,6 +83,7 @@
         <form id="post-form" action="{% url chat_post chat.slug %}" method="post">
             <input id="post-submit" type="submit" value="Post!" />
             <textarea id="post-content" name="content" rows="2"></textarea>
+            <input id="post-username" type="hidden" value="{{ user }}">
         </form>
     </div>
 {% endblock %}
