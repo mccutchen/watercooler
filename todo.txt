@@ -4,7 +4,11 @@
 
  * Figure out a better layout for chats (ie, make the chat part scroll, not
    the rest)
-   
+
  * Use Ajax to check and see whether or not a chat name is taken
  
  * Make the 'press enter to submit' functionality work in Safari
+ 
+ * Limit public chats displayed on the front page to ones with recent
+   activity (or, if there aren't enough of those, to the ones that were
+   updated most recently).
