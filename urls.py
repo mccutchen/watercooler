@@ -5,7 +5,7 @@ from django.contrib.auth.views import login, logout
 from django.contrib import admin
 
 from models import Chat
-from views import chat, post, create, register
+from views import chat, post, create, register, ping
 
 index_options = {
     'template': 'index.html',
@@ -28,6 +28,7 @@ urlpatterns = patterns('',
     url(r'^chat/create/$', create, name='chat_create'),
     url(r'^chat/(?P<slug>[-\w]+)/$', chat, name='chat'),
     url(r'^chat/(?P<slug>[-\w]+)/post/', post, name='chat_post'),
+    url(r'^chat/(?P<slug>[-\w]+)/ping/', ping, name='chat_ping'),
     
     (r'^accounts/login/$',  login),
     (r'^accounts/logout/$', logout),

@@ -75,6 +75,34 @@ def create(request):
         pass
     return HttpResponseRedirect(chat_url(slug))
 
+@login_required
+def ping(request, slug):
+    """This is the Ajax polling endpoint.  An Ajax request will be made
+    containing the latest timestamp on the client side.  The response
+    will be a JSON object containing the posts made in the interim and
+    a list of active and inactive users."""
+    chat = get_object_or_404(Chat, slug=slug)
+    if request.POST:
+        latest_timestamp = request.POST['latest']
+        latest = datetime.datetime.fromtimestamp(latest_timestamp)
+        
+        posts_needed = chat.posts.select_related('user').filter(created__gt=latest)
+        active_users = chat.users
+        
+        response = dict(posts=[], active_users=[], inactive_users=[])
+        for post in posts_needed:
+            response['posts'].append({
+                'user': post.user,
+                'content': post.content,
+                'created': post.created,
+                'timestamp': post.timestamp(),
+            })
+        for user in active_users:
+            response['active_users'].append(user.username)
+        
+        return HttpResponse(json.dumps(response), mimetype='application/json')
+    return HttpResponseServerError()
+
 def chat_url(slug):
     """Utility function that uses the reverse() function to generate the
     correct URL for the Chat object with the given slug."""
