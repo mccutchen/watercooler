@@ -1,9 +1,10 @@
 import operator
+import simplejson as json
 
 from django.views.generic.list_detail import object_list
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
-from django.http import HttpResponseRedirect, HttpResponseServerError
+from django.http import HttpResponse, HttpResponseRedirect, HttpResponseServerError
 from django.template.defaultfilters import slugify
 from django.db.models import Q
 from django.contrib.auth.forms import UserCreationForm
@@ -51,6 +52,11 @@ def post(request, slug):
         chat = Chat.objects.get(slug=slug)
         post = Post(user=request.user, parent=chat, content=content)
         post.save()
+    
+        if request.is_ajax():
+            response = json.dumps({ 'timestamp': post.timestamp(), })
+            return HttpResponse(response, mimetype='application/json')
+    
     return HttpResponseRedirect(chat_url(slug))
 
 @login_required
