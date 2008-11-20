@@ -1,5 +1,7 @@
-import re
+import datetime
+
 from django.db import models
+from django.db.models.signals import post_save
 from django.contrib.auth.models import User
 from django.template.defaultfilters import escape
 from django.template.loader import render_to_string
@@ -17,6 +19,7 @@ class Chat(models.Model):
     is_public = models.BooleanField(default=False)
     created = models.DateTimeField(auto_now_add=True)
     created_by = models.ForeignKey(User)
+    updated = models.DateTimeField(auto_now_add=True)
     
     # Use the custom manager defined above
     objects = ChatManager()
@@ -50,3 +53,16 @@ class Post(models.Model):
         
     def __unicode__(self):
         return 'Post by %s on %s' % (self.user, self.parent)
+
+
+def update_chat_on_post_save(sender, **kwargs):
+    """When a Post object is created, set its parent Chat object's
+    updated time to now."""
+    created = kwargs['created']
+    instance = kwargs['instance']
+    if created:
+        instance.parent.updated = datetime.datetime.now()
+        instance.parent.save()
+
+# Wire up the signal to listen for Post objects being saved
+post_save.connect(update_chat_on_post_save, sender=Post)
