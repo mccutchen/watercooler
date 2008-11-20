@@ -1,6 +1,6 @@
 var PostHandler = (function() {
     var timestamps = [];
-    var username;
+    var me;
     var posturl;
 
     function gettimestamp(s) {
@@ -18,7 +18,7 @@ var PostHandler = (function() {
     
     function init() {
         // Figure out what username we're posting under
-        username = $('#post-username').val();
+        me = $('#post-username').val();
         posturl = $('#post-form').attr('action');
         
         // Get a list of timestamps of the posts already on the page
