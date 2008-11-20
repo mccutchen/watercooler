@@ -86,6 +86,7 @@
             <input id="post-submit" type="submit" value="Post!" />
             <textarea id="post-content" name="content" rows="2"></textarea>
             <input id="post-username" type="hidden" value="{{ user }}">
+            <input id="post-pingurl" type="hidden" value="{% url chat_ping chat.slug %}">
         </form>
     </div>
 {% endblock %}
