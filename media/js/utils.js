@@ -21,6 +21,11 @@ Array.prototype.filter = function(test) {
 Array.prototype.any = function(test) {
     return this.filter(test).length > 0;
 };
+Array.prototype.contains = function(el) {
+    return this.any(function (other) {
+        return el == other;
+    });
+};
 
 String.prototype.isEmpty = function() {
     return /^\s*$/.test(this);
