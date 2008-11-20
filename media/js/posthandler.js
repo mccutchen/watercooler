@@ -49,7 +49,7 @@ var PostHandler = (function() {
                     // Add the post to the page
                     addPost(content);
                 */
-                //return true;
+                return true;
             }
             return false;
         });
