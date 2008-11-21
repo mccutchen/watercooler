@@ -53,6 +53,9 @@ def post(request, slug):
         content = request.POST.get('content', '')
         post = Post(user=request.user, parent=chat, content=content)
         post.save()
+        
+        # Update the user's last ping value
+        user_ping(request.user)
     
         if request.is_ajax():
             response = json.dumps({
@@ -86,6 +89,9 @@ def ping(request, slug):
     a list of active and inactive users."""
     chat = get_object_or_404(Chat, slug=slug)
     if request.POST:
+        # Log the ping time for this user
+        user_ping(request.user)
+        
         # Increasing the timestamp by one second eliminates duplicates
         # on the client side.  This probably merits further thought.
         latest_timestamp = float(request.POST.get('latest', time.time())) + 1
@@ -116,6 +122,11 @@ def ping(request, slug):
         return HttpResponse(json.dumps(response), mimetype='application/json')
 
     return HttpResponseServerError()
+
+def user_ping(user):
+    """Updates the given user's last_ping to the current time."""
+    user.last_login = datetime.datetime.now()
+    user.save()
 
 def chat_url(slug):
     """Utility function that uses the reverse() function to generate the
