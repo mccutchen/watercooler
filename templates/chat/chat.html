@@ -3,6 +3,7 @@
 {% block page_title %}Conversation: {{ chat.name }}{% endblock %}
 
 {% block extrahead %}
+    <script type="text/javascript" src="{{ MEDIA_URL }}js/userhandler.js"></script>
     <script type="text/javascript" src="{{ MEDIA_URL }}js/mediahandler.js"></script>
     <script type="text/javascript" src="{{ MEDIA_URL }}js/posthandler.js"></script>
     <script type="text/javascript" src="{{ MEDIA_URL }}js/chat.js"></script>
@@ -66,15 +67,22 @@
 
     <div id="users">
         <h3>Users</h3>
-        <ul id="active">
-            {% if not chat.users %}
-                <li>No users yet</li>
-            {% endif %}
-            {% for chatuser in chat.users %}
-                <li{% ifequal chatuser user %} class="me"{% endifequal %}>
-                    <a href="./?user={{ chatuser }}">{{ chatuser }}</a>
-                </li>
-            {% endfor %}
+        <ul>
+            {% with chat.users as users %}
+                {% if not users %}
+                    <li>No users yet</li>
+                {% endif %}
+                {% for u in users.active %}
+                    <li class="active{% ifequal u user %} me{% endifequal %}">
+                        <a href="./?user={{ u.username }}">{{ u.username }}</a>
+                    </li>
+                {% endfor %}
+                {% for u in users.inactive %}
+                    <li class="inactive">
+                        <a href="./?user={{ u.username }}">{{ u.username }}</a>
+                    </li>
+                {% endfor %}
+            {% endwith %}
         </ul>
         <p class="note"><strong>Note:</strong> Click on a username to
         show only that users's posts.</p>

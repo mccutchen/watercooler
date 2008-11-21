@@ -347,6 +347,10 @@ div#users li.me {
     font-weight: bold;
     color: #900;
 }
+div#users li.inactive {
+    color: #999;
+    font-style: italic;
+}
 div#users li a {
     color: inherit;
     border: none;

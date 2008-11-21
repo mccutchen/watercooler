@@ -29,7 +29,14 @@ class Chat(models.Model):
         app_label = 'watercooler'
     
     def users(self):
-        return User.objects.filter(posts__parent__pk=self.id).distinct()
+        """Returns a dictionary containing a list of active user and
+        a list of inactive users who have contributed to this chat."""
+        # A user is inactive if they have not pinged in 20 seconds
+        cutoff = datetime.datetime.now() - datetime.timedelta(0, 20)
+        allusers = User.objects.filter(posts__parent__pk=self.id).distinct()
+        active = [user for user in allusers if user.last_login > cutoff]
+        inactive = [user for user in allusers if user.last_login < cutoff]
+        return dict(active=active, inactive=inactive)
     
     @models.permalink
     def get_absolute_url(self):
