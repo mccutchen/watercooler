@@ -78,7 +78,7 @@ def create_user_profile(sender, **kwargs):
         # DB will raise an error for non-uniqueness.
         profile, created = UserProfile.objects.get_or_create(user=kwargs['instance'])
         if created:
-            p.save()
+            profile.save()
 
 def update_chat_on_post_save(sender, **kwargs):
     """When a Post object is created, set its parent Chat object's
