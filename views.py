@@ -1,6 +1,7 @@
 import datetime, operator, time
 import simplejson as json
 
+from django.views.generic.simple import direct_to_template
 from django.views.generic.list_detail import object_list
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
@@ -12,7 +13,6 @@ from django.contrib.auth import authenticate, login
 from django.template import RequestContext
 from django.shortcuts import get_object_or_404
 
-from utils import render_to_response
 from models import Chat, Post
 
 @login_required
@@ -44,7 +44,7 @@ def chat(request, slug):
         'posts': posts,
         'filters': filters,
     }
-    return render_to_response(request, 'chat/chat.html', context)
+    return direct_to_template(request, 'chat/chat.html', context)
 
 @login_required
 def post(request, slug):
@@ -137,4 +137,4 @@ def register(request):
     else:
         form = UserCreationForm()
 
-    return render_to_response(request, "registration/register.html", {'form':form})
+    return direct_to_template(request, "registration/register.html", {'form':form})
