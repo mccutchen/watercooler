@@ -66,14 +66,24 @@ class UserProfile(models.Model):
         app_label = 'watercooler'
 
 
+# ===================================================================
+# Signal-handling functions
+# ===================================================================
+def create_user_profile(sender, **kwargs):
+    """Create an associated UserProfile object for every User
+    created."""
+    if kwargs['created']:
+        p = UserProfile(user=kwargs['instance'])
+        p.save()
+
 def update_chat_on_post_save(sender, **kwargs):
     """When a Post object is created, set its parent Chat object's
     updated time to now."""
-    created = kwargs['created']
-    instance = kwargs['instance']
-    if created:
-        instance.parent.updated = datetime.datetime.now()
-        instance.parent.save()
+    if kwargs['created']:
+        post = kwargs['instance']
+        post.parent.updated = datetime.datetime.now()
+        post.parent.save()
 
-# Wire up the signal to listen for Post objects being saved
+# Wire up the signals to their models
+post_save.connect(create_user_profile, sender=User)
 post_save.connect(update_chat_on_post_save, sender=Post)
