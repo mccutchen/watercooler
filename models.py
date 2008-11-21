@@ -73,8 +73,12 @@ def create_user_profile(sender, **kwargs):
     """Create an associated UserProfile object for every User
     created."""
     if kwargs['created']:
-        p = UserProfile(user=kwargs['instance'])
-        p.save()
+        # This signal is called twice, for some reason, so we
+        # can't just create the profile automatically or the
+        # DB will raise an error for non-uniqueness.
+        profile, created = UserProfile.objects.get_or_create(user=kwargs['instance'])
+        if created:
+            p.save()
 
 def update_chat_on_post_save(sender, **kwargs):
     """When a Post object is created, set its parent Chat object's
