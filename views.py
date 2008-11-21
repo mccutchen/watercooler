@@ -1,5 +1,6 @@
 import datetime, operator, time
 import simplejson as json
+from collections import defaultdict
 
 from django.views.generic.simple import direct_to_template
 from django.views.generic.list_detail import object_list
@@ -101,11 +102,7 @@ def ping(request, slug):
         # given by the client
         posts_needed = chat.posts.select_related('user').filter(created__gt=latest)
         
-        # For now, any user who has contributed a post is considered
-        # an active user
-        active_users = chat.users()
-        
-        # The structure of the response to be serialized as JSON
+        # The response to be serialized as JSON
         response = dict(posts=[], active_users=[], inactive_users=[])
         
         # Fill in the response with posts and users
@@ -115,8 +112,16 @@ def ping(request, slug):
                 'content': post.content,
                 'timestamp': post.timestamp(),
             })
-        for user in active_users:
-            response['active_users'].append(user.username)
+        
+        # Add active and inactive users
+        for status, users in chat.users().items():
+            for user in users:
+                response['%s_users' % status].append(user.username)
+        
+        # Make sure the current user is included, even it has not
+        # contributed
+        if request.user.username not in response['active_users']:
+            response['active_users'].append(request.user.username)
         
         # Serialize the response as JSON
         return HttpResponse(json.dumps(response), mimetype='application/json')

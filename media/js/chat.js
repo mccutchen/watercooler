@@ -1,4 +1,5 @@
 $(function() {
+    UserHandler.init();
     MediaHandler.init();
     PostHandler.init();
     
