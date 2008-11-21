@@ -58,28 +58,9 @@ class Post(models.Model):
         return 'Post by %s on %s' % (self.user, self.parent)
 
 
-class UserProfile(models.Model):
-    user = models.ForeignKey(User, unique=True)
-    last_ping = models.DateTimeField(auto_now_add=True)
-    
-    class Meta:
-        app_label = 'watercooler'
-
-
 # ===================================================================
 # Signal-handling functions
 # ===================================================================
-def create_user_profile(sender, **kwargs):
-    """Create an associated UserProfile object for every User
-    created."""
-    if kwargs['created']:
-        # This signal is called twice, for some reason, so we
-        # can't just create the profile automatically or the
-        # DB will raise an error for non-uniqueness.
-        profile, created = UserProfile.objects.get_or_create(user=kwargs['instance'])
-        if created:
-            profile.save()
-
 def update_chat_on_post_save(sender, **kwargs):
     """When a Post object is created, set its parent Chat object's
     updated time to now."""
@@ -89,5 +70,4 @@ def update_chat_on_post_save(sender, **kwargs):
         post.parent.save()
 
 # Wire up the signals to their models
-post_save.connect(create_user_profile, sender=User)
 post_save.connect(update_chat_on_post_save, sender=Post)
