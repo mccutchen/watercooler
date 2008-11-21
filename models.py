@@ -58,6 +58,14 @@ class Post(models.Model):
         return 'Post by %s on %s' % (self.user, self.parent)
 
 
+class UserProfile(models.Model):
+    user = models.ForeignKey(User, unique=True)
+    last_ping = models.DateTimeField(auto_now_add=True)
+    
+    class Meta:
+        app_label = 'watercooler'
+
+
 def update_chat_on_post_save(sender, **kwargs):
     """When a Post object is created, set its parent Chat object's
     updated time to now."""

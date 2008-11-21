@@ -8,6 +8,8 @@ MANAGERS = ADMINS
 
 ROOT_URLCONF = 'watercooler.urls'
 
+AUTH_PROFILE_MODULE = 'watercooler.UserProfile'
+
 INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
