@@ -13,7 +13,7 @@ var PostHandler = (function() {
     
     function addPost(timestamp, username, content) {
         content = MediaHandler.handle(content);
-        var cls = 'ts' + timestamp + ((username == UserHandler.user) ? ' me': '');
+        var cls = 'ts' + timestamp + ((username == UserHandler.user()) ? ' me': '');
         var src = '<tr class="' + cls + '"><th>' + username + '</th><td>' + content + '</td></tr>'
         $('#chat').append(src);
         // Always scroll to the bottom (ugly hack, necessary right now)
@@ -53,7 +53,7 @@ var PostHandler = (function() {
             if (!content.isEmpty()) {
                 $.post(posturl, { 'content': content, }, function(data) {
                     timestamps.push(data.timestamp);
-                    addPost(data.timestamp, UserHandler.user, data.content);
+                    addPost(data.timestamp, UserHandler.user(), data.content);
                 }, 'json');
                 
                 // Remove the "empty" row from the DOM, if it exists

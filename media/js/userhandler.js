@@ -1,6 +1,6 @@
 var UserHandler = (function() {
     // The current user's username
-    var user;
+    var currentUser;
     var usersObj;
     
     function update(active, inactive) {
@@ -9,7 +9,7 @@ var UserHandler = (function() {
         
         // Then re-add the active and inactive users
         active.each(function(u) {
-            var src = '<li class="active' + ((u == user) ? ' me':'') + '">' + u + '</li>';
+            var src = '<li class="active' + ((u == currentUser) ? ' me':'') + '">' + u + '</li>';
             usersObj.append(src);
         });
         inactive.each(function(u) {
@@ -18,9 +18,13 @@ var UserHandler = (function() {
         });
     }
     
+    function user() {
+        return currentUser;
+    }
+    
     function init() {
         // Figure out what username we're posting under
-        user = $('#post-username').val();
+        currentUser = $('#post-username').val();
         
         // Get a reference to the users <ul> element
         usersObj = $('#users ul').eq(0);
@@ -29,6 +33,6 @@ var UserHandler = (function() {
     return {
         init: init,
         update: update,
-        me: user,
+        user: user,
     };
 })();
