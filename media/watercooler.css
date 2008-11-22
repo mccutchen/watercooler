@@ -231,7 +231,7 @@ body#chat-page div#footer {
 body#chat-page div#content {
     padding: 0;
     width: 800px;
-    background: transparent url(img/sidebar-bg.gif) top right repeat-y;
+    position: relative;
 }
 
 div#page-header span#created-by {
@@ -244,7 +244,6 @@ div#page-header span#created-by span {
 }
 
 #chat-container {
-    float: left;
     width: 549px;
     margin-bottom: 1px;
 }
@@ -303,7 +302,6 @@ table#chat {
     margin-bottom: 1px;
     color: #fff;
     font-size: 12px;
-    position: relative;
 }
 #chat-container p.filter .criteria {
     font-weight: bold;
@@ -322,10 +320,15 @@ div#users {
     width: 247px;
     margin-left: 550px;
     background-color: #eee;
-    /* These rules should be enabled once the dynamic page layout
-    is fixed. */
-    /* border: 3px solid #ccc;
-    border-top: none; border-left: none;*/
+    border: 3px solid #ccc;
+    border-top: none; border-left: none;
+    
+    /* Attach to the right side of the content div
+       and stretch it to fill the available vertical space. */
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
 }
 div#users h3 {
     margin: 0;
