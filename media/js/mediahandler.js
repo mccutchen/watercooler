@@ -25,9 +25,9 @@ var MediaHandler = (function() {
     });
     
     // Set up a default handler that just turns the URL into a link
-    handlers.default = function(url) {
+    function default_handler(url) {
         return '<a href="' + url + '">' + url + '</a>';
-    };
+    }
     
     // If s is a URL (ie, matches url_re), make sure that s starts with
     // http://.  Otherwise, return null.
@@ -60,7 +60,7 @@ var MediaHandler = (function() {
         }
         
         // If no handler was found, use the default handler
-        result = result || handlers.default(url);
+        result = result || default_handler(url);
         
         // Replace the URL
         return content.replace(url_re, result);
