@@ -1,6 +1,9 @@
 import os
 PROJECT_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), '../'))
 
+# How many seconds of inactivity before a user is considered inactive?
+ACTIVE_USER_TIMEOUT = 20
+
 ADMINS = (
     ('Will McCutchen', 'mccutchen@gmail.com'),
 )

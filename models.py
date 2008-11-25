@@ -4,6 +4,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.template.defaultfilters import escape
+from django.conf import settings
 
 
 class ChatManager(models.Manager):
@@ -34,9 +35,17 @@ class Chat(models.Model):
     def users(self):
         """Returns a dictionary containing a list of active users and
         a list of inactive users who have contributed to this chat."""
-        # A user is inactive if they have not pinged in 20 seconds
-        cutoff = datetime.datetime.now() - datetime.timedelta(0, 20)
+
+        # A user is inactive if they have not pinged in 20 seconds.
+        cutoff = datetime.datetime.now() - \
+            datetime.timedelta(0, settings.ACTIVE_USER_TIMEOUT)
+
+        # A queryset containing each user who has contributed to this
+        # chat.
         allusers = User.objects.filter(posts__parent__pk=self.id).distinct()
+
+        # Pull get the active and inactive users from the queryset
+        # based on the cutoff time determined above.
         active = [user for user in allusers if user.last_login > cutoff]
         inactive = [user for user in allusers if user.last_login < cutoff]
         return dict(active=active, inactive=inactive)
