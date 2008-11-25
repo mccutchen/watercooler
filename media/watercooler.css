@@ -340,7 +340,7 @@ div#users {
     width: 250px;
     background-color: #ddd;
     border-bottom: 3px solid #aaa;
-    
+
     /* Attach to the right side of the content div
        and stretch it to fill the available vertical space. */
     position: absolute;

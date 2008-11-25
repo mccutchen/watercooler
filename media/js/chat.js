@@ -29,8 +29,6 @@ function fixlayout() {
 
     // Affix the post box on top of the footer
     affix(post, { bottom: footer.outerHeight(), left: 0 });
-    // Adjust the width of the post box
-    post.css('width', chat.outerWidth());
 
     // Adjust the margins of the chat box to compensate for the
     // sizes of the now-fixed surrounding elements
@@ -46,6 +44,9 @@ function fixlayout() {
     // border width + 1px empty space)
     var sidebarHeight = window.innerHeight - header.outerHeight() - footer.outerHeight() - 4;
     sidebar.css('height', sidebarHeight + 'px');
+
+    // Adjust the width of the post box
+    post.css('width', chat.outerWidth() + 'px');
 
     // Go ahead and scroll to the bottom
     window.scrollTo(0, 10000);
