@@ -3,7 +3,7 @@ $(function() {
     MediaHandler.init();
     PostHandler.init();
     
-    // Dynamically lay out the chat page (NOT YET; STILL BUGGY)
+    // Dynamically lay out the chat page
     fixlayout();
 });
 
