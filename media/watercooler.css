@@ -80,6 +80,7 @@ div#user {
     position: absolute;
     bottom: 0;
     right: 20px;
+    border-right: 2px solid #14426F;
     -moz-border-radius: 4px;
     -webkit-border-radius: 4px;
     margin: 0 0 -3px 0;
