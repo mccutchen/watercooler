@@ -22,6 +22,7 @@ chat_list_options = {
 
 urlpatterns = patterns('',
     url(r'^$', direct_to_template, index_options, name='index'),
+    url(r'^about/$', direct_to_template, {'template': 'about.html'}, name='about'),
     url(r'^contact/$', direct_to_template, {'template': 'contact.html'}, name='contact'),
     
     url(r'^chat/$', object_list, chat_list_options, name='chat_index'),
