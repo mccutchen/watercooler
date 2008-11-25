@@ -29,7 +29,8 @@ class Chat(models.Model):
     objects = ChatManager()
 
     class Meta:
-        ordering = ('name', 'created')
+        ordering = ('-updated', 'name', 'created')
+        get_latest_by = 'updated'
         app_label = 'watercooler'
 
     def users(self):
