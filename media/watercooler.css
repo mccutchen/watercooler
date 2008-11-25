@@ -200,10 +200,10 @@ div#more-info div#sidebar + h3 + p {
 }
 div#more-info li {
     margin-bottom: 5px;
-    line-height: 1.25;
 }
 div#more-info li strong {
     display: block;
+    margin-bottom: 5px;
 }
 
 div#sidebar {
@@ -222,6 +222,9 @@ div#sidebar h3, div#sidebar p {
 }
 div#sidebar ul {
     padding: 0 20px;
+}
+div#sidebar ul li {
+    margin: 0;
 }
 
 
