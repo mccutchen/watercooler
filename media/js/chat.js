@@ -4,7 +4,10 @@ $(function() {
     PostHandler.init();
     
     // Dynamically lay out the chat page (NOT YET; STILL BUGGY)
-    // fixlayout();
+    // $(document.body).click(function() {
+    //         fixlayout();
+    //     });
+    fixlayout();
 });
 
 function fixlayout() {
@@ -17,18 +20,20 @@ function fixlayout() {
 
     // Store the margins needed for the chat box before these
     // the elements on which they're based change positions
-    var chatTop = chat.position().top;
+    var chatTop = header.outerHeight() + 1;
     var chatBottom = post.position().top;
     
     // Affix header and users sidebar in place
-    affix(sidebar, sidebar.position());
+    affix(sidebar, { top: chatTop, right: 0} );
     affix(header, header.position());
     
     // Affix footer to the bottom
-    affix(footer, { bottom: 0, left: footer.position().left });
+    affix(footer, { bottom: 0, left: 0 });
     
     // Affix the post box on top of the footer
-    affix(post, { bottom: footer.outerHeight(), left: post.position().left });
+    affix(post, { bottom: footer.outerHeight(), left: 0 });
+    // Adjust the width of the post box
+    post.css('width', chat.outerWidth());
     
     // Adjust the margins of the chat box to compensate for the
     // sizes of the now-fixed surrounding elements
@@ -36,6 +41,9 @@ function fixlayout() {
         marginTop: chatTop + 'px',
         marginBottom: 1 + footer.outerHeight() + post.outerHeight() + 'px',
     });
+    
+    // Make sure the page header is higher in z order than the chat box
+    header.css('z-index', 1000);
     
     // Make the sidebar fill its space vertically
     var sidebarHeight = window.innerHeight - header.outerHeight() - footer.outerHeight() - 4;
