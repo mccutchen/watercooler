@@ -9,7 +9,7 @@ body {
     padding: 0;
     background-color: #fff;
     color: #333;
-    font-family: "Lucida Sans", Calibri, Verdana, sans-serif;
+    font-family: georgia, serif;
     font-size: 14px;
 }
 
@@ -27,7 +27,6 @@ h3 {
 
 p {
     margin: 1em 0;
-    line-height: 1.5;
 }
 p:first-child {
     margin-top: 0;
