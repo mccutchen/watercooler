@@ -59,22 +59,26 @@
                 {% endif %}
                 {% for u in users.active %}
                     <li class="active{% ifequal u user %} me{% endifequal %}">
-                        <a href="./?user={{ u.username }}">{{ u.username }}</a>
+                        {# <a href="./?user={{ u.username }}">{{ u.username }}</a> #}
+                        {{ u.username }}
                     </li>
                 {% endfor %}
                 {% for u in users.inactive %}
                     <li class="inactive">
-                        <a href="./?user={{ u.username }}">{{ u.username }}</a>
+                        {# <a href="./?user={{ u.username }}">{{ u.username }}</a> #}
+                        {{ u.username }}
                     </li>
                 {% endfor %}
             {% endwith %}
         </ul>
         
-        <h3>Search this conversation</h3>
-        <form id="search" action="." method="get">
-            <label for="q">Keywords</label>
-            <input id="q" name="q" type="text" value="" />
-            <input type="submit" value="Search" />
-        </form>
+        {% comment %}
+            <h3>Search this conversation</h3>
+            <form id="search" action="." method="get">
+                <label for="q">Keywords</label>
+                <input id="q" name="q" type="text" value="" />
+                <input type="submit" value="Search" />
+            </form>
+        {% endcomment %}
     </div>
 {% endblock %}
