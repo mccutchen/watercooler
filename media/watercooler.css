@@ -155,10 +155,6 @@ div#page-header.intro {
 div#page-header.intro div.left.column h2 {
     color: #369;
     margin-bottom: -8px;
-    
-    text-indent: -5000px;
-    background: transparent url(img/tagline.png) no-repeat;
-    height: 22px;
 }
 div#page-header.intro div.left.column p {
     margin-right: 20px;
@@ -174,13 +170,9 @@ div#start {
     -webkit-border-radius: 12px;
 }
 div#start h2 {
-    padding-top: 15px;
-    padding-bottom: 0;
+    padding: 5px 0 0 0;
     text-align: center;
-    
-    text-indent: -5000px;
-    background: transparent url(img/start.png) center no-repeat;
-    height: 17px;
+    color: #fff;
 }
 div#start form {
     display: block;
