@@ -27,17 +27,21 @@
     
     <body id="{% block body_id %}{% endblock %}">
         <div id="header">
-            <div id="user">
-                {% if user.is_authenticated %}
-                    Logged in as <strong>{{ user }}</strong>.
-                    <a href="/accounts/logout/">Log out</a>?
-                {% else %}
-                    Not logged in.  <a href="/accounts/login/">Log in</a> or <a href="/accounts/register/">Sign up</a>?
-                {% endif %}
-            </div>
-        
             <div id="logo">
                 <h1><a href="{% url index %}">Watercooler</a></h1>
+                
+                {% comment %}
+                    The #user block totally shouldn't be inside the #logo
+                    block, but it is for style reasons.
+                {% endcomment %}
+                <div id="user">
+                    {% if user.is_authenticated %}
+                        Logged in as <strong>{{ user }}</strong>.
+                        <a href="/accounts/logout/">Log out</a>?
+                    {% else %}
+                        Not logged in.  <a href="/accounts/login/">Log in</a> or <a href="/accounts/register/">Sign up</a>?
+                    {% endif %}
+                </div>
             </div>
         
             <div id="page-header" class="{% block page_header_class %}{% endblock %}">
