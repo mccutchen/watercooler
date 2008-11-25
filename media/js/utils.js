@@ -29,10 +29,10 @@ Array.prototype.contains = function(el) {
 
 String.prototype.isEmpty = function() {
     return /^\s*$/.test(this);
-}
+};
 String.prototype.trim = function() {
-    return this.replace(/^\s+|\s+$/g, ''); 
-}
+    return this.replace(/^\s+|\s+$/g, '');
+};
 
 
 if (!console) {
