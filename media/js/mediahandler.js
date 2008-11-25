@@ -57,6 +57,10 @@ var MediaHandler = (function() {
             var handler = handlers[i];
             if (match = url.match(handler.re)) {
                 result = handler.fn(url, match);
+                // Wrap the result in a div with a caption containing
+                // the matched URL
+                var caption = handlers.default_handler(url);
+                result = '<div class="media">' + result + '<p>' + caption + '</p></div>';
                 break;
             }
         }
