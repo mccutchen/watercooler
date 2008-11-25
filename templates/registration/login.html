@@ -5,9 +5,9 @@
 {% endblock %}
 
 {% block content %}
-    <p>If you don't already have an account, 
-    <a href="/accounts/register/">sign up for Watercooler</a>.</p>
-    
+    <p>If you don't already have an account,
+    <a href="/accounts/register/{% if next %}?next={{next|escape}}{% endif %}">sign up for Watercooler</a>.</p>
+
     {% if form.errors %}
         <p class="error">Sorry, that's not a valid username or password</p>
     {% endif %}

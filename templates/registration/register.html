@@ -6,13 +6,14 @@
 
 {% block content %}
     <p>Fill out the form below to sign up for a Watercooler account.</p>
-    
+
     {% if form.errors %}
         <p class="error">Signup failed!  Correct the errors below and try again.</p>
     {% endif %}
-    
+
     <form action="." method="post" class="auth">
         {{ form.as_p }}
         <input type="submit" value="Sign Up!" />
+        <input type="hidden" name="next" value="{{ next }}" />
     </form>
 {% endblock %}
