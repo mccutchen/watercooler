@@ -36,33 +36,9 @@
                 </p>
             {% endif %}
         {% endif %}
-            
-        <table id="chat" cellspacing="0">
-            {% if posts %}
-                {% for post in posts %}
-                    <tr class="ts{{ post.timestamp }}{% ifequal post.user user %} me{% endifequal %}">
-                        <th>
-                            {{ post.user }}
-                            {# <span class="timestamp">@&nbsp;{{ post.timestamp|date:"H:i" }}</span> #}
-                        </th>
-                        <td>
-                            {{ post.content }}
-                        </td>
-                    </tr>
-                {% endfor %}
-            {% else %}
-                <tr class="empty">
-                    <td colspan="2">
-                        {% if filters %}
-                            No posts in this conversation matched the filter criteria.
-                        {% else %}
-                            Nobody has contributed to this conversation yet.  Start
-                            things off by typing in the text box below.
-                        {% endif %}
-                    </td>
-                </tr>
-            {% endif %}
-        </table>
+        
+        {# Render the posts for this chat #}
+        {% include "chat/posts.html" %}
     </div>
 
     <div id="users">
