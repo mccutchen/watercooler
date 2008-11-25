@@ -101,6 +101,9 @@ div#content {
     margin: 0 auto;
     border-bottom: 1px solid #fff;
 }
+div#content p {
+    max-width: 40em;
+}
 
 div#page-header {
     background-color: #e9e9bf;
