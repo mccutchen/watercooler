@@ -73,7 +73,10 @@ var PostHandler = (function() {
                 return $('#post-form').submit();
             }
         });
-        
+
+        // Focus the text input of the post form
+        $('#post-content').focus();
+
         // This is a bad solution, but it'll have to do for now
         window.scroll(0, 100000);
     }
