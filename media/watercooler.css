@@ -11,9 +11,6 @@ body {
     color: #333;
     font-family: georgia, serif;
     font-size: 14px;
-    
-    width: 800px;
-    margin: 0 auto;
 }
 
 h1 {
@@ -60,7 +57,7 @@ div#header {
 div#logo {
     background-color: #369;
     margin-bottom: 1px;
-    padding: 10px;
+    padding: 10px 20px;
     border: 3px solid #245586; /*036*/
     border-top-width: 0; border-left-width: 0;
 }
@@ -85,14 +82,13 @@ div#user {
 
 
 div#content {
-    width: 760px;
-    padding: 20px;
+    padding: 20px 40px;
     margin: 0 auto;
 }
 
 div#page-header, div#post {
     background-color: #e9e9bf;
-    padding: 10px;
+    padding: 10px 20px;
     border: 3px solid #d9d9a5;
     border-top-width: 0;
     border-left-width: 0;
@@ -118,7 +114,7 @@ div.right.column {
 div#footer {
     background-color: #369;
     color: #fff;
-    padding: 10px;
+    padding: 10px 20px;
     border: 3px solid #245586;
     border-bottom-width: 0; border-left-width: 0;
     font-size: 11px;
@@ -222,15 +218,8 @@ div#sidebar ul {
 /*---------------------------------------------------------------------------
     Chat page
 ---------------------------------------------------------------------------*/
-body#chat-page div#header {
-    width: 800px;
-}
-body#chat-page div#footer {
-    width: 777px;
-}
 body#chat-page div#content {
     padding: 0;
-    width: 800px;
     position: relative;
 }
 
@@ -244,7 +233,7 @@ div#page-header span#created-by span {
 }
 
 #chat-container {
-    width: 549px;
+    margin-right: 251px;
     margin-bottom: 1px;
 }
 #chat-container > p {
@@ -318,7 +307,6 @@ table#chat {
 
 div#users {
     width: 247px;
-    margin-left: 550px;
     background-color: #eee;
     border: 3px solid #ccc;
     border-top: none; border-left: none;
@@ -377,21 +365,18 @@ div#users form#search label {
 
 
 div#post {
-    clear: both;
-    width: 526px;
+    margin-right: 251px;
 }
 #post-form {
     display: block;
 }
 #post-submit {
-    float: right;
-    width: 75px;
+    display: none;
 }
 #post-form textarea {
     font: inherit;
-    margin-right: 85px;
-    padding: 5px;
-    width: 430px;
+    padding: 0;
+    width: 100%;
     display: block;
 }
 
