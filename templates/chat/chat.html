@@ -39,6 +39,15 @@
         
         {# Render the posts for this chat #}
         {% include "chat/posts.html" %}
+        
+        <div id="post">
+            <form id="post-form" action="{% url chat_post chat.slug %}" method="post">
+                <input id="post-submit" type="submit" value="Post!" />
+                <textarea id="post-content" name="content" rows="2"></textarea>
+                <input id="post-username" type="hidden" value="{{ user }}">
+                <input id="post-pingurl" type="hidden" value="{% url chat_ping chat.slug %}">
+            </form>
+        </div>
     </div>
 
     <div id="users">
@@ -68,15 +77,6 @@
             <label for="q">Keywords</label>
             <input id="q" name="q" type="text" value="" />
             <input type="submit" value="Search" />
-        </form>
-    </div>
-
-    <div id="post">
-        <form id="post-form" action="{% url chat_post chat.slug %}" method="post">
-            <input id="post-submit" type="submit" value="Post!" />
-            <textarea id="post-content" name="content" rows="2"></textarea>
-            <input id="post-username" type="hidden" value="{{ user }}">
-            <input id="post-pingurl" type="hidden" value="{% url chat_ping chat.slug %}">
         </form>
     </div>
 {% endblock %}
