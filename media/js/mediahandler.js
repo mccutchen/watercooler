@@ -22,7 +22,8 @@ var MediaHandler = (function() {
         return '<embed src="http://www.youtube.com/v/' + match[1] + '" type="application/x-shockwave-flash" width="425" height="344" style="max-width:' + maxWidth + 'px" />';
     });
     makehandler('audio', audio_re, function(url, match) {
-        return '<embed src="http://static.overloaded.org/watercooler/mediaplayer/player.swf" type="application/x-shockwave-flash" flashvars="file=' + url + '&amp;backcolor=222222&amp;frontcolor=FFFFFFF&amp;lightcolor=999999" height="20" width="75%" />';
+        var flashvars = 'file=' + url + '&amp;backcolor=222222&amp;frontcolor=FFFFFFF&amp;lightcolor=999999'
+        return '<embed src="http://static.overloaded.org/mediaplayer/player.swf" type="application/x-shockwave-flash" flashvars="' + flashvars + '" height="20" width="75%" />';
     });
     
     // Set up a default handler that just turns the URL into a link
