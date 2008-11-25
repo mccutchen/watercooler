@@ -95,7 +95,7 @@ div#user a {
 
 
 div#content {
-    padding: 20px 40px;
+    padding: 20px;
     margin: 0 auto;
 }
 
@@ -212,11 +212,13 @@ div#more-info li strong {
 div#sidebar {
     float: right;
     width: 50%;
-    background-color: #eee;
-    border: 3px solid #ccc;
+    background-color: #ccc;
+    border: 3px solid #aaa;
     border-top-width: 0;
     border-left-width: 0;
     padding: 10px 0;
+    -moz-border-radius: 12px;
+    -webkit-border-radius: 12px;
 }
 div#sidebar h3, div#sidebar p {
     padding: 0 10px;
@@ -319,8 +321,8 @@ table#chat {
 
 div#users {
     width: 250px;
-    background-color: #eee;
-    border-bottom: 3px solid #ccc;
+    background-color: #ccc;
+    border-bottom: 3px solid #aaa;
     
     /* Attach to the right side of the content div
        and stretch it to fill the available vertical space. */
@@ -341,7 +343,7 @@ div#users ul {
 }
 div#users li {
     padding: 5px 10px;
-    border-top: 1px dotted #ccc;
+    border-top: 1px dotted #aaa;
     font-size: 12px;
     font-family: "Lucida Sans", Verdana, sans-serif;
 }
@@ -350,7 +352,7 @@ div#users li.me {
     color: #900;
 }
 div#users li.inactive {
-    color: #999;
+    color: #666;
     font-style: italic;
 }
 div#users li a {
