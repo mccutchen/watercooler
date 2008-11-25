@@ -27,6 +27,7 @@ h3 {
 
 p {
     margin: 1em 0;
+    line-height: 1.25;
 }
 p:first-child {
     margin-top: 0;
@@ -197,6 +198,9 @@ div#start input[type="text"] {
 div#more-info div#sidebar + h3 + p {
     margin-right: 53%;
 }
+div#more-info ul#features {
+    margin-right: 53%;
+}
 div#more-info li {
     margin-bottom: 5px;
 }
@@ -221,9 +225,6 @@ div#sidebar h3, div#sidebar p {
 }
 div#sidebar ul {
     padding: 0 20px;
-}
-div#sidebar ul li {
-    margin: 0;
 }
 
 
