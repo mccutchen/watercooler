@@ -138,7 +138,7 @@ div#footer a {
 }
 
 strong.logo {
-    
+    font-weight: normal;
 }
 
 input.blank {
@@ -212,7 +212,7 @@ div#more-info li strong {
 div#sidebar {
     float: right;
     width: 50%;
-    background-color: #ccc;
+    background-color: #ddd;
     border: 3px solid #aaa;
     border-top-width: 0;
     border-left-width: 0;
@@ -321,7 +321,7 @@ table#chat {
 
 div#users {
     width: 250px;
-    background-color: #ccc;
+    background-color: #ddd;
     border-bottom: 3px solid #aaa;
     
     /* Attach to the right side of the content div
