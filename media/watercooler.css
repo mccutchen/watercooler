@@ -58,7 +58,6 @@ div#header {
 
 div#logo {
     background-color: #369;
-    margin-bottom: 1px;
     padding: 10px 20px;
     border-bottom: 3px solid #1d4b78; /*036*/
     position: relative;
@@ -98,13 +97,14 @@ div#user a {
 div#content {
     padding: 20px;
     margin: 0 auto;
+    border-bottom: 1px solid #fff;
 }
 
 div#page-header, div#post {
     background-color: #e9e9bf;
     padding: 10px 20px;
     border-bottom: 3px solid #caca95;
-    margin-bottom: 1px;
+    border-top: 1px solid #fff;
 }
 div#page-header h2 {
     color: #369;
@@ -126,11 +126,11 @@ div.right.column {
 div#footer {
     background-color: #369;
     color: #fff;
-    padding: 10px 20px;
     border-top: 3px solid #1d4b78;
     font-size: 11px;
 }
 div#footer p {
+    padding: 10px 20px;
     margin: 0;
 }
 div#footer a {
@@ -231,6 +231,10 @@ div#sidebar ul {
 /*---------------------------------------------------------------------------
     Chat page
 ---------------------------------------------------------------------------*/
+body#chat-page div#header,
+body#chat-page div#footer {
+    width: 100%;
+}
 body#chat-page div#content {
     padding: 0;
     position: relative;
@@ -247,7 +251,6 @@ div#page-header span#created-by span {
 
 #chat-container {
     margin-right: 251px;
-    margin-bottom: 1px;
     min-height: 250px;
 }
 #chat-container > p {
@@ -378,10 +381,12 @@ div#users form#search label {
 
 
 div#post {
-    margin-right: 251px;
+    width: 100%;
+    padding: 0;
 }
 #post-form {
     display: block;
+    padding: 10px;
 }
 #post-submit {
     display: none;
