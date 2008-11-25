@@ -10,7 +10,8 @@ from views import chat, post, create, register, ping
 index_options = {
     'template': 'index.html',
     'extra_context': {
-        'public_chats': Chat.objects.public,
+        # Show the five most recently-updated chats on the front page
+        'public_chats': lambda: Chat.objects.public()[:5],
     },
 }
 
