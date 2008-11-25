@@ -80,6 +80,7 @@ div#user {
     bottom: 0;
     right: 20px;
     -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
     margin: 0 0 -3px 0;
     padding: 10px 10px 13px 10px;
     background-color: #1d4b78;
@@ -170,6 +171,7 @@ div#start {
     border-top-width: 0;
     border-left-width: 0;
     -moz-border-radius: 12px;
+    -webkit-border-radius: 12px;
 }
 div#start h2 {
     padding-top: 15px;
