@@ -103,7 +103,7 @@ div#content {
 div#page-header, div#post {
     background-color: #e9e9bf;
     padding: 10px 20px;
-    border-bottom: 3px solid #d9d9a5;
+    border-bottom: 3px solid #caca95;
     margin-bottom: 1px;
 }
 div#page-header h2 {
@@ -235,7 +235,7 @@ body#chat-page div#content {
 
 div#page-header span#created-by {
     font-style: italic;
-    color: #AFAF8E;
+    color: #9e9e6d;
     font-size: 18px;
 }
 div#page-header span#created-by span {
