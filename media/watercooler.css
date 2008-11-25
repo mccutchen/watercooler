@@ -59,8 +59,7 @@ div#logo {
     background-color: #369;
     margin-bottom: 1px;
     padding: 10px 20px;
-    border: 3px solid #1d4b78; /*036*/
-    border-top-width: 0; border-left-width: 0;
+    border-bottom: 3px solid #1d4b78; /*036*/
     position: relative;
 }
 div#logo h1 {
@@ -79,10 +78,10 @@ div#logo h1 a {
 div#user {
     position: absolute;
     bottom: 0;
-    right: 0;
+    right: 20px;
     -moz-border-radius: 4px;
-    margin: 0 -3px -3px 0;
-    padding: 10px 13px 13px 10px;
+    margin: 0 0 -3px 0;
+    padding: 10px 10px 13px 10px;
     background-color: #1d4b78;
     color: #fff;
     text-align: right;
@@ -102,9 +101,7 @@ div#content {
 div#page-header, div#post {
     background-color: #e9e9bf;
     padding: 10px 20px;
-    border: 3px solid #d9d9a5;
-    border-top-width: 0;
-    border-left-width: 0;
+    border-bottom: 3px solid #d9d9a5;
     margin-bottom: 1px;
 }
 div#page-header h2 {
@@ -128,8 +125,7 @@ div#footer {
     background-color: #369;
     color: #fff;
     padding: 10px 20px;
-    border: 3px solid #1d4b78;
-    border-bottom-width: 0; border-left-width: 0;
+    border-top: 3px solid #1d4b78;
     font-size: 11px;
 }
 div#footer p {
@@ -320,10 +316,9 @@ table#chat {
 
 
 div#users {
-    width: 247px;
+    width: 250px;
     background-color: #eee;
-    border: 3px solid #ccc;
-    border-top: none; border-left: none;
+    border-bottom: 3px solid #ccc;
     
     /* Attach to the right side of the content div
        and stretch it to fill the available vertical space. */
