@@ -54,6 +54,7 @@ li {
 div#header {
     background-color: #fff;
     position: relative;
+    border-bottom: 1px solid #fff;
 }
 
 div#logo {
@@ -100,7 +101,7 @@ div#content {
     border-bottom: 1px solid #fff;
 }
 
-div#page-header, div#post {
+div#page-header {
     background-color: #e9e9bf;
     padding: 10px 20px;
     border-bottom: 3px solid #caca95;
@@ -391,11 +392,15 @@ div#users form#search label {
 
 div#post {
     width: 100%;
-    padding: 0;
+    border-top: 1px solid #fff;
+    border-bottom: 1px solid #fff;
 }
 #post-form {
     display: block;
     padding: 10px;
+    background-color: #e9e9bf;
+    padding: 10px;
+    border-bottom: 3px solid #caca95;
 }
 #post-submit {
     display: none;

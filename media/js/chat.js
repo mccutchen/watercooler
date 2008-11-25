@@ -17,7 +17,7 @@ function fixlayout() {
 
     // Store the margins needed for the chat box before these
     // the elements on which they're based change positions
-    var chatTop = header.outerHeight() + 1;
+    var chatTop = header.outerHeight();
     var chatBottom = post.position().top;
     
     // Affix header and users sidebar in place
@@ -42,7 +42,8 @@ function fixlayout() {
     // Make sure the page header is higher in z order than the chat box
     header.css('z-index', 1000);
     
-    // Make the sidebar fill its space vertically
+    // Make the sidebar fill its space vertically (the 4px offset is
+    // border width + 1px empty space)
     var sidebarHeight = window.innerHeight - header.outerHeight() - footer.outerHeight() - 4;
     sidebar.css('height', sidebarHeight + 'px');
     
