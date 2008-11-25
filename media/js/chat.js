@@ -4,9 +4,6 @@ $(function() {
     PostHandler.init();
     
     // Dynamically lay out the chat page (NOT YET; STILL BUGGY)
-    // $(document.body).click(function() {
-    //         fixlayout();
-    //     });
     fixlayout();
 });
 
@@ -48,6 +45,9 @@ function fixlayout() {
     // Make the sidebar fill its space vertically
     var sidebarHeight = window.innerHeight - header.outerHeight() - footer.outerHeight() - 4;
     sidebar.css('height', sidebarHeight + 'px');
+    
+    // Go ahead and scroll to the bottom
+    window.scrollTo(0, 10000);
 }
 
 function affix(el, pos) {
