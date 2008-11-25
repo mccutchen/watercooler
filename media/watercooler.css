@@ -235,6 +235,7 @@ div#page-header span#created-by span {
 #chat-container {
     margin-right: 251px;
     margin-bottom: 1px;
+    min-height: 250px;
 }
 #chat-container > p {
     margin: 1em 20px;
