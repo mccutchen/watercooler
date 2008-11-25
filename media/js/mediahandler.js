@@ -1,5 +1,6 @@
 var MediaHandler = (function() {
     var handlers = [];
+    var maxWidth;
     
     function makehandler(name, re, fn) {
         handlers.push({
@@ -15,13 +16,13 @@ var MediaHandler = (function() {
     var audio_re = /\.(mp3|aac)(\?[^\s]+)?$/i;
     
     makehandler('image', img_re, function(url, match) {
-        return '<a href="' + url + '"><img src="' + url + '" alt="" /></a>';
+        return '<a href="' + url + '"><img src="' + url + '" alt="" style="max-width:' + maxWidth + 'px" /></a>';
     });
     makehandler('youtube', youtube_re, function(url, match) {
-        return '<embed src="http://www.youtube.com/v/' + match[1] + '" type="application/x-shockwave-flash" width="300" height="200" />';
+        return '<embed src="http://www.youtube.com/v/' + match[1] + '" type="application/x-shockwave-flash" width="425" height="344" style="max-width:' + maxWidth + 'px" />';
     });
     makehandler('audio', audio_re, function(url, match) {
-        return '<embed src="http://static.overloaded.org/watercooler/mediaplayer/player.swf" type="application/x-shockwave-flash" flashvars="file=' + url + '&amp;backcolor=222222&amp;frontcolor=FFFFFFF&amp;lightcolor=999999" height="20" width="50%" />';
+        return '<embed src="http://static.overloaded.org/watercooler/mediaplayer/player.swf" type="application/x-shockwave-flash" flashvars="file=' + url + '&amp;backcolor=222222&amp;frontcolor=FFFFFFF&amp;lightcolor=999999" height="20" width="75%" />';
     });
     
     // Set up a default handler that just turns the URL into a link
@@ -67,6 +68,9 @@ var MediaHandler = (function() {
     }
     
     function init() {
+        // Determine the maximum width of embedded objects
+        maxWidth = $('#chat td').eq(0).innerWidth() - 20;
+        
         // Run each post through the MediaHandler to transform
         // any links into inline media objects
         $('#chat td').each(function(i) {

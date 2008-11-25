@@ -291,7 +291,6 @@ table#chat {
 
 /* Inline multimedia */
 #chat td img {
-    max-width: 300px;
     display: block;
 }
 #chat td embed {
