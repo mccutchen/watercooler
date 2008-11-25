@@ -9,7 +9,7 @@ body {
     padding: 0;
     background-color: #fff;
     color: #333;
-    font-family: georgia, serif;
+    font-family: "Lucida Sans", Calibri, Verdana, sans-serif;
     font-size: 14px;
 }
 
@@ -27,6 +27,7 @@ h3 {
 
 p {
     margin: 1em 0;
+    line-height: 1.5;
 }
 p:first-child {
     margin-top: 0;
@@ -137,7 +138,7 @@ div#footer a {
 }
 
 strong.logo {
-    font-variant: small-caps;
+    
 }
 
 input.blank {
@@ -196,6 +197,10 @@ div#start input[type="text"] {
 
 div#more-info div#sidebar + h3 + p {
     margin-right: 53%;
+}
+div#more-info li {
+    margin-bottom: 5px;
+    line-height: 1.25;
 }
 div#more-info li strong {
     display: block;
