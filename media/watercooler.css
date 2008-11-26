@@ -59,7 +59,7 @@ div#header {
 
 div#logo {
     background-color: #369;
-    padding: 10px 20px;
+    padding: 10px 20px 7px 20px;
     border-bottom: 3px solid #1d4b78; /*036*/
     position: relative;
 }
@@ -71,7 +71,7 @@ div#logo h1 a {
     display: block;
     text-indent: -5000px;
     background: transparent url(img/logo.png) no-repeat;
-    height: 33px;
+    height: 36px;
     border: none;
 }
 
