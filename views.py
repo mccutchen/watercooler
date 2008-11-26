@@ -12,10 +12,12 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login
 from django.template import RequestContext
 from django.shortcuts import get_object_or_404
+from django.views.decorators.cache import never_cache
 
 from models import Chat, Post
 
 @login_required
+@never_cache
 def chat(request, slug):
     chat = get_object_or_404(Chat, slug=slug)
     posts = chat.posts.all()
