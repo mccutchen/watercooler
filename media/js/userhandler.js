@@ -1,23 +1,36 @@
 var UserHandler = (function() {
     // The current user's username
     var currentUser;
-    var usersObj;
+    var activeUsers;
+    var inactiveUsers;
 
     function update(active, inactive) {
         // First, clear the current list of users
-        usersObj.children('li').remove();
+        $('#users ul').children('li').remove();
 
         // Then re-add the active and inactive users
         active.each(function(u) {
-            var src = '<li class="active' + ((u == currentUser) ? ' me':'') + '">' + u + '</li>';
-            usersObj.append(src);
+            var src = '<li class="' + ((u == currentUser) ? ' me':'') + '">' + u + '</li>';
+            activeUsers.append(src);
         });
         inactive.each(function(u) {
-            var src = '<li class="inactive">' + u + '</li>';
-            usersObj.append(src);
+            var src = '<li>' + u + '</li>';
+            inactiveUsers.append(src);
         });
+
+        // If there were no active or inactive users, add a 'None'
+        // under that heading
+        var nonesrc = '<li class="empty">None</li>';
+        if (active.length == 0)
+            activeUsers.append(nonesrc);
+        if (inactive.length == 0)
+            inactiveUsers.append(nonesrc);
     }
 
+    // The currentUser variable cannot be seen outside of the closure
+    // created for the UserHandler due to some aspect of JavaScript
+    // scoping that escapes me, so it must be returned from a function
+    // (which can be seen outside of the closure).
     function user() {
         return currentUser;
     }
@@ -26,8 +39,10 @@ var UserHandler = (function() {
         // Figure out what username we're posting under
         currentUser = $('#post-username').val();
 
-        // Get a reference to the users <ul> element
-        usersObj = $('#users ul').eq(0);
+        // Get references to the active and inactive users <ul>
+        // elements
+        activeUsers = $('#users ul.active').eq(0);
+        inactiveUsers = $('#users ul.inactive').eq(0);
     }
 
     return {

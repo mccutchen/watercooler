@@ -51,26 +51,33 @@
     </div>
 
     <div id="users">
-        <h3>Users</h3>
-        <ul>
-            {% with chat.users as users %}
-                {% if not users %}
-                    <li>No users yet</li>
-                {% endif %}
+        <h3>Active Users</h3>
+        <ul class="active">
+            {% if users.active %}
                 {% for u in users.active %}
-                    <li class="active{% ifequal u user %} me{% endifequal %}">
+                    <li class="{% ifequal u user %} me{% endifequal %}">
                         {# <a href="./?user={{ u.username }}">{{ u.username }}</a> #}
                         {{ u.username }}
                     </li>
                 {% endfor %}
-                {% for u in users.inactive %}
-                    <li class="inactive">
-                        {# <a href="./?user={{ u.username }}">{{ u.username }}</a> #}
-                        {{ u.username }}
-                    </li>
-                {% endfor %}
-            {% endwith %}
+            {% else %}
+                <li class="empty">None</li>
+            {% endif %}
         </ul>
+                
+        <h3>Inactive Users</h3>
+        <ul class="inactive">
+            {% if users.inactive %}
+                {% for u in users.inactive %}
+                    <li>
+                        {# <a href="./?user={{ u.username }}">{{ u.username }}</a> #}
+                        {{ u.username }}
+                    </li>
+                {% endfor %}
+            {% else %}
+                <li class="empty">None</li>
+            {% endif %}
+        </ul>    
         
         {% comment %}
             <h3>Search this conversation</h3>

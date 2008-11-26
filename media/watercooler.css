@@ -368,7 +368,7 @@ div#users li.me {
     font-weight: bold;
     color: #900;
 }
-div#users li.inactive {
+div#users ul.inactive li {
     color: #666;
     font-style: italic;
 }

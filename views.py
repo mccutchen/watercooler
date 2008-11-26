@@ -39,9 +39,19 @@ def chat(request, slug):
         posts = posts.filter(user__username=userfilter)
         filters['user'] = userfilter
 
+    # Get a list of the active and inactive users for this chat, and
+    # make sure that the current user is in the active list (which
+    # they won't be by default if they have not yet contributed)
+    users = chat.users()
+    if request.user not in users['active']:
+        users['active'].append(request.user)
+    if request.user in users['inactive']:
+        users['inactive'].remove(request.user)
+
     context = {
         'chat': chat,
         'posts': posts,
+        'users': users,
         'filters': filters,
     }
     return direct_to_template(request, 'chat/chat.html', context)
