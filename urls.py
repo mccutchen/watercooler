@@ -29,11 +29,12 @@ urlpatterns = patterns('',
     url(r'^$', direct_to_template, index_options, name='index'),
     url(r'^about/$', direct_to_template, {'template': 'about.html'}, name='about'),
     url(r'^contact/$', direct_to_template, {'template': 'contact.html'}, name='contact'),
+    
+    # Create a new chat
+    url(r'^create/$', create, name='create'),
 
     # The list of public chats
     url(r'^chat/$', object_list, chat_list_options, name='chat_index'),
-    # Create a new chat
-    url(r'^chat/create/$', create, name='chat_create'),
 
     # Views for individual chats, identified by their slug
     url(r'^chat/(?P<slug>[-\w]+)/$', chat, name='chat'),
