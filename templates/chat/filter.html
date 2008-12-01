@@ -2,7 +2,6 @@
 
 {% block extrahead %}
     <script type="text/javascript" src="{{ MEDIA_URL }}js/mediahandler.js"></script>
-    <script type="text/javascript" src="{{ MEDIA_URL }}js/chat.js"></script>
 {% endblock %}
 
 {% block chat_header %}
@@ -22,4 +21,8 @@
     {% else %}
         <p class="filter">No filters specified.</p>
     {% endif %}
+{% endblock %}
+
+{% block post %}
+    {# No content here, hides the post box #}
 {% endblock %}

@@ -27,15 +27,18 @@
         
         {# Render the posts for this chat #}
         {% include "chat/posts.html" %}
-        
-        <div id="post">
-            <form id="post-form" action="{% url chat_post chat.slug %}" method="post">
-                <textarea id="post-content" name="content" rows="3"></textarea>
-                <input id="post-submit" type="submit" value="Post!" />
-                <input id="post-username" type="hidden" value="{{ user }}">
-                <input id="post-pingurl" type="hidden" value="{% url chat_ping chat.slug %}">
-            </form>
-        </div>
+    
+        {# Stuffing this in a block allows child templates to hide it #}
+        {% block post %}
+            <div id="post">
+                <form id="post-form" action="{% url chat_post chat.slug %}" method="post">
+                    <textarea id="post-content" name="content" rows="3"></textarea>
+                    <input id="post-submit" type="submit" value="Post!" />
+                    <input id="post-username" type="hidden" value="{{ user }}">
+                    <input id="post-pingurl" type="hidden" value="{% url chat_ping chat.slug %}">
+                </form>
+            </div>
+        {% endblock %}
     </div>
 
     <div id="users">
