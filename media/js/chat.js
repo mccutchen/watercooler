@@ -1,9 +1,4 @@
 $(function() {
-    // Dynamically lay out the chat page
-    fixlayout();
-});
-
-function fixlayout() {
     // Get references to the elements we'll be rearranging
     var chat = $('#chat');
     var header = $('#header');
@@ -46,7 +41,7 @@ function fixlayout() {
 
     // Go ahead and scroll to the bottom
     window.scrollTo(0, 10000);
-}
+});
 
 function affix(el, pos) {
     var cssRule = { position: 'fixed' };
