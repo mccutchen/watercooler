@@ -245,13 +245,16 @@ body#chat-page div#content {
     position: relative;
 }
 
-div#page-header span#created-by {
+h2.chat-header span#created-by {
     font-style: italic;
     color: #9e9e6d;
     font-size: 18px;
 }
-div#page-header span#created-by span {
+h2.chat-header span#created-by span {
     font-weight: bold;
+}
+h2.chat-header a {
+    border: none;
 }
 
 #chat-container {
