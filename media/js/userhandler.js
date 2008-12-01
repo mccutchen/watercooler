@@ -7,14 +7,18 @@ var UserHandler = (function() {
     function update(active, inactive) {
         // First, clear the current list of users
         $('#users ul').children('li').remove();
+        
+        function userLink(u) {
+            return '<a href="filter/?user=' + u + '">' + u + '</a>';
+        }
 
         // Then re-add the active and inactive users
         active.each(function(u) {
-            var src = '<li class="' + ((u == currentUser) ? ' me':'') + '">' + u + '</li>';
+            var src = '<li class="' + ((u == currentUser) ? ' me':'') + '">' + userLink(u) + '</li>';
             activeUsers.append(src);
         });
         inactive.each(function(u) {
-            var src = '<li>' + u + '</li>';
+            var src = '<li>' + userLink(u) + '</li>';
             inactiveUsers.append(src);
         });
 
