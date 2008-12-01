@@ -322,6 +322,7 @@ table#chat {
     margin-bottom: 1px;
     color: #fff;
     font-size: 12px;
+    max-width: 100%;
 }
 #chat-container p.filter .criteria {
     font-weight: bold;
