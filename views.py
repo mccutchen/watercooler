@@ -21,26 +21,7 @@ from models import Chat, Post
 def chat(request, slug):
     chat = get_object_or_404(Chat, slug=slug)
     posts = chat.posts.all()
-    filters = {}
-
-    # Optionally filter posts by keyword (simplistic search)
-    # From: http://toastdriven.com/fresh/quick-dirty-search-django/
-    q = request.GET.get('q')
-    if q:
-        terms = [term.strip() for term in q.split()]
-        q_objects = []
-        for term in terms:
-            q_objects.append(Q(content__icontains=term))
-        # Use operator's or_ to string together all of your Q objects.
-        posts = posts.filter(reduce(operator.or_, q_objects))
-        filters['search'] = q
-
-    # Optionally filter posts by user name
-    userfilter = request.GET.get('user')
-    if userfilter:
-        posts = posts.filter(user__username=userfilter)
-        filters['user'] = userfilter
-
+    
     # Get a list of the active and inactive users for this chat, and
     # make sure that the current user is in the active list (which
     # they won't be by default if they have not yet contributed)
@@ -54,7 +35,6 @@ def chat(request, slug):
         'chat': chat,
         'posts': posts,
         'users': users,
-        'filters': filters,
     }
     return direct_to_template(request, 'chat/chat.html', context)
 
@@ -138,6 +118,40 @@ def ping(request, slug):
         return HttpResponse(json.dumps(response), mimetype='application/json')
 
     return HttpResponseServerError()
+
+@login_required
+def filterchat(request, slug):
+    """Filters a chat by username and/or keyword.  Filtered chat views
+    are static (ie, not dynamically updated via Ajax)."""
+    chat = get_object_or_404(Chat, slug=slug)
+    posts = chat.posts.all()
+    filters = {}
+
+    # Optionally filter posts by keyword (simplistic search)
+    # From: http://toastdriven.com/fresh/quick-dirty-search-django/
+    q = request.GET.get('q')
+    if q:
+        terms = [term.strip() for term in q.split()]
+        q_objects = []
+        for term in terms:
+            q_objects.append(Q(content__icontains=term))
+        # Use operator's or_ to string together all of your Q objects.
+        posts = posts.filter(reduce(operator.or_, q_objects))
+        filters['search'] = q
+
+    # Optionally filter posts by user name
+    userfilter = request.GET.get('user')
+    if userfilter:
+        posts = posts.filter(user__username=userfilter)
+        filters['user'] = userfilter
+    
+    context = {
+        'chat': chat,
+        'posts': posts,
+        'users': chat.users(),
+        'filters': filters,
+    }
+    return direct_to_template(request, 'chat/filter.html', context)
 
 def register(request):
     """Register view, to go along with the login and logout views

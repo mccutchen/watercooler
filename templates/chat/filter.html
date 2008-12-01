@@ -1,0 +1,25 @@
+{% extends "chat/chat.html" %}
+
+{% block extrahead %}
+    <script type="text/javascript" src="{{ MEDIA_URL }}js/mediahandler.js"></script>
+    <script type="text/javascript" src="{{ MEDIA_URL }}js/chat.js"></script>
+{% endblock %}
+
+{% block chat_header %}
+    {% if filters %}            
+        {% if filters.user %}
+            <p class="filter">
+                Showing posts made by <span class="criteria">{{ filters.user }}</span>.
+                <a href=".">Clear filter?</a>
+            </p>
+        {% endif %}
+        {% if filters.search %}
+            <p class="filter">
+                Keyword search: <span class="criteria">{{ filters.search }}</span>
+                <a href=".">Clear filter?</a>
+            </p>
+        {% endif %}
+    {% else %}
+        <p class="filter">No filters specified.</p>
+    {% endif %}
+{% endblock %}

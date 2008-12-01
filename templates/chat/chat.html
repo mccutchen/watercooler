@@ -22,20 +22,8 @@
 
 {% block content %}
     <div id="chat-container">
-        {% if filters %}            
-            {% if filters.user %}
-                <p class="filter">
-                    Showing posts made by <span class="criteria">{{ filters.user }}</span>.
-                    <a href=".">Clear filter?</a>
-                </p>
-            {% endif %}
-            {% if filters.search %}
-                <p class="filter">
-                    Keyword search: <span class="criteria">{{ filters.search }}</span>
-                    <a href=".">Clear filter?</a>
-                </p>
-            {% endif %}
-        {% endif %}
+        {# An extension point for templates extending this one #}
+        {% block chat_header %}{% endblock %}
         
         {# Render the posts for this chat #}
         {% include "chat/posts.html" %}
@@ -79,13 +67,11 @@
             {% endif %}
         </ul>    
         
-        {% comment %}
-            <h3>Search this conversation</h3>
-            <form id="search" action="." method="get">
-                <label for="q">Keywords</label>
-                <input id="q" name="q" type="text" value="" />
-                <input type="submit" value="Search" />
-            </form>
-        {% endcomment %}
+        <h3>Search this conversation</h3>
+        <form id="search" action="{% url chat_filter chat.slug %}" method="get">
+            <label for="q">Keywords</label>
+            <input id="q" name="q" type="text" value="" />
+            <input type="submit" value="Search" />
+        </form>
     </div>
 {% endblock %}

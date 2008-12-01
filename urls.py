@@ -5,7 +5,7 @@ from django.contrib.auth.views import login, logout
 from django.contrib import admin
 
 from models import Chat
-from views import chat, post, create, register, ping
+from views import chat, post, create, register, ping, filterchat
 
 # These options dicts set up the front page (index) and public chat
 # list views, which use Django's generic views and therefore do not
@@ -40,6 +40,7 @@ urlpatterns = patterns('',
     url(r'^chat/(?P<slug>[-\w]+)/$', chat, name='chat'),
     url(r'^chat/(?P<slug>[-\w]+)/post/', post, name='chat_post'),
     url(r'^chat/(?P<slug>[-\w]+)/ping/', ping, name='chat_ping'),
+    url(r'^chat/(?P<slug>[-\w]+)/filter/', filterchat, name='chat_filter'),
 
     # Authentication views (login and logout are provided by the
     # Django auth framework, register is provided in views.py)
