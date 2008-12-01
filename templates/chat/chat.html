@@ -47,8 +47,7 @@
             {% if users.active %}
                 {% for u in users.active %}
                     <li class="{% ifequal u user %} me{% endifequal %}">
-                        {# <a href="./?user={{ u.username }}">{{ u.username }}</a> #}
-                        {{ u.username }}
+                        <a href="{% url chat_filter chat.slug %}?user={{ u.username }}">{{ u.username }}</a>
                     </li>
                 {% endfor %}
             {% else %}
@@ -61,8 +60,7 @@
             {% if users.inactive %}
                 {% for u in users.inactive %}
                     <li>
-                        {# <a href="./?user={{ u.username }}">{{ u.username }}</a> #}
-                        {{ u.username }}
+                        <a href="{% url chat_filter chat.slug %}?user={{ u.username }}">{{ u.username }}</a>
                     </li>
                 {% endfor %}
             {% else %}
