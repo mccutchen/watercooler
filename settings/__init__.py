@@ -54,8 +54,8 @@ USE_I18N = True
 
 # Import specific settings based on hostname
 try:
-    import socket
-    hostname = socket.gethostname().replace('.','_')
+    import socket, re
+    hostname = re.sub(r'[-\.]', '_', socket.gethostname())
     exec "from %s import *" % hostname
 except ImportError, e:
     raise e
