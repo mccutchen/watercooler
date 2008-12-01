@@ -1,8 +1,4 @@
 $(function() {
-    UserHandler.init();
-    MediaHandler.init();
-    PostHandler.init();
-
     // Dynamically lay out the chat page
     fixlayout();
 });

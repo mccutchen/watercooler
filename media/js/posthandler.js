@@ -86,3 +86,6 @@ var PostHandler = (function() {
         init: init
     };
 })();
+
+// Initialize this object
+$(PostHandler.init);

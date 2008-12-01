@@ -92,3 +92,6 @@ var MediaHandler = (function() {
         init: init
     };
 })();
+
+// Initialize this object
+$(MediaHandler.init);

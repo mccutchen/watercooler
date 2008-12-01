@@ -51,3 +51,6 @@ var UserHandler = (function() {
         user: user
     };
 })();
+
+// Initialize this object
+$(UserHandler.init);
