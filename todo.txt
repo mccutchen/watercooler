@@ -1,8 +1,4 @@
- * Figure out a better layout for chats (ie, make the chat part scroll, not
-   the rest)
+ * Fix dynamic layout for chats.  Seems to be a timing issue.  If
+   LayoutHandler.init is called late enough, it works well.
 
  * Use Ajax to check and see whether or not a chat name is taken
- 
- * Limit public chats displayed on the front page to ones with recent
-   activity (or, if there aren't enough of those, to the ones that were
-   updated most recently).
