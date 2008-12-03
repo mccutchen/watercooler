@@ -85,6 +85,13 @@ var MediaHandler = (function() {
             if (results != content)
                 el.html(results);
         });
+        
+        // Conditionally initialize the LayoutHandler, which needs to
+        // be done after the Media handler has done its work, but which
+        // will only be available on the live chat pages.
+        if (window.LayoutHandler) {
+            LayoutHandler.init();
+        }
     }
 
     return {
