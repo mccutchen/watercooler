@@ -2,7 +2,6 @@ import datetime, operator, time
 import simplejson as json
 
 from django.views.generic.simple import direct_to_template
-from django.views.generic.list_detail import object_list
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 from django.http import HttpResponse, HttpResponseRedirect, HttpResponseServerError
@@ -10,7 +9,6 @@ from django.template.defaultfilters import force_escape, slugify
 from django.db.models import Q
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login
-from django.template import RequestContext
 from django.shortcuts import get_object_or_404
 from django.views.decorators.cache import never_cache
 
