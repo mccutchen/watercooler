@@ -14,12 +14,20 @@ from django.views.decorators.cache import never_cache
 
 from models import Chat, Post
 
+
+# ====================================================================
+# Chat views.  Users must be logged in to access these views.  All
+# chats are identified by their slug in the URL.
+# ====================================================================
 @login_required
 @never_cache
 def chat(request, slug):
+    """Displays an ongoing conversation, which will be updated live
+    via Ajax.  FIXME: Not really sure about this, but this view is
+    never cached to help deal with layout problems"""
     chat = get_object_or_404(Chat, slug=slug)
     posts = chat.posts.all()
-    
+
     # Get a list of the active and inactive users for this chat, and
     # make sure that the current user is in the active list (which
     # they won't be by default if they have not yet contributed)
@@ -38,15 +46,26 @@ def chat(request, slug):
 
 @login_required
 def post(request, slug):
+    """Adds a post to the chat identified by the given slug.  Also
+    updates the current user's latest ping time, reflecting activity
+    in this chat.
+
+    This view will handle either normal POSTs or POSTs via Ajax (in
+    which case it returns a JSON response with the timestamp of the
+    created post and the post's HTML-escaped content."""
     chat = get_object_or_404(Chat, slug=slug)
     if request.POST:
         content = request.POST.get('content', '')
         post = Post(user=request.user, parent=chat, content=content)
         post.save()
 
-        # Update the user's last ping value
+        # Update the user's last ping value to reflect active
+        # participation in this chat.
         user_ping(request.user)
 
+        # If we're processing an Ajax request, return the timestamp of
+        # the post we just created and its HTML-escaped content in
+        # JSON format.
         if request.is_ajax():
             response = json.dumps({
                 'timestamp': post.timestamp(),
@@ -54,10 +73,17 @@ def post(request, slug):
             })
             return HttpResponse(response, mimetype='application/json')
 
+    # Redirect the user back to this chat's page for normal, non-Ajax
+    # requests.
     return HttpResponseRedirect(chat_url(slug))
 
 @login_required
 def create(request):
+    """Creates a new chat object.
+
+    FIXME: If the given name is taken, this will just silently
+    redirect the user to the already-created chat with that name
+    without telling them that they did not create a new chat."""
     name = request.POST.get('name')
     if not name:
         return HttpResponseRedirect(reverse('index'))
@@ -69,32 +95,37 @@ def create(request):
         # For now, if a chat with the same slug has already been created
         # just silently redirect to that chat.
         pass
+
+    # Redirect the user to the URL for their new chat.
     return HttpResponseRedirect(chat_url(slug))
 
 @login_required
 def ping(request, slug):
-    """This is the Ajax polling endpoint.  An Ajax request will be made
-    containing the latest timestamp on the client side.  The response
-    will be a JSON object containing the posts made in the interim and
-    a list of active and inactive users."""
+    """The Ajax polling endpoint.  Accepts Ajax requests containing
+    the timestamp of the latest post on the client side.  Responds
+    with a JSON object containing the posts made since that timestamp
+    and a list of active and inactive users."""
     chat = get_object_or_404(Chat, slug=slug)
     if request.POST:
-        # Log the ping time for this user
+        # Update the ping time for this user
         user_ping(request.user)
 
-        # Increasing the timestamp by one second eliminates duplicates
-        # on the client side.  This probably merits further thought.
+        # Turn the latest timestamp given by the client into a
+        # datetime object for querying the database.  FIXME: The
+        # timestamp needs to be increased by one second to eliminate
+        # duplicates.  This seems like a bug to me, but it works.
         latest_timestamp = float(request.POST.get('latest', time.time())) + 1
         latest = datetime.datetime.fromtimestamp(latest_timestamp)
 
         # Get a list of posts that were made after the latest time
-        # given by the client
+        # given by the client.  Selects the related user objects in
+        # the same query, for efficiency.
         posts_needed = chat.posts.select_related('user').filter(created__gt=latest)
 
-        # The response to be serialized as JSON
+        # The structure of the response to be serialized as JSON.
         response = dict(posts=[], active_users=[], inactive_users=[])
 
-        # Fill in the response with posts and users
+        # Add the needed posts to the response.
         for post in posts_needed:
             response['posts'].append({
                 'user': post.user.username,
@@ -102,19 +133,20 @@ def ping(request, slug):
                 'timestamp': post.timestamp(),
             })
 
-        # Add active and inactive users
+        # Add active and inactive users.
         for status, users in chat.users().items():
             for user in users:
                 response['%s_users' % status].append(user.username)
 
         # Make sure the current user is included, even it has not
-        # contributed
+        # contributed.
         if request.user.username not in response['active_users']:
             response['active_users'].append(request.user.username)
 
         # Serialize the response as JSON
         return HttpResponse(json.dumps(response), mimetype='application/json')
 
+    # Requests to this view must be made via POST.
     return HttpResponseServerError()
 
 @login_required
@@ -123,6 +155,8 @@ def filterchat(request, slug):
     are static (ie, not dynamically updated via Ajax)."""
     chat = get_object_or_404(Chat, slug=slug)
     posts = chat.posts.all()
+
+    # Tells the template which filters are in effect.
     filters = {}
 
     # Optionally filter posts by keyword (simplistic search)
@@ -133,7 +167,7 @@ def filterchat(request, slug):
         q_objects = []
         for term in terms:
             q_objects.append(Q(content__icontains=term))
-        # Use operator's or_ to string together all of your Q objects.
+        # Combine Q objects into a clause with OR
         posts = posts.filter(reduce(operator.or_, q_objects))
         filters['search'] = q
 
@@ -142,7 +176,7 @@ def filterchat(request, slug):
     if userfilter:
         posts = posts.filter(user__username=userfilter)
         filters['user'] = userfilter
-    
+
     context = {
         'chat': chat,
         'posts': posts,
@@ -151,6 +185,11 @@ def filterchat(request, slug):
     }
     return direct_to_template(request, 'chat/filter.html', context)
 
+
+# ====================================================================
+# Registration view (the login and logout views are provided by
+# Django's auth framework)
+# ====================================================================
 def register(request):
     """Register view, to go along with the login and logout views
     provided by Django's auth framework.  Registers a user and
