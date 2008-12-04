@@ -167,13 +167,17 @@ def register(request):
             assert user is not None
             login(request, user)
             return HttpResponseRedirect(request.POST.get('next', '/'))
-    else:
-        form = UserCreationForm()
-        # Should we redirect the user to a particular page after
-        # registration?
-        next = request.GET.get('next')
-        context = { 'form': form, 'next': next }
-        return direct_to_template(request, "registration/register.html", context)
+
+    # We're either displaying the form for the first time (GET rather
+    # than POST) or the form was invalid (duplicate username,
+    # mismatched passwords, etc.).  We only create a new form object
+    # if we did not already create one above.
+    form = form or UserCreationForm()
+    # Should we redirect the user to a particular page after
+    # registration?
+    next = request.GET.get('next')
+    context = { 'form': form, 'next': next }
+    return direct_to_template(request, "registration/register.html", context)
 
 
 # ====================================================================
