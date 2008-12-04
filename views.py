@@ -4,7 +4,7 @@ import simplejson as json
 from django.views.generic.simple import direct_to_template
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
-from django.http import HttpResponse, HttpResponseRedirect, HttpResponseServerError
+from django.http import HttpResponse, HttpResponseRedirect, HttpResponseNotAllowed
 from django.template.defaultfilters import force_escape, slugify
 from django.db.models import Q
 from django.contrib.auth.forms import UserCreationForm
@@ -147,7 +147,7 @@ def ping(request, slug):
         return HttpResponse(json.dumps(response), mimetype='application/json')
 
     # Requests to this view must be made via POST.
-    return HttpResponseServerError()
+    return HttpResponseNotAllowed(['POST'])
 
 @login_required
 def filterchat(request, slug):
