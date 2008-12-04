@@ -155,6 +155,7 @@ def register(request):
     """Register view, to go along with the login and logout views
     provided by Django's auth framework.  Registers a user and
     automatically logs them in."""
+    form = UserCreationForm()
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
         if form.is_valid():
@@ -170,11 +171,7 @@ def register(request):
 
     # We're either displaying the form for the first time (GET rather
     # than POST) or the form was invalid (duplicate username,
-    # mismatched passwords, etc.).  We only create a new form object
-    # if we did not already create one above.
-    form = form or UserCreationForm()
-    # Should we redirect the user to a particular page after
-    # registration?
+    # mismatched passwords, etc.).
     next = request.GET.get('next')
     context = { 'form': form, 'next': next }
     return direct_to_template(request, "registration/register.html", context)
