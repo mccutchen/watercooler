@@ -12,6 +12,7 @@ from django.contrib.auth import authenticate, login
 from django.shortcuts import get_object_or_404
 from django.views.decorators.cache import never_cache
 
+from django.contrib.auth.models import User
 from models import Chat, Post
 
 
@@ -214,6 +215,17 @@ def register(request):
     next = request.GET.get('next')
     context = { 'form': form, 'next': next }
     return direct_to_template(request, "registration/register.html", context)
+
+def username_available(request, username):
+    """Checks to see if the given username is available for
+    registration.  Returns 1 if it is, 0 if not."""
+    try:
+        User.objects.get(username=username)
+        result = '0'
+    except User.DoesNotExist:
+        result = '1'
+    # Return the result as text/plain
+    return HttpResponse(result, mimetype='text/plain')
 
 
 # ====================================================================

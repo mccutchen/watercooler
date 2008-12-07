@@ -5,7 +5,7 @@ from django.contrib.auth.views import login, logout
 from django.contrib import admin
 
 from models import Chat
-from views import chat, post, create, register, ping, filterchat
+from views import chat, post, create, register, ping, filterchat, username_available
 
 # These options dicts set up the front page (index) and public chat
 # list views, which use Django's generic views and therefore do not
@@ -29,7 +29,7 @@ urlpatterns = patterns('',
     url(r'^$', direct_to_template, index_options, name='index'),
     url(r'^about/$', direct_to_template, {'template': 'about.html'}, name='about'),
     url(r'^contact/$', direct_to_template, {'template': 'contact.html'}, name='contact'),
-    
+
     # Create a new chat
     url(r'^create/$', create, name='create'),
 
@@ -47,6 +47,7 @@ urlpatterns = patterns('',
     (r'^accounts/login/$',  login),
     (r'^accounts/logout/$', logout),
     (r'^accounts/register/$', register),
+    (r'^accounts/register/usernameAvailable/(?P<username>\w+)$', username_available),
 
     # The Django admin site
     (r'^admin/(.*)', admin.site.root),
