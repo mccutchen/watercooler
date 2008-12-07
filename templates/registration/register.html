@@ -2,6 +2,10 @@
 
 {% block page_title %}Register{% endblock %}
 
+{% block extrahead %}
+    <script type="text/javascript" src="{{ MEDIA_URL }}js/reg.js"></script>
+{% endblock %}
+
 {% block page_header %}
     <h2>Sign Up for Watercooler</h2>
 {% endblock %}
@@ -13,7 +17,7 @@
         <p class="error">Signup failed!  Correct the errors below and try again.</p>
     {% endif %}
 
-    <form action="." method="post" class="auth">
+    <form action="." id="register" method="post" class="auth">
         {{ form.as_p }}
         <input type="submit" value="Sign Up!" />
         {% if next %}
