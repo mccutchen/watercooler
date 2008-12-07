@@ -19,7 +19,19 @@
     {% endif %}
 
     <form action="." id="register" method="post" class="auth">
-        {{ form.as_p }}
+        {% for field in form %}
+            <div class="field">
+                {{ field.label_tag }}
+                {{ field }}
+                {{ field.errors }}
+                {% ifequal field.html_name "username" %}
+                    {# Should be hidden by default by the CSS #}
+                    <span class="unavailable">Unavailable</span>
+                {% endifequal %}
+                <p class="help">{{ field.help_text }}</p>
+            </div>
+        {% endfor %}
+
         <input type="submit" value="Sign Up!" />
         {% if next %}
             <input type="hidden" name="next" value="{{ next }}" />
