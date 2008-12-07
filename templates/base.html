@@ -14,7 +14,7 @@
         {% block extrahead %}{% endblock %}
     </head>
     
-    <body id="{% block body_id %}{% endblock %}">
+    <body id="{% block body_id %}default-body-id{% endblock %}">
         <div id="header">
             <div id="logo">
                 <h1><a href="{% url index %}">Watercooler</a></h1>
@@ -33,12 +33,12 @@
                 </div>
             </div>
         
-            <div id="page-header" class="{% block page_header_class %}{% endblock %}">
+            <div id="page-header" class="{% block page_header_class %}default{% endblock %}">
                 {% block page_header %}Page Title{% endblock %}
             </div>
         </div>
 
-        <div id="content" class="{% block content_class %}{% endblock %}">
+        <div id="content" class="{% block content_class %}default{% endblock %}">
             {% block content %}Content{% endblock %}
         </div>
         
