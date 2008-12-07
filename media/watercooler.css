@@ -141,6 +141,11 @@ div#footer p {
 div#footer a {
     color: #ccc;
 }
+div#footer p.validate {
+    float: right;
+    margin-top: -3.2em;
+    font-style: italic;
+}
 
 strong.logo {
     font-weight: normal;
