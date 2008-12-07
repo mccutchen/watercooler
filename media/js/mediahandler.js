@@ -19,11 +19,11 @@ var MediaHandler = (function() {
         return '<a href="' + url + '"><img src="' + url + '" alt="" style="max-width:' + maxWidth + 'px" /></a>';
     });
     makehandler('youtube', youtube_re, function(url, match) {
-        return '<embed src="http://www.youtube.com/v/' + match[1] + '" type="application/x-shockwave-flash" width="425" height="344" style="max-width:' + maxWidth + 'px" />';
+        return '<embed src="http://www.youtube.com/v/' + match[1] + '" type="application/x-shockwave-flash" width="425" height="344" style="max-width:' + maxWidth + 'px" wmode="transparent" />';
     });
     makehandler('audio', audio_re, function(url, match) {
         var flashvars = 'file=' + url + '&amp;backcolor=222222&amp;frontcolor=FFFFFFF&amp;lightcolor=999999';
-        return '<embed src="http://static.overloaded.org/mediaplayer/player.swf" type="application/x-shockwave-flash" flashvars="' + flashvars + '" height="20" width="75%" />';
+        return '<embed src="http://static.overloaded.org/mediaplayer/player.swf" type="application/x-shockwave-flash" flashvars="' + flashvars + '" height="20" width="75%" wmode="transparent" />';
     });
 
     // Set up a default handler that just turns the URL into a link
