@@ -74,7 +74,6 @@ class Post(models.Model):
     class Meta:
         ordering = ('created',)
         get_latest_by = 'created'
-        order_with_respect_to = 'parent'
         app_label = 'watercooler'
 
     def timestamp(self):
@@ -83,7 +82,7 @@ class Post(models.Model):
         return int(time.mktime(self.created.timetuple()))
 
     def __unicode__(self):
-        return 'Post by %s on %s' % (self.user, self.parent)
+        return 'By %s at %s' % (self.user, self.created)
 
 
 # ===================================================================
