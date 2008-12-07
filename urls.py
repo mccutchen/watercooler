@@ -47,7 +47,7 @@ urlpatterns = patterns('',
     (r'^accounts/login/$',  login),
     (r'^accounts/logout/$', logout),
     (r'^accounts/register/$', register),
-    (r'^accounts/register/usernameAvailable/(?P<username>\w+)$', username_available),
+    (r'^accounts/register/usernameAvailable/(?P<username>.*)$', username_available),
 
     # The Django admin site
     (r'^admin/(.*)', admin.site.root),
