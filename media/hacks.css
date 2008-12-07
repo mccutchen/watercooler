@@ -1,0 +1,23 @@
+/*---------------------------------------------------------------------------
+    hacks.css
+    Browser-specific styles separated into their own file.
+---------------------------------------------------------------------------*/
+div#user {
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+}
+
+div#start {
+    -moz-border-radius: 12px;
+    -webkit-border-radius: 12px;
+}
+
+div#sidebar {
+    -moz-border-radius: 12px;
+    -webkit-border-radius: 12px;
+}
+
+form.auth span.unavailable {
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+}
