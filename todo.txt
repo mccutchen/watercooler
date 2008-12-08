@@ -1,4 +1,0 @@
- * Fix dynamic layout for chats.  Seems to be a timing issue.  If
-   LayoutHandler.init is called late enough, it works well.
-
- * Use Ajax to check and see whether or not a chat name is taken
