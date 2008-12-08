@@ -79,6 +79,23 @@ These apps in turn use the django.contrib.contenttypes and
 django.contrib.sessions apps.
 
 
+Settings
+------------------------------------------------------------------------
+
+Django projects usually keep their settings in a module called
+'settings.py'.  For Watercooler, I have broken the settings up by
+hostname to make deployment to different hosts (eg, my local dev
+server and the remote production server) easiser.
+
+So, in the Watercooler source code, there is a settings directory
+which serves as a Python module.  The common settings shared by all
+instances of Watercooler are contained in settings/__init__.py.
+Host-specific settings are kept in Python files named for the hostname
+to which they apply.  For example, dev server is named 'butter', so
+the settings that apply to Watercooler on that server are in
+settings/butter.py.
+
+
 Chat pages
 ------------------------------------------------------------------------
 
