@@ -34,13 +34,13 @@ urlpatterns = patterns('',
     url(r'^create/$', create, name='create'),
 
     # The list of public chats
-    url(r'^chat/$', object_list, chat_list_options, name='chat_index'),
+    url(r'^chat/$', object_list, chat_list_options, name='public_chats'),
 
     # Views for individual chats, identified by their slug
     url(r'^chat/(?P<slug>[-\w]+)/$', chat, name='chat'),
-    url(r'^chat/(?P<slug>[-\w]+)/post/', post, name='chat_post'),
-    url(r'^chat/(?P<slug>[-\w]+)/ping/', ping, name='chat_ping'),
-    url(r'^chat/(?P<slug>[-\w]+)/filter/', filterchat, name='chat_filter'),
+    url(r'^chat/(?P<slug>[-\w]+)/post/', post, name='post'),
+    url(r'^chat/(?P<slug>[-\w]+)/ping/', ping, name='ping'),
+    url(r'^chat/(?P<slug>[-\w]+)/filter/', filterchat, name='filter'),
 
     # Authentication views (login and logout are provided by the
     # Django auth framework, register is provided in views.py)

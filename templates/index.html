@@ -18,7 +18,7 @@
         coworkers, or even complete strangers!  To get
         started, just give your conversation a name in
         the box to the right or join one of the
-        <a href="{% url chat_index %}">public conversations</a>
+        <a href="{% url public_chats %}">public conversations</a>
         already taking place.</p>
     </div>
 
@@ -47,7 +47,7 @@
                         <li><a href="{{ chat.get_absolute_url }}">{{ chat.name }}</a></li>
                     {% endfor %}
                 </ul>
-                <p>Or, <a href="{% url chat_index %}">browse all public conversations</a>.</p>
+                <p>Or, <a href="{% url public_chats %}">browse all public conversations</a>.</p>
             {% else %}
                 <p>Sorry, no public conversations available.</p>
             {% endif %}
