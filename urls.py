@@ -23,7 +23,10 @@ chat_list_options = {
     'template_name': 'chat/chat_list.html',
 }
 
-# The URL patterns for Watercooler
+# The URL patterns for Watercooler.  The names given to some of the
+# patterns makes it easy to generate those URLs via the reverse()
+# function in views or the {% url %} template tag in templates (to
+# avoid hardcoding URLs).
 urlpatterns = patterns('',
     # Essentially static pages
     url(r'^$', direct_to_template, index_options, name='index'),
