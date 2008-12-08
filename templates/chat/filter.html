@@ -11,13 +11,13 @@
         {% if filters.user %}
             <p class="filter">
                 Showing posts made by <span class="criteria">{{ filters.user }}</span>.
-                <a href="{% url chat chat.slug %}">Clear filter?</a>
+                <a href="{{ chat.get_absolute_url }}">Clear filter?</a>
             </p>
         {% endif %}
         {% if filters.search %}
             <p class="filter">
                 Keyword search: <span class="criteria">{{ filters.search }}</span>
-                <a href="{% url chat chat.slug %}">Clear filter?</a>
+                <a href="{{ chat.get_absolute_url }}">Clear filter?</a>
             </p>
         {% endif %}
     {% else %}

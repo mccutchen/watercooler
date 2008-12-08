@@ -76,7 +76,7 @@ def post(request, slug):
 
     # Redirect the user back to this chat's page for normal, non-Ajax
     # requests.
-    return HttpResponseRedirect(chat_url(slug))
+    return HttpResponseRedirect(chat.get_absolute_url())
 
 @login_required
 def create(request):
@@ -89,8 +89,8 @@ def create(request):
     if not name:
         return HttpResponseRedirect(reverse('index'))
     slug = slugify(name)
+    chat = Chat(name=name, slug=slug, is_public=True, created_by=request.user)
     try:
-        chat = Chat(name=name, slug=slug, is_public=True, created_by=request.user)
         chat.save()
     except:
         # For now, if a chat with the same slug has already been created
@@ -98,7 +98,7 @@ def create(request):
         pass
 
     # Redirect the user to the URL for their new chat.
-    return HttpResponseRedirect(chat_url(slug))
+    return HttpResponseRedirect(chat.get_absolute_url())
 
 @login_required
 def ping(request, slug):
@@ -237,8 +237,3 @@ def user_ping(user):
     chat."""
     user.last_login = datetime.datetime.now()
     user.save()
-
-def chat_url(slug):
-    """Uses the reverse() function to generate the correct URL for the
-    Chat object with the given slug."""
-    return reverse('chat', args=[slug])

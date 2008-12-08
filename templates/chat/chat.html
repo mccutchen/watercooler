@@ -15,7 +15,7 @@
 
 {% block page_header %}
     <h2 class="chat-header">
-        <a href="{% url chat chat.slug %}">{{ chat.name }}</a>
+        <a href="{{ chat.get_absolute_url }}">{{ chat.name }}</a>
         <span id="created-by">
             &mdash; a conversation started by <span>{{ chat.created_by }}</span>
         </span>
