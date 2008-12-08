@@ -24,8 +24,10 @@ from models import Chat, Post
 @never_cache
 def chat(request, slug):
     """Displays an ongoing conversation, which will be updated live
-    via Ajax.  FIXME: Not really sure about this, but this view is
-    never cached to help deal with layout problems"""
+    via Ajax.
+
+    FIXME: Not really sure about this, but this view is never cached
+    to help deal with layout problems."""
     chat = get_object_or_404(Chat, slug=slug)
     posts = chat.posts.all()
 
@@ -112,7 +114,7 @@ def ping(request, slug):
         user_ping(request.user)
 
         # Turn the latest timestamp given by the client into a
-        # datetime object for querying the database.  FIXME: The
+        # datetime object for querying the database. FIXME: The
         # timestamp needs to be increased by one second to eliminate
         # duplicates.  This seems like a bug to me, but it works.
         latest_timestamp = float(request.POST.get('latest', time.time())) + 1
