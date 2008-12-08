@@ -1,12 +1,28 @@
 README
 
+
+Introduction
+------------------------------------------------------------------------
+
 Watercooler is a web application that provides realtime group chat,
 built with Python and the Django web programming framework.  This
 document aims to be a high-level overview of its structure and
-functionality.
+functionality (it will no doubt be long-winded and cover the wrong
+details).
+
+Watercooler has only been tested in Firefox on OS X and Windows and
+Safari on OS X.  It has been designed to be completely functional
+(though much less useful) with JavaScript disabled (ie, posts can
+still be made, etc., but there would be no live updating of chat
+pages).
+
+Testing Watercooler by yourself requires using at least two separate
+browsers, so that you can log in as two separate users to make posts
+to the same conversation.  I've done this with Firefox and Safari as
+well as just Firefox under two separate profiles.
 
 
-Introduction
+Basic Structure
 ------------------------------------------------------------------------
 
 Watercooler is a Django project, which means the source code follows
@@ -145,3 +161,47 @@ available without scrolling.
 
 This is, however, a brittle approach that breaks when the window is
 resized (and probably suffers from other problems).
+
+
+Flaws
+------------------------------------------------------------------------
+
+There are some flaws in Watercooler as it is currently constituted.
+Some are simply features which have not been implemented, others are
+problems for which a good solution has not yet been found.  Here are
+those that I can think of off right now:
+
+ * Private chats.  All chats created through the public web interface
+   are public.  In a finished product, there would be private,
+   password-protected chats that could be shared with a specific group
+   of people (via automated email, presumably).  I felt this was out
+   of the scope of the project.
+
+ * Post dates and times.  At the moment, there is no date or time
+   information displayed with the posts on chat pages, even though
+   that data is readily available.  I should figure out a good way to
+   make that info available when desired.
+
+ * Chat archiving.  A chat page currently displays every post made in
+   that chat.  This would get unweildy with large or long-lasting
+   chats, so an interface for archiving chats should be implemented.
+
+ * Chats with duplicate names.  Right now, if you try to create a chat
+   with the same name as one that already exists, you are silently
+   redirected to the existing chat's page.  Ideally, a new chat with
+   an adjusted slug would be created instead.
+
+ * The dynamic layout of chat pages (done by LayoutHandler) is brittle
+   and flaky.  A better solution (preferably all CSS) would be nice.
+
+
+Wrapping Up
+------------------------------------------------------------------------
+
+I'll add to this document as things occur to me.  Please let me know
+if you have any questions or comments.  I'll be glad to answer them to
+the best of my ability.
+
+
+Will McCutchen
+mccutchen@gmail.com
