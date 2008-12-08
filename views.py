@@ -153,7 +153,8 @@ def ping(request, slug):
 @login_required
 def filterchat(request, slug):
     """Filters a chat by username and/or keyword.  Filtered chat views
-    are static (ie, not dynamically updated via Ajax)."""
+    are static (ie, not dynamically updated via Ajax).  So-named to
+    avoid clobbering the built-in Python filter function."""
     chat = get_object_or_404(Chat, slug=slug)
     posts = chat.posts.all()
 
@@ -188,7 +189,7 @@ def filterchat(request, slug):
 
 
 # ====================================================================
-# Registration view (the login and logout views are provided by
+# Registration views (the login and logout views are provided by
 # Django's auth framework)
 # ====================================================================
 def register(request):
@@ -205,7 +206,6 @@ def register(request):
             username = form.cleaned_data['username']
             password = form.cleaned_data['password1']
             user = authenticate(username=username, password=password)
-            assert user is not None
             login(request, user)
             return HttpResponseRedirect(request.POST.get('next', '/'))
 
