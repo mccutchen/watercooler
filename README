@@ -5,6 +5,45 @@ built with Python and the Django web programming framework.  This
 document aims to be a high-level overview of its structure and
 functionality.
 
+Introduction
+----------------------------------------------------------------------
+
+Watercooler is a Django project, which means the source code follows
+the same basic patterns as other Django projects.  At a basic level,
+Django projects are defined by the following elements:
+
+ * settings.py, which defines the settings for the project
+
+ * models.py, which defines the data models used by the project in
+   terms of Django's object-relational mapper (ORM)
+
+ * urls.py, which defines the URL structure of the project, mapping
+   URLs to view functions
+
+ * views.py, which contains the view functions to which URLs are
+   mapped by urls.py
+
+Additionally, most Django projects will also have the following:
+
+ * a templates directory, which contains the templates used by the
+   view functions to generate output
+
+ * admin.py, which sets up Django's built-in administrative interface
+   for a project's particular data models (as defined in models.py)
+
+ * a media directory, which contains the static media (ie, CSS,
+   JavaScript, images, etc.) used by the project.  These are generally
+   not served by Django itself, but are instead served by another web
+   server better suited for that task (eg, Apache, nginx, etc.).
+
+A note about the concepts of projects vs. applications in Django: When
+you read about Django, you will see that, generally speaking, a single
+Django "project" is composed of one or more Django "applications"
+(which can be shared between projects, ideally).  Watercooler, because
+of its simplicity, is a single project and application (in the Django
+sense) in one.
+
+
 Overview of directory structure
 ----------------------------------------------------------------------
 
