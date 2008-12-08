@@ -3,3 +3,4 @@ ideas\.txt
 settings/local\.py
 watercooler\.pid
 watercooler\.socket
+fabfile\.py
