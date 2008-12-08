@@ -5,8 +5,9 @@ built with Python and the Django web programming framework.  This
 document aims to be a high-level overview of its structure and
 functionality.
 
+
 Introduction
-----------------------------------------------------------------------
+------------------------------------------------------------------------
 
 Watercooler is a Django project, which means the source code follows
 the same basic patterns as other Django projects.  At a basic level,
@@ -23,7 +24,8 @@ Django projects are defined by the following elements:
  * views.py, which contains the view functions to which URLs are
    mapped by urls.py
 
-Additionally, most Django projects will also have the following:
+Additionally, most Django projects, Watercooler included, will also
+have the following:
 
  * a templates directory, which contains the templates used by the
    view functions to generate output
@@ -44,8 +46,109 @@ of its simplicity, is a single project and application (in the Django
 sense) in one.
 
 
+Django contrib apps used
+------------------------------------------------------------------------
+
+Watercooler takes advantage of some of Django's bundled contrib apps
+to easily extend its functionality.  It uses the following apps:
+
+ * django.contrib.admin, which provides a nice administrative
+   interface to your data.
+
+ * django.contrib.auth, which provides an authentication system for
+   managing users (including logging them in and out and allowing them
+   to register).
+
+These apps in turn use the django.contrib.contenttypes and
+django.contrib.sessions apps.
+
+
+Chat pages
+------------------------------------------------------------------------
+
+The most complicated part of Watercooler is the functionality of the
+individual chat pages.  Here is a basic explanation of how they work.
+
+Chats are identified by their "slug" in URLs.  The slug is
+automatically generated based on the name given to the chat when it is
+created.  Each Chat is composed of zero or more Posts.  Posts are
+associated with a particular User, were created at a particular date
+and time, and have their content saved as plain text.
+
+When a particular Chat's page is loaded, all of its Posts are stuffed
+into a table with two columns: username and post content.  Initially,
+the post content is plain text.
+
+On page load, the following steps are taken:
+
+ * MediaHandler (defined in media/js/mediahandler.js) is
+   initialized
+
+ * PostHandler (media/js/posthandler.js) is initialized
+
+ * LayoutHandler (media/js/layouthandler.js) is initialized
+
+Then, the PostHandler begins polling the server every two seconds to
+get any new Posts made by other users and to get an updated list of
+active and inactive Users for this particular Chat.
+
+
+MediaHandler
+------------------------------------------------------------------------
+
+The MediaHandler object is responsible for transforming each Post's
+plain text content into embedded multimedia objects when appropriate.
+Each Post's content is run through the MediaHandler.handle method,
+which simply looks for URLs.  If a URL is found, one of the following
+steps is taken:
+
+ * Image URLs (ie, those pointing to JPEG, GIF or PNG files) are
+   transformed into inline image elements.
+
+ * YouTube URLs are transformed into embedded YouTube videos.
+
+ * MP3 URLs are transformed into embedded media players.
+
+ * Any other URLs are transformed into hyperlink elements.
+
+On initialization, MediaHandler iterates over each post currently on
+the page and processes its content as described above.  Then, when any
+new posts are added to the page (by the current user or other users),
+those posts are also processed.
+
+
+PostHandler
+------------------------------------------------------------------------
+
+When the PostHandler is initialized, it iterates through each Post on
+the page and adds its timestamp (which is given in the Post's <tr>'s
+class attribute) to a list of known timestamps.  It then sets up an
+event listener on the post form that intercepts form submissions and
+instead adds the post via an Ajax request to the server.  Finally, it
+begins polling the server for updates every two seconds.
+
+On every poll request, the PostHandler sends the latest timestamp that
+it knows about and receives from the server a list of Posts made since
+that timestamp and a list of active and inactive users.  It adds any
+posts to the page (after having their content processed by the
+MediaHandler) and passes the list of users to the UserHandler, which
+updates the list of users in the sidebar.
+
+
+LayoutHandler
+------------------------------------------------------------------------
+
+The LayoutHandler tries to fit the layout of the page to the size of
+the user's browser window when the page is loaded.  This ensures that
+the footer and post form are always at the bottom of the page,
+available without scrolling.
+
+This is, however, a brittle approach that breaks when the window is
+resized (and probably suffers from other problems).
+
+
 Overview of directory structure
-----------------------------------------------------------------------
+------------------------------------------------------------------------
 
 __init__.py
 
